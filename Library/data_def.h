@@ -34,6 +34,7 @@ enum MenuState
 {
     MAIN,
     MUSIC,
+    STANDBY,
 };
 
 enum blue_tooth_cmd

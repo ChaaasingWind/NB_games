@@ -37,11 +37,18 @@ extern "C"
             if(cmd.current_state == MenuState::MAIN)
             {
                 pen::instance().
-                set_position(60, 20).
+                set_position(0, 0).
                 set_line_height(8).
                 draw_string("MAIN").
-                set_position(60, 40).
-                draw_char('0'+ cmd.current_index);
+                set_position(10, 20).
+                draw_string("MUSIC").
+                set_position(10, 30).
+                draw_string("STANDBY").
+                
+                set_position(0, 20+10*cmd.current_index).
+                draw_char('*').
+                set_position(80, 15).
+                draw_pattern(picture_Ralsei_face_battlemenuData);
             }
             else if(cmd.current_state == MenuState::MUSIC)
             {
@@ -51,6 +58,12 @@ extern "C"
                 draw_string("MUSIC").
                 set_position(60, 40).
                 draw_char('0'+ cmd.current_index);
+            }
+            else if(cmd.current_state == MenuState::STANDBY)
+            {
+                pen::instance().
+                set_position(0, 0).
+                draw_gif(gif_Pink_face_shop_animation_Orange, tick, 30);
             }
             // //做一个骑士图案上下浮动的gif，浮动高度5像素
 

@@ -1,5 +1,6 @@
 #include "../menu.h"
 
+#define MUSIC_MENU_MAX_INDEX 10
 
 void menu::MusicMenu::enter(menuctx* ctx)
 {
@@ -19,11 +20,20 @@ void menu::MusicMenu::execute(menuctx* ctx)
 
     if(ctx->cmd == blue_tooth_cmd::UP)
     {
-        ctx->current_index++;
+        ctx->current_index--;
     }
     else if(ctx->cmd == blue_tooth_cmd::DOWN)
     {
-        ctx->current_index--;
+        ctx->current_index++;
+    }
+
+    if(ctx->current_index >= MUSIC_MENU_MAX_INDEX)
+    {
+        ctx->current_index -= MUSIC_MENU_MAX_INDEX;
+    }
+    else if(ctx->current_index < 0)
+    {
+        ctx->current_index += MUSIC_MENU_MAX_INDEX;
     }
 
     

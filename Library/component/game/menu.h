@@ -1,5 +1,5 @@
 #ifndef MENU_H
-#define Menu_H
+#define MENU_H
 
 #include "cmsis_os.h"
 #include "stdlib.h"
@@ -27,14 +27,21 @@ class menu
         void execute(menuctx* ctx) override;
         void exit(menuctx* ctx) override{};
     };
+    struct StandbyMenu : public state_t<menuctx> {
+        void enter(menuctx* ctx) override;
+        void execute(menuctx* ctx) override;
+        void exit(menuctx* ctx) override{};
+
+    };
 
     menuctx _ctx;
 
     //状态机实例
     MainMenu _mainMenu;
     MusicMenu _musicMenu;
+    StandbyMenu _standbyMenu;
 
-
+    state_t<menuctx>* MainMenuOptions[2] = {&_musicMenu, &_standbyMenu};
 
 
     
