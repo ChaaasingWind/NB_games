@@ -35,6 +35,9 @@ enable_language(C ASM)
 add_executable(${CMAKE_PROJECT_NAME}
     Library/game_init_thread.cpp
     Library/component/game/game_task.cpp
+    Library/component/game/menu.cpp
+    Library/component/game/fsm/menu_state_main.cpp
+    Library/component/game/fsm/menu_state_music.cpp
     Library/component/led/led_task.cpp
     Library/component/led/led_animation.cpp
     Library/component/buzzer/buzzer_task.cpp

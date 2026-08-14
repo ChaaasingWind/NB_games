@@ -29,78 +29,29 @@ extern "C"
 
             static int tick = 0;
             memset(oled_arr, 0, 1024);
-            
-            uart_cmd cmd;
-            blackboard::instance().read_uart_cmd(&cmd);
-
-            char data[8];
-            
-            if(cmd.msg.w)
-            {
-                data[0] = 'T';
-            }
-            else 
-            {
-                data[0] = ' ';
-            }
-            if(cmd.msg.a)
-            {
-                data[1] = 'T';
-            }
-            else 
-            {
-                data[1] = ' ';
-            }
-            if(cmd.msg.s)
-            {
-                data[2] = 'T';
-            }
-            else 
-            {
-                data[2] = ' ';
-            }
-            if(cmd.msg.d)
-            {
-                data[3] = 'T';
-            }
-            else 
-            {
-                data[3] = ' ';
-            }
-            if(cmd.msg.z)
-            {
-                data[4] = 'T';
-            }
-            else 
-            {
-                data[4] = ' ';
-            }
-            if(cmd.msg.x)
-            {
-                data[5] = 'T';
-            }
-            else 
-            {
-                data[5] = ' ';
-            }
-            if(cmd.msg.c)
-            {
-                data[6] = 'T';
-            }
-            else 
-            {
-                data[6] = ' ';
-            }
-            
 
 
-            pen::instance().
-                set_position(0, 0).
+
+            menuctx cmd;
+            blackboard::instance().read_menu_ctx(&cmd);
+            if(cmd.current_state == MenuState::MAIN)
+            {
+                pen::instance().
+                set_position(60, 20).
                 set_line_height(8).
-                draw_string(data);
-
-
-
+                draw_string("MAIN").
+                set_position(60, 40).
+                draw_char('0'+ cmd.current_index);
+            }
+            else if(cmd.current_state == MenuState::MUSIC)
+            {
+                pen::instance().
+                set_position(60, 20).
+                set_line_height(8).
+                draw_string("MUSIC").
+                set_position(60, 40).
+                draw_char('0'+ cmd.current_index);
+            }
             // //做一个骑士图案上下浮动的gif，浮动高度5像素
 
             // static int a=0;

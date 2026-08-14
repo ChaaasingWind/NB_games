@@ -30,7 +30,30 @@ struct uart_connect_pack
 
 
 
+enum MenuState
+{
+    MAIN,
+    MUSIC,
+};
 
+enum blue_tooth_cmd
+{
+    NONE,
+    YES,
+    RETURN,
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+};
+
+
+struct menuctx
+{
+    blue_tooth_cmd cmd;
+    MenuState current_state;
+    int8_t current_index;
+};
 
 
 

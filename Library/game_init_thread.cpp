@@ -7,9 +7,9 @@
 
 
 //#define BUTTON_TASK 1
-#define GAME_TASK 0
+#define GAME_TASK 1
 #define LED_TASK 0
-#define BUZZER_TASK 1
+#define BUZZER_TASK 0
 #define OLED_TASK 1
 #define HEARTBEAT_TASK 1
 #define BLUETOOTH_TASK 1
