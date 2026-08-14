@@ -4,6 +4,13 @@
 #include "stdint.h"
 
 
+
+
+
+#define MUSIC_MENU_MAX_NUM 19
+#define MAIN_MENU_MAX_NUM 2
+
+
 union uart_cmd
 {
     __attribute__((packed)) struct 
@@ -35,6 +42,14 @@ enum MenuState
     MAIN,
     MUSIC,
     STANDBY,
+    PLAYING_MUSIC,
+};
+
+enum MusicPlayingState
+{
+    IDLE,
+    PLAYING,
+    STOP,
 };
 
 enum blue_tooth_cmd
@@ -42,6 +57,7 @@ enum blue_tooth_cmd
     NONE,
     YES,
     RETURN,
+    PAUSE,
     UP,
     DOWN,
     LEFT,
@@ -52,8 +68,13 @@ enum blue_tooth_cmd
 struct menuctx
 {
     blue_tooth_cmd cmd;
+
     MenuState current_state;
     int8_t current_index;
+
+    MusicPlayingState current_playing_state;
+    int8_t current_music_index;
+    
 };
 
 

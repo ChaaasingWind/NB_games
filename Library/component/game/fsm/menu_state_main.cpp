@@ -1,6 +1,6 @@
 #include "../menu.h"
 
-#define MAIN_MENU_MAX_INDEX 2
+
 void menu::MainMenu::enter(menuctx* ctx)
 {
     ctx->current_state = MenuState::MAIN;
@@ -27,13 +27,13 @@ void menu::MainMenu::execute(menuctx* ctx)
     }
 
 
-    if(ctx->current_index >= MAIN_MENU_MAX_INDEX)
+    if(ctx->current_index >= MAIN_MENU_MAX_NUM)
     {
-        ctx->current_index -= MAIN_MENU_MAX_INDEX;
+        ctx->current_index -= MAIN_MENU_MAX_NUM;
     }
     else if(ctx->current_index < 0)
     {
-        ctx->current_index += MAIN_MENU_MAX_INDEX;
+        ctx->current_index += MAIN_MENU_MAX_NUM;
     }
 
     

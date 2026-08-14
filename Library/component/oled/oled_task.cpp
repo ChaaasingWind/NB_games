@@ -16,6 +16,31 @@ extern __attribute__((section(".sram2"))) uint8_t zero[128];
 extern __attribute__((section(".sram2"))) uint8_t full[128];
 extern __attribute__((section(".sram2"))) uint8_t oled_buffer[8][128];
 
+
+const char* song_name_list[]=
+{
+    "Before the Story",
+    "BIG SHOT",
+    "Black Knife",
+    "DELTARUNE ED",
+    "Festival",
+    "FieldOfHopes&Dreams",
+    "Flower Man",
+    "Hammer of Justice",
+    "Cutie MewMew Magic",
+    "Petal Dance",
+    "Raise up Your Bat",
+    "Running Sky",
+    "Shop3",
+    "Sunset of SevenSuns",
+    "The Third Sanctuary",
+    "THE WORLD REVOLVING",
+    "TV WORLD",
+    "who might you be",
+    "Man!!!",
+
+};
+
 extern "C"
 {
     extern void oled_task(void *argument)
@@ -53,17 +78,65 @@ extern "C"
             else if(cmd.current_state == MenuState::MUSIC)
             {
                 pen::instance().
-                set_position(60, 20).
+                set_position(0, 0).
                 set_line_height(8).
-                draw_string("MUSIC").
-                set_position(60, 40).
-                draw_char('0'+ cmd.current_index);
+                draw_string("MUSIC");
+                if(cmd.current_index >= 2)
+                {
+                    pen::instance().
+                    set_position(10, 15).
+                    draw_string(song_name_list[cmd.current_index-2]);
+                }
+                if(cmd.current_index >= 1)
+                {
+                    pen::instance().
+                    set_position(10, 25).
+                    draw_string(song_name_list[cmd.current_index-1]);
+                }
+
+                pen::instance().
+                set_position(10, 35).
+                draw_string(song_name_list[cmd.current_index]).
+                set_position(0, 35).
+                draw_char('*');
+
+                if(cmd.current_index <=MUSIC_MENU_MAX_NUM-2)
+                {
+                    pen::instance().
+                    set_position(10, 45).
+                    draw_string(song_name_list[cmd.current_index+1]);
+                }
+                if(cmd.current_index <=MUSIC_MENU_MAX_NUM-3)
+                {
+                    pen::instance().
+                    set_position(10, 55).
+                    draw_string(song_name_list[cmd.current_index+2]);
+                }
             }
             else if(cmd.current_state == MenuState::STANDBY)
             {
                 pen::instance().
                 set_position(0, 0).
                 draw_gif(gif_Pink_face_shop_animation_Orange, tick, 30);
+            }
+            else if(cmd.current_state == MenuState::PLAYING_MUSIC)
+            {
+                pen::instance().
+                set_position(0, 0).
+                draw_string(song_name_list[cmd.current_music_index]).
+                set_position(30, 28);
+                if(cmd.current_playing_state == MusicPlayingState::PLAYING)
+                {
+                    pen::instance().
+                    draw_string("Playing...");
+                }
+                else if(cmd.current_playing_state == MusicPlayingState::STOP)
+                {
+                    pen::instance().
+                    draw_string("S.T.O.P");
+                }
+                
+                
             }
             // //做一个骑士图案上下浮动的gif，浮动高度5像素
 

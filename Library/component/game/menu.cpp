@@ -19,6 +19,7 @@ void menu::update_cmd(uart_cmd new_cmd)
     
     // 检测按下边沿：当前为1 且 上次为0
     bool z_edge = new_cmd.msg.z == 1 && last_raw_cmd.msg.z == 0;
+    bool x_edge = new_cmd.msg.x == 1 && last_raw_cmd.msg.x == 0;
     bool c_edge = new_cmd.msg.c == 1 && last_raw_cmd.msg.c == 0;
     bool w_edge = new_cmd.msg.w == 1 && last_raw_cmd.msg.w == 0;
     bool a_edge = new_cmd.msg.a == 1 && last_raw_cmd.msg.a == 0;
@@ -26,6 +27,7 @@ void menu::update_cmd(uart_cmd new_cmd)
     bool d_edge = new_cmd.msg.d == 1 && last_raw_cmd.msg.d == 0;
     
     if(z_edge) _ctx.cmd = blue_tooth_cmd::YES;
+    else if(x_edge) _ctx.cmd = blue_tooth_cmd::PAUSE;
     else if(c_edge) _ctx.cmd = blue_tooth_cmd::RETURN;
     else if(w_edge) _ctx.cmd = blue_tooth_cmd::UP;
     else if(a_edge) _ctx.cmd = blue_tooth_cmd::LEFT;

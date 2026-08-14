@@ -39,6 +39,7 @@ add_executable(${CMAKE_PROJECT_NAME}
     Library/component/game/fsm/menu_state_main.cpp
     Library/component/game/fsm/menu_state_music.cpp
     Library/component/game/fsm/menu_state_standby.cpp
+    Library/component/game/fsm/menu_state_playing_music.cpp
     Library/component/led/led_task.cpp
     Library/component/led/led_animation.cpp
     Library/component/buzzer/buzzer_task.cpp

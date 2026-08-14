@@ -3,6 +3,7 @@
 
 #include "stdint.h"
 #include "main.h"
+#include "stdlib.h"
 
 
 extern TIM_HandleTypeDef htim13;
@@ -20,7 +21,7 @@ enum tone
     C5,Db5,D5,Eb5,E5,F5,Gb5,G5,Ab5,A5,Bb5,B5,
     C6,Db6,D6,Eb6,E6,F6,Gb6,G6,Ab6,A6,Bb6,B6,
     C7,Db7,D7,Eb7,E7,F7,Gb7,G7,Ab7,A7,Bb7,B7,
-    NONE, EMPTY
+    NONE_TONE, EMPTY
 };
 
 class sound
@@ -42,18 +43,6 @@ class sound
         {274, 18182},  // A1
         {274, 17161}, // Bb1
         {274, 16197}, // B1
-        // {65535,65535},  // C1
-        // {65535,65535},  // Db1
-        // {65535,65535},  // D1
-        // {65535,65535},  // Eb1
-        // {65535,65535},  // E1
-        // {65535,65535},  // F1
-        // {65535,65535},  // Gb1
-        // {65535,65535},  // G1
-        // {65535,65535},  // Ab1
-        // {65535,65535},  // A1
-        // {65535,65535},  // Bb1
-        // {65535,65535},  // B1
 
         {67,62750},   // C2 
         {109,36406},  // Db2
@@ -138,7 +127,7 @@ class sound
     const uint8_t tone;
     const uint16_t last_beat;
 
-    constexpr sound():tone(tone::NONE),last_beat(0){}
+    constexpr sound():tone(tone::NONE_TONE),last_beat(0){}
     constexpr sound(int tone, uint16_t last_beat):
         tone(tone),last_beat(last_beat){};
     constexpr sound(uint16_t last_beat):tone(tone::EMPTY), last_beat(last_beat){};
@@ -184,6 +173,7 @@ struct song
 
 
 
+
 struct music_play
 {
     int count[5]={0};
@@ -197,6 +187,7 @@ struct music_play
     void reset_music();
     void set_song(const song* new_song);
     void set_play_time(int time);
+    void keep_silent();
     static music_play& instance()
     {
         static music_play instance;

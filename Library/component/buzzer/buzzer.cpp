@@ -7,7 +7,7 @@
 
 
 //设定新音符的初始占空比
-#define INITIAL_DUTY_CYCLE 0.33f
+#define INITIAL_DUTY_CYCLE 0.002f
 
 
 
@@ -80,7 +80,7 @@ void music_play::play_music()
             (current_song->song_voice[p]+count[p])->convert_frequence_to_pwm_param(&prescaler, &period);
             __HAL_TIM_SET_PRESCALER((current_song->htimarr[p]), prescaler-1);
             __HAL_TIM_SetAutoreload((current_song->htimarr[p]), period-1);
-            if((current_song->song_voice[p]+count[p])->tone == tone::EMPTY || (current_song->song_voice[p]+count[p])->tone == tone::NONE)
+            if((current_song->song_voice[p]+count[p])->tone == tone::EMPTY || (current_song->song_voice[p]+count[p])->tone == tone::NONE_TONE)
             {
                 __HAL_TIM_SET_COMPARE((current_song->htimarr[p]), TIM_CHANNEL_1, 0);
             }
@@ -95,13 +95,13 @@ void music_play::play_music()
             times[p]++;
 
             //处理同步拍
-            if((current_song->song_voice[p]+count[p])->tone==tone::NONE)
+            if((current_song->song_voice[p]+count[p])->tone==tone::NONE_TONE)
             {
-                if(((current_song->song_voice[0]+count[0])->tone==tone::NONE||count[0]+1>current_song->voice_size[0])&&
-                   ((current_song->song_voice[1]+count[1])->tone==tone::NONE||count[1]+1>current_song->voice_size[1])&&
-                   ((current_song->song_voice[2]+count[2])->tone==tone::NONE||count[2]+1>current_song->voice_size[2])&&
-                   ((current_song->song_voice[3]+count[3])->tone==tone::NONE||count[3]+1>current_song->voice_size[3])&&
-                   ((current_song->song_voice[4]+count[4])->tone==tone::NONE||count[4]+1>current_song->voice_size[4]))
+                if(((current_song->song_voice[0]+count[0])->tone==tone::NONE_TONE||count[0]+1>current_song->voice_size[0])&&
+                   ((current_song->song_voice[1]+count[1])->tone==tone::NONE_TONE||count[1]+1>current_song->voice_size[1])&&
+                   ((current_song->song_voice[2]+count[2])->tone==tone::NONE_TONE||count[2]+1>current_song->voice_size[2])&&
+                   ((current_song->song_voice[3]+count[3])->tone==tone::NONE_TONE||count[3]+1>current_song->voice_size[3])&&
+                   ((current_song->song_voice[4]+count[4])->tone==tone::NONE_TONE||count[4]+1>current_song->voice_size[4]))
                 {
                     for(int i = 0 ; i < 5 ; i++)
                     {
@@ -206,5 +206,14 @@ void music_play::set_play_time(int time)
             }
             
         }
+    }
+}
+
+
+void music_play::keep_silent()
+{
+    for(int i = 0; i < 5; i++)
+    {
+        __HAL_TIM_SET_COMPARE((current_song->htimarr[i]), TIM_CHANNEL_1, 0);
     }
 }
