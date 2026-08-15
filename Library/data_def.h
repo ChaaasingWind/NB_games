@@ -57,7 +57,7 @@ enum blue_tooth_cmd
     NONE,
     YES,
     RETURN,
-    PAUSE,
+    TOGGLE,
     UP,
     DOWN,
     LEFT,
@@ -74,6 +74,7 @@ struct menuctx
 
     MusicPlayingState current_playing_state;
     int8_t current_music_index;
+    bool music_is_looped; 
     
 };
 

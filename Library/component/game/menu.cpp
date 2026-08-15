@@ -27,7 +27,7 @@ void menu::update_cmd(uart_cmd new_cmd)
     bool d_edge = new_cmd.msg.d == 1 && last_raw_cmd.msg.d == 0;
     
     if(z_edge) _ctx.cmd = blue_tooth_cmd::YES;
-    else if(x_edge) _ctx.cmd = blue_tooth_cmd::PAUSE;
+    else if(x_edge) _ctx.cmd = blue_tooth_cmd::TOGGLE;
     else if(c_edge) _ctx.cmd = blue_tooth_cmd::RETURN;
     else if(w_edge) _ctx.cmd = blue_tooth_cmd::UP;
     else if(a_edge) _ctx.cmd = blue_tooth_cmd::LEFT;

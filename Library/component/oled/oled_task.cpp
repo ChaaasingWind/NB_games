@@ -75,6 +75,9 @@ extern "C"
                 set_position(80, 15).
                 draw_pattern(picture_Ralsei_face_battlemenuData);
             }
+
+
+
             else if(cmd.current_state == MenuState::MUSIC)
             {
                 pen::instance().
@@ -113,12 +116,17 @@ extern "C"
                     draw_string(song_name_list[cmd.current_index+2]);
                 }
             }
+
+
+
             else if(cmd.current_state == MenuState::STANDBY)
             {
                 pen::instance().
                 set_position(0, 0).
                 draw_gif(gif_Pink_face_shop_animation_Orange, tick, 30);
             }
+
+
             else if(cmd.current_state == MenuState::PLAYING_MUSIC)
             {
                 pen::instance().
@@ -135,6 +143,19 @@ extern "C"
                     pen::instance().
                     draw_string("S.T.O.P");
                 }
+
+                pen::instance().
+                set_position(30, 40).
+                draw_string("loop : ");
+                if(cmd.music_is_looped)
+                {
+                    pen::instance().draw_string("TRUE");
+                }
+                else 
+                {
+                    pen::instance().draw_string("FALSE");
+                }
+                
                 
                 
             }

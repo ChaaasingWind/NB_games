@@ -63,6 +63,7 @@ void buzzer_task(void *argument)
         menuctx cmd;
         blackboard::instance().read_menu_ctx(&cmd);
         static int8_t last_music_index = -1;
+        music_play::instance().loop_enabled = cmd.music_is_looped;
         if(cmd.current_music_index != last_music_index)
         {
             music_play::instance().reset_music();
@@ -81,6 +82,10 @@ void buzzer_task(void *argument)
                 {
                     music_play::instance().set_song(music_play::instance().current_song);
                     
+                }
+                else 
+                {
+                    music_play::instance().keep_silent();
                 }
             }
         }

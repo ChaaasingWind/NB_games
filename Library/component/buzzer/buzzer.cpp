@@ -7,7 +7,7 @@
 
 
 //设定新音符的初始占空比
-#define INITIAL_DUTY_CYCLE 0.002f
+#define INITIAL_DUTY_CYCLE 0.33f
 
 
 
@@ -152,7 +152,7 @@ void music_play::reset_music()
 void music_play::set_song(const song* new_song)
 {
     song_finished = false;
-    loop_enabled = true;
+    loop_enabled = false;
     current_song = new_song;
     for(int i=0;i<5;i++)
     {
