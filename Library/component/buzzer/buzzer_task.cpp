@@ -1,7 +1,9 @@
 #include "buzzer.h"
 #include "main.h"
 #include "FreeRTOS.h"
+#include "songs/Paradise_Paradise.h"
 #include "songs/before_the_story.h"
+#include "songs/test_tone.h"
 #include "task.h"
 #include "../../Blackboard/blackboard.h"
 
@@ -26,6 +28,7 @@
 #include "songs/before_the_story.h"
 #include "songs/flower_man.h"
 #include "songs/hammer_of_justice.h"
+#include "songs/Paradise_Paradise.h"
 
 
 const song* song_list[]=
@@ -48,6 +51,7 @@ const song* song_list[]=
     &THE_WORLD_REVOLVING, 
     &TVWORLD, 
     &WhoMightYouBe, 
+    &Paradise_Paradise,
     &Man,
 };
 
@@ -57,7 +61,8 @@ const song* song_list[]=
 extern "C" {
 void buzzer_task(void *argument)
 {
-    
+    // music_play::instance().set_song(&TestTone);
+    // music_play::instance().loop_enabled = true;
     while(1)
     {
         menuctx cmd;
@@ -100,7 +105,22 @@ void buzzer_task(void *argument)
 
 
         
-        
+        // if(!music_play::instance().song_finished)
+        // {
+        //     music_play::instance().play_music();
+        // }
+        // else 
+        // {
+        //     if(music_play::instance().loop_enabled)
+        //     {
+        //         music_play::instance().set_song(music_play::instance().current_song);
+             
+        //     }
+        //     else 
+        //     {
+        //         music_play::instance().keep_silent();
+        //     }
+        // }
         
         
         

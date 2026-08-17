@@ -4,15 +4,16 @@
 #include "../buzzer.h"
 
 
-#define TEST_TONE Bb1
+
 const sound test_tone_voice1 [] =
 {
-    {TEST_TONE, 500},
-    {TEST_TONE, 500},
-    {TEST_TONE, 500},
-    {TEST_TONE, 500},
-    {TEST_TONE, 500},
-    {TEST_TONE, 500},
+    {C1, 1500},
+    {C2, 1500},
+    {C3, 1500},
+    {C4, 1500},
+    {C5, 1500},
+    {C6, 1500},
+    {C7, 1500},
 };
 
 

@@ -28,19 +28,33 @@ void sound::convert_frequence_to_pwm_param(uint16_t *prescaler, uint16_t *period
 }
 
 
+// float song::update_and_return_volume(float now_volume , const int& original_volume) 
+// {
+//     if(now_volume>=0.2*original_volume)
+//     {
+//         now_volume*=0.9686f;
+//     }
+//     else if(now_volume<=0.001*original_volume)
+//     {
+//         now_volume=0;
+//     }
+//     else 
+//     {
+//         now_volume*=0.98892f;
+//     }
+    
+    
+//     return now_volume;
+// }
 float song::update_and_return_volume(float now_volume , const int& original_volume) 
 {
-    if(now_volume>=0.2*original_volume)
+    if(now_volume>=0.001*original_volume)
     {
-        now_volume*=0.9686f;
-    }
-    else if(now_volume<=0.001*original_volume)
-    {
-        now_volume=0;
+        now_volume*=0.99f;
     }
     else 
     {
-        now_volume*=0.98892f;
+        now_volume=0;
     }
     
     

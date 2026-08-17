@@ -7,7 +7,7 @@
 
 
 
-#define MUSIC_MENU_MAX_NUM 19
+#define MUSIC_MENU_MAX_NUM 20
 #define MAIN_MENU_MAX_NUM 2
 
 

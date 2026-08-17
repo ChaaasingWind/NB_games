@@ -37,6 +37,7 @@ const char* song_name_list[]=
     "THE WORLD REVOLVING",
     "TV WORLD",
     "who might you be",
+    "Paradise, Paradise",
     "Man!!!",
 
 };
