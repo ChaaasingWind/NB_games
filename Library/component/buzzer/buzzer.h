@@ -5,6 +5,9 @@
 #include "main.h"
 #include "stdlib.h"
 
+//设定新音符的初始最大占空比
+#define INITIAL_DUTY_CYCLE 0.5f
+
 
 extern TIM_HandleTypeDef htim13;
 extern TIM_HandleTypeDef htim14;
@@ -124,15 +127,22 @@ class sound
     {65535,65535}, 
     {65535,65535}};
     
+    
     const uint8_t tone;
     const uint16_t last_beat;
+    const uint8_t velocity;
 
-    constexpr sound():tone(tone::NONE_TONE),last_beat(0){}
+    constexpr sound():tone(tone::NONE_TONE), last_beat(0), velocity(0){}
+    constexpr sound(uint16_t last_beat):tone(tone::EMPTY), last_beat(last_beat), velocity(0){};
     constexpr sound(int tone, uint16_t last_beat):
-        tone(tone),last_beat(last_beat){};
-    constexpr sound(uint16_t last_beat):tone(tone::EMPTY), last_beat(last_beat){};
+            tone(tone),last_beat(last_beat), velocity(127){};
+    constexpr sound(int tone, uint16_t last_beat, uint8_t volume):
+            tone(tone),last_beat(last_beat), velocity(volume){};
+    
+
     void convert_frequence_to_pwm_param(uint16_t *prescaler, uint16_t *period) const;
     uint16_t get_original_volume() const {return prescaler_and_period_arr[tone][1];}
+    float get_first_duty() const {return (velocity/127.0f *INITIAL_DUTY_CYCLE)*(velocity/127.0f *INITIAL_DUTY_CYCLE);}
 
 
 };

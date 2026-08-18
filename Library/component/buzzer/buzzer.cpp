@@ -6,8 +6,7 @@
 #include "task.h"
 
 
-//设定新音符的初始占空比
-#define INITIAL_DUTY_CYCLE 0.33f
+
 
 
 
@@ -123,7 +122,7 @@ void music_play::play_music()
                         {
                             count[i]++;
                             times[i]=0;
-                            volume[i] = (current_song->song_voice[i]+count[i])->get_original_volume()*INITIAL_DUTY_CYCLE;
+                            volume[i] = (current_song->song_voice[i]+count[i])->get_original_volume()*(current_song->song_voice[i]+count[i])->get_first_duty();
                         }
                         
                     }
@@ -137,7 +136,7 @@ void music_play::play_music()
             {
                 count[p]++;
                 times[p]=0;
-                volume[p] = (current_song->song_voice[p]+count[p])->get_original_volume()*INITIAL_DUTY_CYCLE;
+                volume[p] = (current_song->song_voice[p]+count[p])->get_original_volume()*(current_song->song_voice[p]+count[p])->get_first_duty();
             }
             
         }

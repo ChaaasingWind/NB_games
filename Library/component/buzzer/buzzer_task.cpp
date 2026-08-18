@@ -9,8 +9,8 @@
 
 
 
-#include "songs/song_shop3.h"
-#include "songs/song_man.h"
+#include "songs/shop3.h"
+#include "songs/man.h"
 #include "songs/whomightyoube.h"
 #include "songs/dr_ed.h"
 #include "songs/running_sky.h"
@@ -49,7 +49,7 @@ const song* song_list[]=
     &SunsetOfSevenSuns, 
     &TheThirdSanctuary, 
     &THE_WORLD_REVOLVING, 
-    &TVWORLD, 
+    &TV_WORLD, 
     &WhoMightYouBe, 
     &Paradise_Paradise,
     &Man,
