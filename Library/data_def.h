@@ -7,24 +7,20 @@
 
 
 
-#define MUSIC_MENU_MAX_NUM 20
+#define MUSIC_MENU_MAX_NUM 23
 #define MAIN_MENU_MAX_NUM 2
 
 
-union uart_cmd
-{
-    __attribute__((packed)) struct 
-    {
-        uint8_t w  : 1  ;
-        uint8_t a  : 1  ;
-        uint8_t s  : 1  ;
-        uint8_t d  : 1  ;
-        uint8_t z  : 1  ;
-        uint8_t x  : 1  ;
-        uint8_t c  : 1  ;
-    }msg;
 
-    uint8_t buffer;
+struct __attribute__((packed)) uart_cmd
+{
+    uint8_t w  : 1  ;
+    uint8_t a  : 1  ;
+    uint8_t s  : 1  ;
+    uint8_t d  : 1  ;
+    uint8_t z  : 1  ;
+    uint8_t x  : 1  ;
+    uint8_t c  : 1  ;
 };
 
 struct uart_connect_pack
@@ -52,7 +48,7 @@ enum MusicPlayingState
     STOP,
 };
 
-enum blue_tooth_cmd
+enum controller_cmd
 {
     NONE,
     YES,
@@ -67,7 +63,7 @@ enum blue_tooth_cmd
 
 struct menuctx
 {
-    blue_tooth_cmd cmd;
+    controller_cmd cmd;
 
     MenuState current_state;
     int8_t current_index;
@@ -77,10 +73,6 @@ struct menuctx
     bool music_is_looped; 
     
 };
-
-
-
-
 
 
 

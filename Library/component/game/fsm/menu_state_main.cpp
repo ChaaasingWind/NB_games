@@ -10,18 +10,18 @@ void menu::MainMenu::enter(menuctx* ctx)
 
 void menu::MainMenu::execute(menuctx* ctx)
 {
-    if(ctx->cmd == blue_tooth_cmd::YES)
+    if(ctx->cmd == controller_cmd::YES)
     {
         request_switch((instance().MainMenuOptions[ctx->current_index]));
         return;
     }
 
 
-    if(ctx->cmd == blue_tooth_cmd::UP)
+    if(ctx->cmd == controller_cmd::UP)
     {
         ctx->current_index--;
     }
-    else if(ctx->cmd == blue_tooth_cmd::DOWN)
+    else if(ctx->cmd == controller_cmd::DOWN)
     {
         ctx->current_index++;
     }

@@ -1,7 +1,7 @@
 #ifndef SUNSETOFSEVENSUNS
 #define SUNSETOFSEVENSUNS
 
-#include "../buzzer.h"
+#include "buzzer.h"
 
 
 
@@ -525,6 +525,7 @@ const sound SunsetOfSevenSuns_voice1 [] =
     {C5, 124, 96},
     {1},
     {F3, 374, 55},
+    {0},
     {},
     {1},
     {C5, 124, 96},
@@ -622,6 +623,7 @@ const sound SunsetOfSevenSuns_voice1 [] =
     {C5, 124, 96},
     {1},
     {C3, 374, 55},
+    {0},
     {},
     {1},
     {C5, 124, 96},
@@ -681,6 +683,7 @@ const sound SunsetOfSevenSuns_voice1 [] =
     {F5, 499, 64},
     {1},
     {Eb5, 499, 64},
+    {0},
     {},
     {1},
     {D5, 499, 64},
@@ -801,7 +804,7 @@ const sound SunsetOfSevenSuns_voice2 [] =
     {C5, 62, 96},
     {63},
     {D5, 62, 96},
-    {63},
+    {62},
     {},
     {1},
     {D4, 249, 31},
@@ -891,7 +894,7 @@ const sound SunsetOfSevenSuns_voice2 [] =
     {C5, 62, 96},
     {63},
     {D5, 62, 96},
-    {63},
+    {62},
     {},
     {1},
     {D4, 249, 31},
@@ -1318,6 +1321,7 @@ const sound SunsetOfSevenSuns_voice2 [] =
     {C6, 499, 64},
     {1},
     {Bb5, 499, 64},
+    {0},
     {},
     {1},
     {A5, 499, 64},
@@ -1641,6 +1645,7 @@ const sound SunsetOfSevenSuns_voice3 [] =
     {F4, 249, 31},
     {251},
     {D4, 249, 31},
+    {0},
     {},
     {1},
     {D3, 374, 55},
@@ -1702,6 +1707,7 @@ const sound SunsetOfSevenSuns_voice3 [] =
     {D4, 249, 31},
     {251},
     {D4, 249, 31},
+    {0},
     {},
     {1},
     {Bb2, 374, 55},
@@ -1761,6 +1767,7 @@ const sound SunsetOfSevenSuns_voice3 [] =
     {F2, 374, 31},
     {1},
     {F3, 374, 31},
+    {0},
     {},
     {1},
     {F2, 249, 31},

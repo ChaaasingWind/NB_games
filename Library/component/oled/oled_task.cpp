@@ -5,7 +5,7 @@
 #include "oled.h"
 #include <cstring>
 #include "pattern/picture.h"
-#include "../../Blackboard/blackboard.h"
+#include "blackboard.h"
 #include "../../data_def.h"
 
 extern I2C_HandleTypeDef hi2c1;
@@ -38,7 +38,10 @@ const char* song_name_list[]=
     "TV WORLD",
     "who might you be",
     "Paradise, Paradise",
-    "Man!!!",
+    "I Miss You Zhang",
+    "Ruder Buster",
+    "Undyne",
+    "ASGORE",
 
 };
 
@@ -160,37 +163,6 @@ extern "C"
                 
                 
             }
-            // //做一个骑士图案上下浮动的gif，浮动高度5像素
-
-            // static int a=0;
-            // static int step = 1;
-            // if(tick%5==0)
-            // {
-            //     if(a==0)
-            //     {
-            //         step = 1;
-            //     }
-            //     if(a==4)
-            //     {
-            //         step = -1;
-            //     }
-            //     a+=step;
-            // }
-
-
-            // pen::instance().
-            //     set_position(30, 0+a).
-            //     set_line_height(8).
-            //     draw_pattern(picture_Knight_battle_idleData);
-
-
-
-            // pen::instance().
-            //     set_position(0, 0).
-            //     set_line_height(8).
-            //     draw_string("KnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnightKnight", 0, 1);
-                
-
             
             
 

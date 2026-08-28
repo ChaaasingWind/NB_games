@@ -33,22 +33,31 @@ enable_language(C ASM)
 
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME}
-    Library/game_init_thread.cpp
+
+
+    Library/game_mission_planer.cpp
+    Library/game_init_task.cpp
+    Library/heartbeat_task.cpp
+
+
     Library/component/game/game_task.cpp
     Library/component/game/menu.cpp
     Library/component/game/fsm/menu_state_main.cpp
     Library/component/game/fsm/menu_state_music.cpp
     Library/component/game/fsm/menu_state_standby.cpp
     Library/component/game/fsm/menu_state_playing_music.cpp
-    Library/component/led/led_task.cpp
-    Library/component/led/led_animation.cpp
+
+
     Library/component/buzzer/buzzer_task.cpp
     Library/component/buzzer/buzzer.cpp
+
+    Library/component/control/vrc.cpp
+
+
     Library/component/oled/oled.cpp
     Library/component/oled/oled_task.cpp
-    Library/component/heartbeat/heartbeat_task.cpp
-    Library/component/bluetooth/bluetooth_task.cpp
-    Library/Blackboard/blackboard.cpp
+
+    Library/Core/Blackboard/blackboard.cpp
 
 )
 
@@ -60,7 +69,8 @@ add_subdirectory(cmake/stm32cubemx)
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
-    ${CMAKE_CURRENT_SOURCE_DIR}/Library
+    
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # Add sources to executable
@@ -71,6 +81,14 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Core/FSM
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/buzzer
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/buzzer/songs
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/oled
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/game
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/control
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Core/Blackboard
 )
 
 # Add project symbols (macros)

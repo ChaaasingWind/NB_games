@@ -4,6 +4,8 @@
 #include "stdint.h"
 #include "main.h"
 #include "stdlib.h"
+#include "cmath"
+#include <cmath>
 
 //设定新音符的初始最大占空比
 #define INITIAL_DUTY_CYCLE 0.5f
@@ -127,7 +129,7 @@ class sound
     {65535,65535}, 
     {65535,65535}};
     
-    
+
     const uint8_t tone;
     const uint16_t last_beat;
     const uint8_t velocity;
@@ -142,6 +144,7 @@ class sound
 
     void convert_frequence_to_pwm_param(uint16_t *prescaler, uint16_t *period) const;
     uint16_t get_original_volume() const {return prescaler_and_period_arr[tone][1];}
+    //float get_first_duty() const {return powf((velocity/127.0f *INITIAL_DUTY_CYCLE), 2);}
     float get_first_duty() const {return (velocity/127.0f *INITIAL_DUTY_CYCLE)*(velocity/127.0f *INITIAL_DUTY_CYCLE);}
 
 

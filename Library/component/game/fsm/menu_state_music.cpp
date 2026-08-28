@@ -11,22 +11,22 @@ void menu::MusicMenu::enter(menuctx* ctx)
 
 void menu::MusicMenu::execute(menuctx* ctx)
 {
-    if(ctx->cmd == blue_tooth_cmd::RETURN)
+    if(ctx->cmd == controller_cmd::RETURN)
     {
         request_switch(&instance()._mainMenu);
         return;
     }
 
-    if(ctx->cmd == blue_tooth_cmd::YES)
+    if(ctx->cmd == controller_cmd::YES)
     {
         request_switch(&instance()._playingMusicMenu);
     }
 
-    if(ctx->cmd == blue_tooth_cmd::UP)
+    if(ctx->cmd == controller_cmd::UP)
     {
         ctx->current_index--;
     }
-    else if(ctx->cmd == blue_tooth_cmd::DOWN)
+    else if(ctx->cmd == controller_cmd::DOWN)
     {
         ctx->current_index++;
     }

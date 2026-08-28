@@ -2,7 +2,7 @@
 #define THE_WORLD_REVOLVING_H
 
 
-#include "../buzzer.h"
+#include "buzzer.h"
 
 
 

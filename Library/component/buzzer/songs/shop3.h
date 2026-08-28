@@ -1,6 +1,6 @@
 #ifndef SONG_SHOP3
 #define SONG_SHOP3
-#include "../buzzer.h"
+#include "buzzer.h"
 
 
 const sound Shop3_voice1 [] =
@@ -273,7 +273,7 @@ const sound Shop3_voice1 [] =
     {23},
     {Db4, 424, 64},
     {23},
-    {Bb4, 1342, 64},
+    {Bb4, 2685, 64},
 };
 
 const sound Shop3_voice2 [] =
@@ -590,8 +590,8 @@ const sound Shop3_voice2 [] =
     {Gb3, 424, 64},
     {896},
     {},
-    {503},
-    {B4, 1310, 64},
+    {535},
+    {B4, 2619, 64},
 };
 
 const sound Shop3_voice3 [] =
@@ -828,8 +828,8 @@ const sound Shop3_voice3 [] =
     {B3, 424, 67},
     {3582},
     {},
-    {536},
-    {Db5, 1276, 64},
+    {602},
+    {Db5, 2552, 64},
 };
 
 const sound Shop3_voice4 [] =
@@ -1027,8 +1027,8 @@ const sound Shop3_voice4 [] =
     {},
     {10299},
     {},
-    {570},
-    {Gb5, 1243, 64},
+    {669},
+    {Gb5, 2485, 64},
 };
 
 const sound Shop3_voice5 [] =

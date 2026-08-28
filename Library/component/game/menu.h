@@ -3,9 +3,9 @@
 
 #include "cmsis_os.h"
 #include "stdlib.h"
-#include "../../Algo/FSM/fsm.h"
-#include "../../Blackboard/blackboard.h"
-#include "../../data_def.h"
+#include "fsm.h"
+#include "data_def.h"
+#include "vrc.h"
 
 
 
@@ -17,6 +17,8 @@ static fsm_t<menuctx> menuFsm;
 class menu
 {
   public:
+
+  
     struct MainMenu : public state_t<menuctx> {
         void enter(menuctx* ctx) override;
         void execute(menuctx* ctx) override;
@@ -61,7 +63,7 @@ class menu
     }
     void menu_init();
     void menu_run();
-    void update_cmd(uart_cmd new_cmd);
+    void update_cmd(virtual_controller::finalcontroller new_cmd);
     
 
 

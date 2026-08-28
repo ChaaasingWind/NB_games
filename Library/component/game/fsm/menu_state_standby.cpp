@@ -10,7 +10,7 @@ void menu::StandbyMenu::enter(menuctx* ctx)
 
 void menu::StandbyMenu::execute(menuctx* ctx)
 {
-    if(ctx->cmd != blue_tooth_cmd::NONE)
+    if(ctx->cmd != controller_cmd::NONE)
     {
         request_switch(&instance()._mainMenu);
         return;

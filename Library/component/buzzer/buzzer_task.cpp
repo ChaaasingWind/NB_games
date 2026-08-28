@@ -3,40 +3,41 @@
 #include "FreeRTOS.h"
 #include "songs/Paradise_Paradise.h"
 #include "songs/before_the_story.h"
-#include "songs/test_tone.h"
 #include "task.h"
-#include "../../Blackboard/blackboard.h"
+#include "blackboard.h"
 
 
 
-#include "songs/shop3.h"
-#include "songs/man.h"
-#include "songs/whomightyoube.h"
-#include "songs/dr_ed.h"
-#include "songs/running_sky.h"
-#include "songs/petal_dance.h"
-#include "songs/sunsetofsevensuns.h"
-#include "songs/mewmew.h"
-#include "songs/raise_up_your_bat.h"
-#include "songs/the_third_sanctuary.h"
-#include "songs/field_of_hopes_and_dreams.h"
-#include "songs/black_knife.h"
-#include "songs/the_world_revolving.h"
-#include "songs/BIG_SHOT.h"
-#include "songs/TV_WORLD.h"
-#include "songs/Festival.h"
-#include "songs/before_the_story.h"
-#include "songs/flower_man.h"
-#include "songs/hammer_of_justice.h"
-#include "songs/Paradise_Paradise.h"
-
+#include "shop3.h"
+#include "whomightyoube.h"
+#include "dr_ed.h"
+#include "running_sky.h"
+#include "petal_dance.h"
+#include "sunsetofsevensuns.h"
+#include "mewmew.h"
+#include "raise_up_your_bat.h"
+#include "the_third_sanctuary.h"
+#include "field_of_hopes_and_dreams.h"
+#include "black_knife.h"
+#include "the_world_revolving.h"
+#include "BIG_SHOT.h"
+#include "TV_WORLD.h"
+#include "Festival.h"
+#include "before_the_story.h"
+#include "flower_man.h"
+#include "hammer_of_justice.h"
+#include "Paradise_Paradise.h"
+#include "i_miss_you_zhang.h"
+#include "RuderBuster.h"
+#include "BattleAgainstATrueHero.h"
+#include "ASGORE.h"
 
 const song* song_list[]=
 {
     &BeforeTheStory,
     &BIG_SHOT,
     &BlackKnife,
-    &dr_ed,
+    &DrEd,
     &Festival,
     &FieldOfHopesAndDreams,
     &FlowerMan,
@@ -52,7 +53,10 @@ const song* song_list[]=
     &TV_WORLD, 
     &WhoMightYouBe, 
     &Paradise_Paradise,
-    &Man,
+    &i_miss_you_zhang,
+    &RuderBuster,
+    &BattleAgainstATrueHero,
+    &ASGORE,
 };
 
 

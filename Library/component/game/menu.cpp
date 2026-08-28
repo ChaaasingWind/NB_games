@@ -1,5 +1,5 @@
 #include "menu.h"
-
+#include "blackboard.h"
 
 
 
@@ -10,38 +10,36 @@ void menu::menu_init()
 }
 
 
-void menu::update_cmd(uart_cmd new_cmd)
+void menu::update_cmd(virtual_controller::finalcontroller new_cmd)
 {
-    static uart_cmd last_raw_cmd = {.buffer = 0};   // 保存上一次原始按键状态
-    static blue_tooth_cmd last_cmd = blue_tooth_cmd::NONE;
+    static virtual_controller::finalcontroller last_raw_cmd;   // 保存上一次原始按键状态
     
-    _ctx.cmd = blue_tooth_cmd::NONE;
+    _ctx.cmd = controller_cmd::NONE;
     
     // 检测按下边沿：当前为1 且 上次为0
-    bool z_edge = new_cmd.msg.z == 1 && last_raw_cmd.msg.z == 0;
-    bool x_edge = new_cmd.msg.x == 1 && last_raw_cmd.msg.x == 0;
-    bool c_edge = new_cmd.msg.c == 1 && last_raw_cmd.msg.c == 0;
-    bool w_edge = new_cmd.msg.w == 1 && last_raw_cmd.msg.w == 0;
-    bool a_edge = new_cmd.msg.a == 1 && last_raw_cmd.msg.a == 0;
-    bool s_edge = new_cmd.msg.s == 1 && last_raw_cmd.msg.s == 0;
-    bool d_edge = new_cmd.msg.d == 1 && last_raw_cmd.msg.d == 0;
+    bool z_edge = new_cmd.z == 1 && last_raw_cmd.z == 0;
+    bool x_edge = new_cmd.x == 1 && last_raw_cmd.x == 0;
+    bool c_edge = new_cmd.c == 1 && last_raw_cmd.c == 0;
+    bool w_edge = new_cmd.w == 1 && last_raw_cmd.w == 0;
+    bool a_edge = new_cmd.a == 1 && last_raw_cmd.a == 0;
+    bool s_edge = new_cmd.s == 1 && last_raw_cmd.s == 0;
+    bool d_edge = new_cmd.d == 1 && last_raw_cmd.d == 0;
     
-    if(z_edge) _ctx.cmd = blue_tooth_cmd::YES;
-    else if(x_edge) _ctx.cmd = blue_tooth_cmd::TOGGLE;
-    else if(c_edge) _ctx.cmd = blue_tooth_cmd::RETURN;
-    else if(w_edge) _ctx.cmd = blue_tooth_cmd::UP;
-    else if(a_edge) _ctx.cmd = blue_tooth_cmd::LEFT;
-    else if(s_edge) _ctx.cmd = blue_tooth_cmd::DOWN;
-    else if(d_edge) _ctx.cmd = blue_tooth_cmd::RIGHT;
+    if(z_edge) _ctx.cmd = controller_cmd::YES;
+    else if(x_edge) _ctx.cmd = controller_cmd::TOGGLE;
+    else if(c_edge) _ctx.cmd = controller_cmd::RETURN;
+    else if(w_edge) _ctx.cmd = controller_cmd::UP;
+    else if(a_edge) _ctx.cmd = controller_cmd::LEFT;
+    else if(s_edge) _ctx.cmd = controller_cmd::DOWN;
+    else if(d_edge) _ctx.cmd = controller_cmd::RIGHT;
     
     last_raw_cmd = new_cmd;   // 更新原始状态
-    last_cmd = _ctx.cmd;
 }
 
 void menu::menu_run()
 {
-    uart_cmd uartcmd;
-    blackboard::instance().read_uart_cmd(&uartcmd);
-    update_cmd(uartcmd);
+    virtual_controller::finalcontroller cmd;
+    cmd = virtual_controller::instance().controller;
+    update_cmd(cmd);
     menuFsm.execute(&_ctx);
 }

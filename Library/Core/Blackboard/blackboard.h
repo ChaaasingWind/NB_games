@@ -1,7 +1,7 @@
 #ifndef BLACKBOARD_H
 #define BLACKBOARD_H
 
-#include "../data_def.h"
+#include "data_def.h"
 
 class blackboard
 {
@@ -14,8 +14,7 @@ class blackboard
     }
 
 
-    void write(uart_cmd cmd);
-    bool read_uart_cmd(uart_cmd* cmd);
+
     
     void write(menuctx ctx);
     bool read_menu_ctx(menuctx* ctx);

@@ -2,7 +2,7 @@
 #define PETAL_DANCE
 
 
-#include "../buzzer.h"
+#include "buzzer.h"
 
 
 const sound PetalDance_voice1 [] =

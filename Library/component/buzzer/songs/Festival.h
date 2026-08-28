@@ -2,7 +2,7 @@
 #define FESTIVAL_H
 
 
-#include "../buzzer.h"
+#include "buzzer.h"
 
 
 const sound Festival_voice1 [] =
@@ -444,6 +444,7 @@ const sound Festival_voice1 [] =
     {D4, 499, 80},
     {1},
     {Db4, 499, 80},
+    {0},
     {},
     {1},
     {Db4, 1499, 80},
@@ -497,6 +498,7 @@ const sound Festival_voice1 [] =
     {Gb2, 124, 67},
     {1},
     {B2, 249, 96},
+    {0},
     {},
     {1},
     {E4, 499, 90},
@@ -544,6 +546,7 @@ const sound Festival_voice1 [] =
     {D4, 749, 80},
     {1},
     {Db4, 249, 76},
+    {0},
     {},
     {1},
     {Db5, 499, 80},
@@ -599,6 +602,7 @@ const sound Festival_voice1 [] =
     {Db5, 249, 64},
     {1},
     {Ab4, 499, 64},
+    {0},
     {},
     {1},
     {Gb4, 374, 64},
@@ -654,6 +658,7 @@ const sound Festival_voice1 [] =
     {A4, 249, 64},
     {1},
     {E4, 249, 64},
+    {0},
     {},
     {1},
     {A3, 374, 64},
@@ -1216,6 +1221,7 @@ const sound Festival_voice2 [] =
     {B4, 499, 85},
     {1},
     {A4, 499, 85},
+    {0},
     {},
     {1},
     {A4, 1499, 85},
@@ -1245,6 +1251,7 @@ const sound Festival_voice2 [] =
     {E4, 1499, 90},
     {1},
     {B3, 499, 90},
+    {0},
     {},
     {1},
     {Db5, 499, 95},
@@ -1278,6 +1285,7 @@ const sound Festival_voice2 [] =
     {B4, 749, 80},
     {1},
     {A4, 249, 76},
+    {0},
     {},
     {1},
     {E4, 1499, 70},
@@ -1297,6 +1305,7 @@ const sound Festival_voice2 [] =
     {Ab5, 499, 64},
     {1501},
     {E5, 499, 64},
+    {0},
     {},
     {1},
     {D5, 374, 64},
@@ -1356,6 +1365,7 @@ const sound Festival_voice2 [] =
     {A3, 249, 64},
     {1},
     {E3, 249, 64},
+    {0},
     {},
     {1},
     {Db4, 124, 64},
@@ -1514,6 +1524,7 @@ const sound Festival_voice3 [] =
     {F2, 124, 67},
     {1},
     {Db3, 249, 80},
+    {0},
     {},
     {1},
     {Gb2, 249, 90},
@@ -1569,6 +1580,7 @@ const sound Festival_voice3 [] =
     {A4, 1499, 95},
     {1},
     {E4, 499, 95},
+    {0},
     {},
     {1},
     {B3, 499, 96},
@@ -1630,6 +1642,7 @@ const sound Festival_voice3 [] =
     {E4, 749, 88},
     {1},
     {Db3, 249, 82},
+    {0},
     {},
     {1},
     {A4, 1499, 70},

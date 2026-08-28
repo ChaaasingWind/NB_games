@@ -11,7 +11,7 @@ void menu::PlayingMusicMenu::enter(menuctx* ctx)
 
 void menu::PlayingMusicMenu::execute(menuctx* ctx)
 {
-    if (ctx->cmd == blue_tooth_cmd::YES)
+    if (ctx->cmd == controller_cmd::YES)
     {
         if(ctx->current_playing_state == MusicPlayingState::STOP)
         {
@@ -25,11 +25,11 @@ void menu::PlayingMusicMenu::execute(menuctx* ctx)
         }
         
     }
-    else if(ctx->cmd == blue_tooth_cmd::TOGGLE)
+    else if(ctx->cmd == controller_cmd::TOGGLE)
         {
             ctx->music_is_looped =! ctx->music_is_looped;
         }
-    else if (ctx->cmd == blue_tooth_cmd::RETURN)
+    else if (ctx->cmd == controller_cmd::RETURN)
     {
         request_switch(&instance()._musicMenu);
         return;

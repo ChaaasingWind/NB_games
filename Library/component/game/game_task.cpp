@@ -1,10 +1,10 @@
 #include "main.h"
-#include "cmsis_os.h"
 #include "gpio.h"
-#include "../led/led_animation.h"
 #include "stdlib.h"
 #include "menu.h"
-#include "../../Blackboard/blackboard.h"
+#include "blackboard.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 
 
