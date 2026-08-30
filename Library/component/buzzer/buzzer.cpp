@@ -87,23 +87,26 @@ void music_play::play_music()
                 if_start[p] = 0;
                 continue;
             }  
-            volume[p] = song::update_and_return_volume(volume[p],(current_song->song_voice[p]+count[p])->get_original_volume());
+            volume[p] = song::update_and_return_volume(volume[p],
+                        (current_song->song_voice[p]+count[p])->get_original_volume());
             uint16_t prescaler;
             uint16_t period;
-            (current_song->song_voice[p]+count[p])->convert_frequence_to_pwm_param(&prescaler, &period);
-            __HAL_TIM_SET_PRESCALER((current_song->htimarr[p]), prescaler-1);
-            __HAL_TIM_SetAutoreload((current_song->htimarr[p]), period-1);
+            (current_song->song_voice[p]+count[p])->convert_frequence_to_pwm_param(
+                        &prescaler, &period);
+            output[p].prescaler = prescaler;
+            output[p].autoreload = period;
+
             if((current_song->song_voice[p]+count[p])->tone == tone::EMPTY || (current_song->song_voice[p]+count[p])->tone == tone::NONE_TONE)
             {
-                __HAL_TIM_SET_COMPARE((current_song->htimarr[p]), TIM_CHANNEL_1, 0);
+                output[p].compare = 0;
             }
             else
             {
-                __HAL_TIM_SET_COMPARE((current_song->htimarr[p]), TIM_CHANNEL_1, (uint16_t)volume[p]);
+                output[p].compare = (uint16_t)volume[p];
             }
             if(times[p]==0)
             {
-                (current_song->htimarr[p])->Instance->EGR |= TIM_EGR_UG;
+                output[p].update_tim = true;
             }
             times[p]++;
 
@@ -175,7 +178,7 @@ void music_play::set_song(const song* new_song)
         {
             if(if_start[i]==0)
             {
-                HAL_TIM_PWM_Start((current_song->htimarr[i]), TIM_CHANNEL_1);
+                output[i].should_start = true;
                 volume[i]=current_song->song_voice[i]->get_original_volume()*INITIAL_DUTY_CYCLE;
                 if_start[i]=1;
             }
@@ -229,6 +232,37 @@ void music_play::keep_silent()
 {
     for(int i = 0; i < 5; i++)
     {
-        __HAL_TIM_SET_COMPARE((current_song->htimarr[i]), TIM_CHANNEL_1, 0);
+        output[i].compare = 0;
+    }
+}
+
+
+
+
+void music_play::set_output()
+{
+    for(int i = 0; i < 5; i++)
+    {
+        if(output[i].should_stop)
+        {
+            HAL_TIM_PWM_Stop((current_song->htimarr[i]), TIM_CHANNEL_1);
+            output[i].should_stop = false;
+        }
+        if(output[i].should_start)
+        {
+            HAL_TIM_PWM_Start((current_song->htimarr[i]), TIM_CHANNEL_1);
+            output[i].should_start = false;
+        }
+
+
+        __HAL_TIM_SetAutoreload((current_song->htimarr[i]), output[i].autoreload-1);
+        __HAL_TIM_SET_PRESCALER((current_song->htimarr[i]), output[i].prescaler-1);
+        __HAL_TIM_SET_COMPARE((current_song->htimarr[i]), TIM_CHANNEL_1, output[i].compare);
+
+        if(output[i].update_tim)
+        {
+            (current_song->htimarr[i])->Instance->EGR |= TIM_EGR_UG;
+            output[i].update_tim = false;
+        }
     }
 }

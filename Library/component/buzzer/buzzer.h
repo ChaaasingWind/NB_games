@@ -192,6 +192,15 @@ struct song
 
 
 
+struct buzzer_tim_output
+{
+    bool update_tim;
+    bool should_stop;
+    bool should_start;
+    uint16_t prescaler;
+    uint16_t autoreload;
+    uint16_t compare;
+};
 
 struct music_play
 {
@@ -202,11 +211,15 @@ struct music_play
     bool loop_enabled = false;
     bool song_finished = false;
     const song* current_song;
+
+    buzzer_tim_output output[5];
+
     void play_music();
     void reset_music();
     void set_song(const song* new_song);
     void set_play_time(int time);
     void keep_silent();
+    void set_output();
     static music_play& instance()
     {
         static music_play instance;

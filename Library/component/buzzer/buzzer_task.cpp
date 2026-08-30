@@ -7,6 +7,7 @@
 #include "songs/before_the_story.h"
 #include "task.h"
 #include "blackboard.h"
+#include "string.h"
 
 
 
@@ -67,7 +68,7 @@ const song* song_list[]=
 };
 
 
-
+static buzzer_tim_output debug[5];
 
 extern "C" {
 void buzzer_task(void *argument)
@@ -109,30 +110,11 @@ void buzzer_task(void *argument)
             music_play::instance().keep_silent();
         }
 
+        
+        music_play::instance().set_output();
+        memcpy(debug,music_play::instance().output, sizeof(debug));
 
 
-
-
-        
-        // if(!music_play::instance().song_finished)
-        // {
-        //     music_play::instance().play_music();
-        // }
-        // else 
-        // {
-        //     if(music_play::instance().loop_enabled)
-        //     {
-        //         music_play::instance().set_song(music_play::instance().current_song);
-             
-        //     }
-        //     else 
-        //     {
-        //         music_play::instance().keep_silent();
-        //     }
-        // }
-        
-        
-        
         static TickType_t xLastWakeTime = xTaskGetTickCount();
         static const TickType_t xHeartBeat = pdMS_TO_TICKS(1);
         vTaskDelayUntil(&xLastWakeTime, xHeartBeat);
