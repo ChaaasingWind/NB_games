@@ -47,14 +47,14 @@ void sound::convert_frequence_to_pwm_param(uint16_t *prescaler, uint16_t *period
 // }
 float song::update_and_return_volume(float now_volume , const int& original_volume) 
 {
-    if(now_volume>=0.001*original_volume)
+    if(now_volume>=0.0001*original_volume)
     {
         now_volume*=0.99f;
     }
-    else 
-    {
-        now_volume=0;
-    }
+    // else 
+    // {
+    //     now_volume=0;
+    // }
     
     
     return now_volume;
@@ -122,7 +122,8 @@ void music_play::play_music()
                         {
                             count[i]++;
                             times[i]=0;
-                            volume[i] = (current_song->song_voice[i]+count[i])->get_original_volume()*(current_song->song_voice[i]+count[i])->get_first_duty();
+                            volume[i] = (current_song->song_voice[i]+count[i])->
+                                get_original_volume()*(current_song->song_voice[i]+count[i])->get_first_duty();
                         }
                         
                     }
@@ -136,7 +137,8 @@ void music_play::play_music()
             {
                 count[p]++;
                 times[p]=0;
-                volume[p] = (current_song->song_voice[p]+count[p])->get_original_volume()*(current_song->song_voice[p]+count[p])->get_first_duty();
+                volume[p] = (current_song->song_voice[p]+count[p])->
+                    get_original_volume()*(current_song->song_voice[p]+count[p])->get_first_duty();
             }
             
         }

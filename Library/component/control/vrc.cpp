@@ -23,3 +23,13 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
         HAL_UARTEx_ReceiveToIdle_DMA(&huart1, (uint8_t*)&virtual_controller::instance().rxbuffer, sizeof(uart_connect_pack));
     }
 }
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
+    if (huart->Instance == USART1) {
+        // 清除所有错误标志
+        __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_PEF | UART_CLEAR_FEF | 
+                                      UART_CLEAR_NEF | UART_CLEAR_OREF);
+        // 重新启动接收...
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart1, (uint8_t*)&virtual_controller::instance().rxbuffer, sizeof(uart_connect_pack));
+    }
+}

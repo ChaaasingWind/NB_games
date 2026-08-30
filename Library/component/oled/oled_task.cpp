@@ -7,14 +7,21 @@
 #include "pattern/picture.h"
 #include "blackboard.h"
 #include "../../data_def.h"
+#include <stdio.h>
+
 
 extern I2C_HandleTypeDef hi2c1;
+extern ADC_HandleTypeDef hadc1;
 
 
 
 extern __attribute__((section(".sram2"))) uint8_t zero[128];
 extern __attribute__((section(".sram2"))) uint8_t full[128];
 extern __attribute__((section(".sram2"))) uint8_t oled_buffer[8][128];
+__attribute__((section(".sram2"))) uint16_t adc_buffer[2]; 
+int input[2];
+char message1[10];
+char message2[10];
 
 
 const char* song_name_list[]=
@@ -38,12 +45,16 @@ const char* song_name_list[]=
     "TV WORLD",
     "who might you be",
     "Paradise, Paradise",
-    "I Miss You Zhang",
     "Ruder Buster",
+    "FlowerCastle",
+    "VioletTactics",
+    "WalkingHome",
+
     "Undyne",
     "ASGORE",
 
 };
+
 
 extern "C"
 {
@@ -53,6 +64,16 @@ extern "C"
             set_position(0,0).
             set_mode(0).
             set_line_height(8);
+
+        
+        HAL_ADCEx_Calibration_Start(
+            &hadc1, ADC_CALIB_OFFSET_LINEARITY, ADC_SINGLE_ENDED);
+        HAL_ADCEx_Calibration_Start(
+            &hadc1, ADC_CALIB_OFFSET, ADC_SINGLE_ENDED);
+        HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, 2);
+
+
+        
         while(true)
         {
 
@@ -73,14 +94,14 @@ extern "C"
                 draw_string("MUSIC").
                 set_position(10, 30).
                 draw_string("STANDBY").
+                set_position(10, 40).
+                draw_string("DEBUG").
                 
                 set_position(0, 20+10*cmd.current_index).
                 draw_char('*').
                 set_position(80, 15).
                 draw_pattern(picture_Ralsei_face_battlemenuData);
             }
-
-
 
             else if(cmd.current_state == MenuState::MUSIC)
             {
@@ -158,10 +179,21 @@ extern "C"
                 else 
                 {
                     pen::instance().draw_string("FALSE");
-                }
+                }   
+            }
+            else if(cmd.current_state == MenuState::_DEBUG)
+            {
                 
                 
-                
+                input[0] = (adc_buffer[0]-2047) / 2048.0f *100;
+                input[1] = (adc_buffer[1]-2047) / 2048.0f *100;
+                sprintf(message1, "%d", input[0]);
+                sprintf(message2, "%d", input[1]);
+                pen::instance().
+                set_position(30, 20).
+                draw_string(message1).
+                set_position(30, 30).
+                draw_string(message2);
             }
             
             

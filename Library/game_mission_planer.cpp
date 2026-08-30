@@ -6,9 +6,7 @@
 #include "task.h"
 
 
-//#define BUTTON_TASK 1
 #define GAME_TASK 1
-#define LED_TASK 0
 #define BUZZER_TASK 1
 #define OLED_TASK 1
 #define HEARTBEAT_TASK 1
@@ -35,9 +33,6 @@ void StartDefaultTask(void *argument)
     #if GAME_TASK
         xTaskCreate(game_task, "game_task", 
                 128, NULL,configMAX_PRIORITIES - 2, NULL);
-        #endif
-    #if LED_TASK
-        xTaskCreate(led_task, "led_task", 256, NULL,configMAX_PRIORITIES - 1, NULL);
         #endif
     #if BUZZER_TASK
         xTaskCreate(buzzer_task, "buzzer_task", 

@@ -7,8 +7,8 @@
 
 
 
-#define MUSIC_MENU_MAX_NUM 23
-#define MAIN_MENU_MAX_NUM 2
+#define MUSIC_MENU_MAX_NUM 25
+#define MAIN_MENU_MAX_NUM 3
 
 
 
@@ -33,22 +33,23 @@ struct uart_connect_pack
 
 
 
-enum MenuState
+enum class MenuState
 {
     MAIN,
     MUSIC,
     STANDBY,
     PLAYING_MUSIC,
+    _DEBUG,
 };
 
-enum MusicPlayingState
+enum class MusicPlayingState
 {
     IDLE,
     PLAYING,
     STOP,
 };
 
-enum controller_cmd
+enum class controller_cmd
 {
     NONE,
     YES,

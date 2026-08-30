@@ -145,7 +145,13 @@ class sound
     void convert_frequence_to_pwm_param(uint16_t *prescaler, uint16_t *period) const;
     uint16_t get_original_volume() const {return prescaler_and_period_arr[tone][1];}
     //float get_first_duty() const {return powf((velocity/127.0f *INITIAL_DUTY_CYCLE), 2);}
-    float get_first_duty() const {return (velocity/127.0f *INITIAL_DUTY_CYCLE)*(velocity/127.0f *INITIAL_DUTY_CYCLE);}
+    float get_first_duty() const 
+    {
+
+        float norm = velocity/127.0f;
+        float exponent = 3.0f - 0.5f * norm;
+        return pow(norm, exponent) * INITIAL_DUTY_CYCLE;
+    }
 
 
 };

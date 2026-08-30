@@ -39,6 +39,11 @@ class menu
         void execute(menuctx* ctx) override;
         void exit(menuctx* ctx) override{};
     };
+    struct DebugMenu : public state_t<menuctx> {
+        void enter(menuctx* ctx) override;
+        void execute(menuctx* ctx) override;
+        void exit(menuctx* ctx) override{};
+    };
 
     menuctx _ctx;
 
@@ -47,8 +52,9 @@ class menu
     MusicMenu _musicMenu;
     StandbyMenu _standbyMenu;
     PlayingMusicMenu _playingMusicMenu;
+    DebugMenu _debug_Menu;
 
-    state_t<menuctx>* MainMenuOptions[2] = {&_musicMenu, &_standbyMenu};
+    state_t<menuctx>* MainMenuOptions[3] = {&_musicMenu, &_standbyMenu, &_debug_Menu};
 
 
     

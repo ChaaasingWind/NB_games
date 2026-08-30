@@ -1,7 +1,9 @@
 #include "buzzer.h"
 #include "main.h"
 #include "FreeRTOS.h"
+#include "songs/FlowerCastle.h"
 #include "songs/Paradise_Paradise.h"
+#include "songs/WalkingHome.h"
 #include "songs/before_the_story.h"
 #include "task.h"
 #include "blackboard.h"
@@ -27,10 +29,12 @@
 #include "flower_man.h"
 #include "hammer_of_justice.h"
 #include "Paradise_Paradise.h"
-#include "i_miss_you_zhang.h"
 #include "RuderBuster.h"
 #include "BattleAgainstATrueHero.h"
 #include "ASGORE.h"
+#include "VioletTactics.h"
+#include "WalkingHome.h"
+#include "FlowerCastle.h"
 
 const song* song_list[]=
 {
@@ -53,8 +57,11 @@ const song* song_list[]=
     &TV_WORLD, 
     &WhoMightYouBe, 
     &Paradise_Paradise,
-    &i_miss_you_zhang,
     &RuderBuster,
+    &FlowerCastle,
+    &VioletTactics,
+    &WalkingHome,
+
     &BattleAgainstATrueHero,
     &ASGORE,
 };
@@ -65,8 +72,6 @@ const song* song_list[]=
 extern "C" {
 void buzzer_task(void *argument)
 {
-    // music_play::instance().set_song(&TestTone);
-    // music_play::instance().loop_enabled = true;
     while(1)
     {
         menuctx cmd;
