@@ -11,7 +11,7 @@ void menu::PlayingMusicMenu::enter(menuctx* ctx)
 
 void menu::PlayingMusicMenu::execute(menuctx* ctx)
 {
-    if (ctx->cmd == controller_cmd::YES)
+    if (virtual_controller::instance().controller.z.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
         if(ctx->current_playing_state == MusicPlayingState::STOP)
         {
@@ -25,11 +25,11 @@ void menu::PlayingMusicMenu::execute(menuctx* ctx)
         }
         
     }
-    else if(ctx->cmd == controller_cmd::TOGGLE)
+    else if(virtual_controller::instance().controller.x.get_state().event == button::buttonevent_type::SINGLE_CLICK)
         {
             ctx->music_is_looped =! ctx->music_is_looped;
         }
-    else if (ctx->cmd == controller_cmd::RETURN)
+    else if (virtual_controller::instance().controller.c.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
         request_switch(&instance()._musicMenu);
         return;

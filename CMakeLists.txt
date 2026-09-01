@@ -47,6 +47,7 @@ add_executable(${CMAKE_PROJECT_NAME}
     Library/component/game/fsm/menu_state_standby.cpp
     Library/component/game/fsm/menu_state_playing_music.cpp
     Library/component/game/fsm/menu_state_debug.cpp
+    Library/component/game/fsm/menu_state_settings.cpp
 
 
     Library/component/buzzer/buzzer_task.cpp
@@ -58,7 +59,6 @@ add_executable(${CMAKE_PROJECT_NAME}
     Library/component/oled/oled.cpp
     Library/component/oled/oled_task.cpp
 
-    Library/Core/Blackboard/blackboard.cpp
 
 )
 
@@ -89,7 +89,6 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/oled
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/game
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/control
-    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Core/Blackboard
 )
 
 # Add project symbols (macros)

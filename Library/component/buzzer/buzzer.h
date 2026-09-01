@@ -219,6 +219,7 @@ struct music_play
     void set_song(const song* new_song);
     void set_play_time(int time);
     void keep_silent();
+    void set_final_volume(float volume);
     void set_output();
     static music_play& instance()
     {

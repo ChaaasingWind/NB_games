@@ -51,15 +51,7 @@ float song::update_and_return_volume(float now_volume , const int& original_volu
     {
         now_volume*=0.99f;
     }
-    // else 
-    // {
-    //     now_volume=0;
-    // }
-    
-    
     return now_volume;
-
-    
 }
 
 
@@ -264,5 +256,15 @@ void music_play::set_output()
             (current_song->htimarr[i])->Instance->EGR |= TIM_EGR_UG;
             output[i].update_tim = false;
         }
+    }
+}
+
+
+
+void music_play::set_final_volume(float volume)
+{
+    for(int i = 0; i< 5; i++)
+    {
+        output[i].compare *= (volume/100.0f);
     }
 }

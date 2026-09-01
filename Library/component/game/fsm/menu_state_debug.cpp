@@ -1,5 +1,4 @@
 #include "../menu.h"
-#include "data_def.h"
 
 
 void menu::DebugMenu::enter(menuctx* ctx)
@@ -11,15 +10,24 @@ void menu::DebugMenu::enter(menuctx* ctx)
 
 void menu::DebugMenu::execute(menuctx* ctx)
 {
-    if(ctx->cmd == controller_cmd::UP)
+    if(virtual_controller::instance().controller.w.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
-        ctx->current_index--;
+        ctx->volume -= 0.01f;
     }
-    else if(ctx->cmd == controller_cmd::DOWN)
+    else if(virtual_controller::instance().controller.s.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
-        ctx->current_index++;
+        ctx->volume += 0.01f;
     }
-    if(ctx->cmd == controller_cmd::RETURN)
+    if(ctx->volume >= 1.0f)
+    {
+        ctx->volume = 1.0f;
+    }
+    if(ctx->volume <= 0.0f)
+    {
+        ctx->volume = 0.0f;
+    }
+    
+    if(virtual_controller::instance().controller.c.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
         request_switch(&instance()._mainMenu);
     }

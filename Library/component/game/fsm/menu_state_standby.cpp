@@ -10,7 +10,7 @@ void menu::StandbyMenu::enter(menuctx* ctx)
 
 void menu::StandbyMenu::execute(menuctx* ctx)
 {
-    if(ctx->cmd != controller_cmd::NONE)
+    if(virtual_controller::instance().controller.c.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
         request_switch(&instance()._mainMenu);
         return;

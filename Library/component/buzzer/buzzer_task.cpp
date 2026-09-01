@@ -6,8 +6,8 @@
 #include "songs/WalkingHome.h"
 #include "songs/before_the_story.h"
 #include "task.h"
-#include "blackboard.h"
 #include "string.h"
+#include "menu.h"
 
 
 
@@ -68,24 +68,22 @@ const song* song_list[]=
 };
 
 
-static buzzer_tim_output debug[5];
 
 extern "C" {
 void buzzer_task(void *argument)
 {
     while(1)
     {
-        menuctx cmd;
-        blackboard::instance().read_menu_ctx(&cmd);
+        auto ctx = menu::instance().get_ctx();
         static int8_t last_music_index = -1;
-        music_play::instance().loop_enabled = cmd.music_is_looped;
-        if(cmd.current_music_index != last_music_index)
+        music_play::instance().loop_enabled = ctx.music_is_looped;
+        if(ctx.current_music_index != last_music_index)
         {
             music_play::instance().reset_music();
-            music_play::instance().set_song(song_list[cmd.current_music_index]);
-            last_music_index = cmd.current_music_index;
+            music_play::instance().set_song(song_list[ctx.current_music_index]);
+            last_music_index = ctx.current_music_index;
         }
-        if(cmd.current_playing_state == MusicPlayingState::PLAYING)
+        if(ctx.current_playing_state == menu::MusicPlayingState::PLAYING)
         {
             if(!music_play::instance().song_finished)
             {
@@ -104,15 +102,14 @@ void buzzer_task(void *argument)
                 }
             }
         }
-        else if(cmd.current_playing_state == MusicPlayingState::STOP ||
-                 cmd.current_playing_state == MusicPlayingState::IDLE)
+        else if(ctx.current_playing_state == menu::MusicPlayingState::STOP ||
+                 ctx.current_playing_state == menu::MusicPlayingState::IDLE)
         {
             music_play::instance().keep_silent();
         }
 
-        
+        music_play::instance().set_final_volume(ctx.volume);
         music_play::instance().set_output();
-        memcpy(debug,music_play::instance().output, sizeof(debug));
 
 
         static TickType_t xLastWakeTime = xTaskGetTickCount();

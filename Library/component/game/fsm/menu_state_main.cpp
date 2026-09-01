@@ -10,18 +10,18 @@ void menu::MainMenu::enter(menuctx* ctx)
 
 void menu::MainMenu::execute(menuctx* ctx)
 {
-    if(ctx->cmd == controller_cmd::YES)
+    if(virtual_controller::instance().controller.z.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
         request_switch((instance().MainMenuOptions[ctx->current_index]));
         return;
     }
 
 
-    if(ctx->cmd == controller_cmd::UP)
+    if(virtual_controller::instance().controller.w.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
         ctx->current_index--;
     }
-    else if(ctx->cmd == controller_cmd::DOWN)
+    else if(virtual_controller::instance().controller.s.get_state().event == button::buttonevent_type::SINGLE_CLICK)
     {
         ctx->current_index++;
     }

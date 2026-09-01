@@ -2,7 +2,6 @@
 #include "gpio.h"
 #include "stdlib.h"
 #include "menu.h"
-#include "blackboard.h"
 #include "FreeRTOS.h"
 #include "task.h"
 
@@ -16,8 +15,8 @@ extern "C"
         menu::instance().menu_init();
         while(1)
         {
+            
             menu::instance().menu_run();
-            blackboard::instance().write(menu::instance().read_ctx());
 
             vTaskDelay(1);
         }

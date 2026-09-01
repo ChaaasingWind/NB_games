@@ -5,9 +5,8 @@
 #include "oled.h"
 #include <cstring>
 #include "pattern/picture.h"
-#include "blackboard.h"
-#include "../../data_def.h"
 #include <stdio.h>
+#include "menu.h"
 
 
 extern I2C_HandleTypeDef hi2c1;
@@ -19,9 +18,10 @@ extern __attribute__((section(".sram2"))) uint8_t zero[128];
 extern __attribute__((section(".sram2"))) uint8_t full[128];
 extern __attribute__((section(".sram2"))) uint8_t oled_buffer[8][128];
 __attribute__((section(".sram2"))) uint16_t adc_buffer[2]; 
-int input[2];
-char message1[10];
-char message2[10];
+
+// int input[2];
+// char message1[10];
+// char message2[10];
 
 
 const char* song_name_list[]=
@@ -66,11 +66,11 @@ extern "C"
             set_line_height(8);
 
         
-        HAL_ADCEx_Calibration_Start(
-            &hadc1, ADC_CALIB_OFFSET_LINEARITY, ADC_SINGLE_ENDED);
-        HAL_ADCEx_Calibration_Start(
-            &hadc1, ADC_CALIB_OFFSET, ADC_SINGLE_ENDED);
-        HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, 2);
+        // HAL_ADCEx_Calibration_Start(
+        //     &hadc1, ADC_CALIB_OFFSET_LINEARITY, ADC_SINGLE_ENDED);
+        // HAL_ADCEx_Calibration_Start(
+        //     &hadc1, ADC_CALIB_OFFSET, ADC_SINGLE_ENDED);
+        // HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, 2);
 
 
         
@@ -81,10 +81,8 @@ extern "C"
             memset(oled_arr, 0, 1024);
 
 
-
-            menuctx cmd;
-            blackboard::instance().read_menu_ctx(&cmd);
-            if(cmd.current_state == MenuState::MAIN)
+            auto ctx = menu::instance().get_ctx();
+            if(ctx.current_state == menu::MenuState::MAIN)
             {
                 pen::instance().
                 set_position(0, 0).
@@ -95,56 +93,58 @@ extern "C"
                 set_position(10, 30).
                 draw_string("STANDBY").
                 set_position(10, 40).
+                draw_string("SETTINGS").
+                set_position(10, 50).
                 draw_string("DEBUG").
                 
-                set_position(0, 20+10*cmd.current_index).
+                set_position(0, 20+10*ctx.current_index).
                 draw_char('*').
                 set_position(80, 15).
                 draw_pattern(picture_Ralsei_face_battlemenuData);
             }
 
-            else if(cmd.current_state == MenuState::MUSIC)
+            else if(ctx.current_state == menu::MenuState::MUSIC)
             {
                 pen::instance().
                 set_position(0, 0).
                 set_line_height(8).
                 draw_string("MUSIC");
-                if(cmd.current_index >= 2)
+                if(ctx.current_index >= 2)
                 {
                     pen::instance().
                     set_position(10, 15).
-                    draw_string(song_name_list[cmd.current_index-2]);
+                    draw_string(song_name_list[ctx.current_index-2]);
                 }
-                if(cmd.current_index >= 1)
+                if(ctx.current_index >= 1)
                 {
                     pen::instance().
                     set_position(10, 25).
-                    draw_string(song_name_list[cmd.current_index-1]);
+                    draw_string(song_name_list[ctx.current_index-1]);
                 }
 
                 pen::instance().
                 set_position(10, 35).
-                draw_string(song_name_list[cmd.current_index]).
+                draw_string(song_name_list[ctx.current_index]).
                 set_position(0, 35).
                 draw_char('*');
 
-                if(cmd.current_index <=MUSIC_MENU_MAX_NUM-2)
+                if(ctx.current_index <=MUSIC_MENU_MAX_NUM-2)
                 {
                     pen::instance().
                     set_position(10, 45).
-                    draw_string(song_name_list[cmd.current_index+1]);
+                    draw_string(song_name_list[ctx.current_index+1]);
                 }
-                if(cmd.current_index <=MUSIC_MENU_MAX_NUM-3)
+                if(ctx.current_index <=MUSIC_MENU_MAX_NUM-3)
                 {
                     pen::instance().
                     set_position(10, 55).
-                    draw_string(song_name_list[cmd.current_index+2]);
+                    draw_string(song_name_list[ctx.current_index+2]);
                 }
             }
 
 
 
-            else if(cmd.current_state == MenuState::STANDBY)
+            else if(ctx.current_state == menu::MenuState::STANDBY)
             {
                 pen::instance().
                 set_position(0, 0).
@@ -152,18 +152,18 @@ extern "C"
             }
 
 
-            else if(cmd.current_state == MenuState::PLAYING_MUSIC)
+            else if(ctx.current_state == menu::MenuState::PLAYING_MUSIC)
             {
                 pen::instance().
                 set_position(0, 0).
-                draw_string(song_name_list[cmd.current_music_index]).
+                draw_string(song_name_list[ctx.current_music_index]).
                 set_position(30, 28);
-                if(cmd.current_playing_state == MusicPlayingState::PLAYING)
+                if(ctx.current_playing_state == menu::MusicPlayingState::PLAYING)
                 {
                     pen::instance().
                     draw_string("Playing...");
                 }
-                else if(cmd.current_playing_state == MusicPlayingState::STOP)
+                else if(ctx.current_playing_state == menu::MusicPlayingState::STOP)
                 {
                     pen::instance().
                     draw_string("S.T.O.P");
@@ -172,7 +172,7 @@ extern "C"
                 pen::instance().
                 set_position(30, 40).
                 draw_string("loop : ");
-                if(cmd.music_is_looped)
+                if(ctx.music_is_looped)
                 {
                     pen::instance().draw_string("TRUE");
                 }
@@ -181,19 +181,32 @@ extern "C"
                     pen::instance().draw_string("FALSE");
                 }   
             }
-            else if(cmd.current_state == MenuState::_DEBUG)
+            else if(ctx.current_state == menu::MenuState::SETTINGS)
+            {
+                pen::instance().
+                set_position(0, 0).
+                set_line_height(8).
+                draw_string("SETTINGS").
+                set_position(10, 20).
+                draw_string("Volume:").
+                set_position(70, 20);
+                char volume_str[10] = {0};
+                sprintf(volume_str, "%d%%", ctx.volume);
+                pen::instance().draw_string(volume_str);
+            }
+            else if(ctx.current_state == menu::MenuState::_DEBUG)
             {
                 
                 
-                input[0] = (adc_buffer[0]-2047) / 2048.0f *100;
-                input[1] = (adc_buffer[1]-2047) / 2048.0f *100;
-                sprintf(message1, "%d", input[0]);
-                sprintf(message2, "%d", input[1]);
-                pen::instance().
-                set_position(30, 20).
-                draw_string(message1).
-                set_position(30, 30).
-                draw_string(message2);
+                // input[0] = (adc_buffer[0]-2047) / 2048.0f *100;
+                // input[1] = (adc_buffer[1]-2047) / 2048.0f *100;
+                // sprintf(message1, "%d", input[0]);
+                // sprintf(message2, "%d", input[1]);
+                // pen::instance().
+                // set_position(30, 20).
+                // draw_string(message1).
+                // set_position(30, 30).
+                // draw_string(message2);
             }
             
             
