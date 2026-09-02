@@ -5,7 +5,7 @@
 void menu::MusicMenu::enter(menuctx* ctx)
 {
     ctx->current_state = MenuState::MUSIC;
-    ctx->current_index = 0;
+    ctx->current_index = ctx->current_music_index;
 }
 
 

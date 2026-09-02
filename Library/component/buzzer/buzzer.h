@@ -205,18 +205,18 @@ struct buzzer_tim_output
 struct music_play
 {
     int count[5]={0};
-    int times[5]={0};
+    float times[5]={0};
     float volume[5]={0};
     uint8_t if_start[5]={0};
-    bool loop_enabled = false;
     bool song_finished = false;
     const song* current_song;
 
     buzzer_tim_output output[5];
 
-    void play_music();
+    void play_music(float velocity);
     void reset_music();
     void set_song(const song* new_song);
+    void set_same_song();
     void set_play_time(int time);
     void keep_silent();
     void set_final_volume(float volume);

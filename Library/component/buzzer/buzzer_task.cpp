@@ -76,10 +76,8 @@ void buzzer_task(void *argument)
     {
         auto ctx = menu::instance().get_ctx();
         static int8_t last_music_index = -1;
-        music_play::instance().loop_enabled = ctx.music_is_looped;
         if(ctx.current_music_index != last_music_index)
         {
-            music_play::instance().reset_music();
             music_play::instance().set_song(song_list[ctx.current_music_index]);
             last_music_index = ctx.current_music_index;
         }
@@ -87,19 +85,11 @@ void buzzer_task(void *argument)
         {
             if(!music_play::instance().song_finished)
             {
-                music_play::instance().play_music();
+                music_play::instance().play_music(ctx.rate*0.1f);
             }
             else 
             {
-                if(music_play::instance().loop_enabled)
-                {
-                    music_play::instance().set_song(music_play::instance().current_song);
-                    
-                }
-                else 
-                {
-                    music_play::instance().keep_silent();
-                }
+                music_play::instance().keep_silent();
             }
         }
         else if(ctx.current_playing_state == menu::MusicPlayingState::STOP ||

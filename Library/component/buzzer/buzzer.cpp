@@ -26,36 +26,18 @@ void sound::convert_frequence_to_pwm_param(uint16_t *prescaler, uint16_t *period
     
 }
 
-
-// float song::update_and_return_volume(float now_volume , const int& original_volume) 
-// {
-//     if(now_volume>=0.2*original_volume)
-//     {
-//         now_volume*=0.9686f;
-//     }
-//     else if(now_volume<=0.001*original_volume)
-//     {
-//         now_volume=0;
-//     }
-//     else 
-//     {
-//         now_volume*=0.98892f;
-//     }
-    
-    
-//     return now_volume;
-// }
 float song::update_and_return_volume(float now_volume , const int& original_volume) 
 {
     if(now_volume>=0.0001*original_volume)
     {
         now_volume*=0.99f;
     }
+    
     return now_volume;
 }
 
 
-void music_play::play_music()
+void music_play::play_music(float velocity)
 {
     
     if(current_song->voice_size[0]>=(count[0]+1)||
@@ -100,7 +82,7 @@ void music_play::play_music()
             {
                 output[p].update_tim = true;
             }
-            times[p]++;
+            times[p] += velocity;
 
             //处理同步拍
             if((current_song->song_voice[p]+count[p])->tone==tone::NONE_TONE)
@@ -161,9 +143,28 @@ void music_play::reset_music()
 
 void music_play::set_song(const song* new_song)
 {
+    reset_music();
     song_finished = false;
-    loop_enabled = false;
     current_song = new_song;
+    for(int i=0;i<5;i++)
+    {
+        if(current_song->song_voice[i]!=nullptr)
+        {
+            if(if_start[i]==0)
+            {
+                output[i].should_start = true;
+                volume[i]=current_song->song_voice[i]->get_original_volume()*INITIAL_DUTY_CYCLE;
+                if_start[i]=1;
+            }
+            
+        }
+    }
+}
+
+void music_play::set_same_song()
+{
+    reset_music();
+    song_finished = false;
     for(int i=0;i<5;i++)
     {
         if(current_song->song_voice[i]!=nullptr)

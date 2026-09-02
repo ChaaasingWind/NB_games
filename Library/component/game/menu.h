@@ -5,10 +5,13 @@
 #include "stdlib.h"
 #include "fsm.h"
 #include "vrc.h"
+#include "buzzer.h"
 
 
 constexpr int MUSIC_MENU_MAX_NUM = 25;
 constexpr int MAIN_MENU_MAX_NUM  = 4;
+constexpr int SETTINGS_MENU_MAX_NUM = 2;
+constexpr int MUSIC_PLAYING_MODE_NUM = 4;
 
 
 
@@ -35,6 +38,14 @@ class menu
         STOP,
     };
 
+    enum class MusicPlayingMode
+    {
+        ONCE,
+        CIRCLE,
+        SEQUENTIAL,
+        RANDOM,
+    };
+
     struct menuctx
     {
         MenuState current_state;
@@ -42,8 +53,9 @@ class menu
 
         MusicPlayingState current_playing_state;
         int8_t current_music_index;
-        bool music_is_looped; 
-        int volume =100;
+        MusicPlayingMode _playing_mode; 
+        int volume =50;
+        int rate  = 10; //倍速乘十
     };
 
 
