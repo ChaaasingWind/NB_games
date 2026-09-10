@@ -22,6 +22,7 @@ void screen::screen_run()
     auto ctx = menu::instance().get_ctx();
     _ctx._playing_mode            = ctx._playing_mode;
     _ctx.current_playing_state    = ctx.current_playing_state;
+    _ctx.current_music_index      = ctx.current_music_index;
     _ctx.current_index            = ctx.current_index;
     _ctx._playing_mode            = ctx._playing_mode;
     _ctx.current_state            = ctx.current_state;

@@ -10,7 +10,7 @@ void screen::MusicScreen::execute(screen_ctx* ctx)
     pen::instance()
     .set_position(0, 0)
     .set_line_height(8)
-    .draw_string("MUSIC");
+    .draw_string("MUSIC", 0, 2);
     if(ctx->current_index >= 2)
     {
         pen::instance()

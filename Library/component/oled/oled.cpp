@@ -257,7 +257,27 @@ pen& pen::draw_string(const char* str, uint8_t interval, uint8_t write_mode)
             str++;
         }
     }
-    
+    else if(write_mode == 2)
+    {
+        //居中书写，默认不超过一行
+        int length = 0;
+        for( ; str[length]!='\0' ; length++);
+        set_position(64-(length*3), y);
+        while(*str != '\0')
+        {
+            if(x+6 >= 128)
+            {
+                x = 0;
+                y += line_height;
+                //重置line_height为默认值8
+                line_height = 8;
+            }
+            draw_char(*str);
+            x += 6 + interval;
+
+            str++;
+        }
+    }
     return *this;
 }
 pen& pen::enter_new_line(int x)

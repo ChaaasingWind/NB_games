@@ -18,6 +18,8 @@ extern "C"
             vTaskDelay(pdMS_TO_TICKS(30));
         }
     }
+
+    
     void oled_i2c_task(void *argument)
     {
         osSemaphoreAttr_t attr = {0};
