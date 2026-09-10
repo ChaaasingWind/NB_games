@@ -3,6 +3,7 @@
 #include "FreeRTOS.h"
 #include "songs/FlowerCastle.h"
 #include "songs/Paradise_Paradise.h"
+#include "songs/Resurrections.h"
 #include "songs/WalkingHome.h"
 #include "songs/before_the_story.h"
 #include "task.h"
@@ -36,6 +37,8 @@
 #include "VioletTactics.h"
 #include "WalkingHome.h"
 #include "FlowerCastle.h"
+#include "Resurrections.h"
+#include "QuietAndFalling.h"
 
 const song* song_list[]=
 {
@@ -65,6 +68,9 @@ const song* song_list[]=
 
     &BattleAgainstATrueHero,
     &ASGORE,
+
+    &Resurrections,
+    &QuietAndFalling,
 };
 
 

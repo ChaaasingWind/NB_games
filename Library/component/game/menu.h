@@ -8,7 +8,7 @@
 #include "buzzer.h"
 
 
-constexpr int MUSIC_MENU_MAX_NUM = 25;
+constexpr int MUSIC_MENU_MAX_NUM = 27;
 constexpr int MAIN_MENU_MAX_NUM  = 4;
 constexpr int SETTINGS_MENU_MAX_NUM = 2;
 constexpr int MUSIC_PLAYING_MODE_NUM = 4;
@@ -53,7 +53,7 @@ class menu
         MusicPlayingState current_playing_state;
         int8_t current_music_index;
         MusicPlayingMode _playing_mode; 
-        int volume = 1; //音量，0-100之间
+        int volume = 50; //音量，0-100之间
         int rate   = 10; //倍速乘十
     };
 

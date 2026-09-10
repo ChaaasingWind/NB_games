@@ -35,6 +35,8 @@ inline const char* song_name_list[]=
     "WalkingHome",
     "Undyne",
     "ASGORE",
+    "Resurrections",
+    "QuietAndFalling",
 };
 
 class screen
