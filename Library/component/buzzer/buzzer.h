@@ -165,9 +165,11 @@ struct song
     const sound* song_voice[5];
     int voice_size[5];
     TIM_HandleTypeDef* htimarr[5];
-
     uint8_t wait_time;
+    int overall_time;
 
+    static float update_and_return_volume(float now_volume ,const int& original_volume);
+    int get_overall_time();
     song(const sound*p1,const sound*p2,const sound*p3,const sound*p4,const sound*p5,int size1,int size2,int size3,int size4,int size5,uint16_t wait_time)
     {
         song_voice[0]=p1;
@@ -186,8 +188,9 @@ struct song
         htimarr[2]= &htim15;
         htimarr[3]= &htim16;
         htimarr[4]= &htim17;
+        overall_time = get_overall_time();
     }
-    static float update_and_return_volume(float now_volume ,const int& original_volume);
+    
 };
 
 
@@ -209,6 +212,7 @@ struct music_play
     float volume[5]={0};
     uint8_t if_start[5]={0};
     bool song_finished = false;
+    float current_time;
     const song* current_song;
 
     buzzer_tim_output output[5];
@@ -225,6 +229,14 @@ struct music_play
     {
         static music_play instance;
         return instance;
+    }
+    int get_current_song_overall_time()
+    {
+        return current_song->overall_time;
+    }
+    int get_current_song_current_time()
+    {
+        return current_time;
     }
 };
 

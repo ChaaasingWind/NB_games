@@ -36,6 +36,26 @@ float song::update_and_return_volume(float now_volume , const int& original_volu
     return now_volume;
 }
 
+int song::get_overall_time()
+{
+    int time[5] = {0};
+    for(int i = 0; i < 5 ; i++)
+    {
+        for(int j = 0; j < voice_size[i]; j++)
+        {
+            //把每个声部的总时间分别求出来；
+            time[i] += (song_voice[i]+j)->last_beat;
+        }
+    }
+    int tiiiime = 0;
+    tiiiime = time[0] > tiiiime ? time[0]:tiiiime;
+    tiiiime = time[1] > tiiiime ? time[1]:tiiiime;
+    tiiiime = time[2] > tiiiime ? time[2]:tiiiime;
+    tiiiime = time[3] > tiiiime ? time[3]:tiiiime;
+    tiiiime = time[4] > tiiiime ? time[4]:tiiiime;
+    return tiiiime;
+}
+
 
 void music_play::play_music(float velocity)
 {
@@ -83,6 +103,7 @@ void music_play::play_music(float velocity)
                 output[p].update_tim = true;
             }
             times[p] += velocity;
+            
 
             //处理同步拍
             if((current_song->song_voice[p]+count[p])->tone==tone::NONE_TONE)
@@ -119,6 +140,7 @@ void music_play::play_music(float velocity)
             }
             
         }
+        current_time += velocity;
     }
     else
     {
@@ -130,6 +152,7 @@ void music_play::play_music(float velocity)
 
 void music_play::reset_music()
 {
+    current_time = 0;
     for(int i=0;i<5;i++)
     {
         count[i]=0;

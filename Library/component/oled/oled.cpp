@@ -324,8 +324,10 @@ pen& pen::draw_bit()
 pen& pen::draw_rectangle(uint8_t width, uint8_t height, uint8_t rectangle_mode)
 {
     //rectangle_mode
-    //0:目标点为长方形的左上角
-    //1：目标点为长方形的中心
+    // 0: 目标点为长方形的左上角，只画边框
+    // 1：目标点为长方形的中心，只画边框
+    // 2：目标点为长方形的左上角，全部填充
+    // 3：目标点为长方形的中心，全部填充
     if(rectangle_mode == 0)
     {
         uint8_t a =x;
@@ -361,6 +363,30 @@ pen& pen::draw_rectangle(uint8_t width, uint8_t height, uint8_t rectangle_mode)
         {
             basic_draw_bit(a, i, mode);
             basic_draw_bit(c-1, i, mode);
+        }
+    }
+    else if(rectangle_mode == 2)
+    {
+        for(int i = x; i < x+width; i++)
+        {
+            for(int j = y; j < y+height; j++)
+            {
+                basic_draw_bit(i, j, mode);
+            }
+        }
+    }
+    else if(rectangle_mode == 3)
+    {
+        uint8_t a =x-width/2;
+        uint8_t b =y-height/2;
+        uint8_t c =x+width/2;
+        uint8_t d =y+height/2;
+        for(int i = a; i < c; i++)
+        {
+            for(int j = b; j < d; j++)
+            {
+                basic_draw_bit(i, j, mode);
+            }
         }
     }
     return *this;

@@ -6,6 +6,7 @@
 #include "menu.h"
 #include "pattern/picture.h"
 #include <stdio.h>
+#include "buzzer.h"
 
 inline const char* song_name_list[]=
 {
@@ -41,11 +42,11 @@ class screen
   public:
     struct screen_ctx
     {
-        menu::MenuState current_state;
-        menu::MusicPlayingState current_playing_state;
-        menu::MusicPlayingMode _playing_mode;
-        int8_t current_index;
-        int8_t current_music_index;
+        menu::MenuState state;
+        menu::MusicPlayingState playing_state;
+        menu::MusicPlayingMode playing_mode;
+        int8_t index;
+        int8_t music_index;
         int volume; //音量，0-100之间
         int rate;   //倍速乘十
         int tick = 0;
