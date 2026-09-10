@@ -21,7 +21,7 @@ class menu
 {
   public:
 
-      enum class MenuState
+    enum class MenuState
     {
         MAIN,
         MUSIC,
@@ -50,12 +50,11 @@ class menu
     {
         MenuState current_state;
         int8_t current_index;
-
         MusicPlayingState current_playing_state;
         int8_t current_music_index;
         MusicPlayingMode _playing_mode; 
-        int volume =50;
-        int rate  = 10; //倍速乘十
+        int volume = 50; //音量，0-100之间
+        int rate   = 10; //倍速乘十
     };
 
 
@@ -111,17 +110,12 @@ class menu
         static menu instance;
         return instance;
     }
-    menuctx read_ctx()
-    {
-        return _ctx;
-    }
     void menu_init();
     void menu_run();
     menuctx get_ctx()
     {
         return _ctx;
     }
-    void update_cmd(virtual_controller::finalcontroller new_cmd);
     
 
 

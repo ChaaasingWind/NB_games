@@ -12,6 +12,8 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/gcc-arm-none-eabi.cmake)
+
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -58,7 +60,13 @@ add_executable(${CMAKE_PROJECT_NAME}
 
     Library/component/oled/oled.cpp
     Library/component/oled/oled_task.cpp
-
+    Library/component/oled/screen.cpp
+    Library/component/oled/fsm/screen_state_debug.cpp
+    Library/component/oled/fsm/screen_state_main.cpp
+    Library/component/oled/fsm/screen_state_music.cpp
+    Library/component/oled/fsm/screen_state_playing_music.cpp
+    Library/component/oled/fsm/screen_state_settings.cpp
+    Library/component/oled/fsm/screen_state_standby.cpp
 
 )
 
@@ -105,3 +113,5 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 
     # Add user defined libraries
 )
+
+

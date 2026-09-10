@@ -161,6 +161,7 @@ void music_play::set_song(const song* new_song)
     }
 }
 
+
 void music_play::set_same_song()
 {
     reset_music();

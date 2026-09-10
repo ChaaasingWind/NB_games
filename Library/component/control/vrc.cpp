@@ -118,7 +118,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
         {
             virtual_controller::instance().update_feedback();
         }
-                    HAL_UARTEx_ReceiveToIdle_DMA(&huart1, (uint8_t*)&virtual_controller::instance().rxbuffer, sizeof(uart_connect_pack));
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart1, (uint8_t*)&virtual_controller::instance().rxbuffer, sizeof(uart_connect_pack));
     }
 }
 
