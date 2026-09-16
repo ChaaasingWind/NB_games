@@ -1,44 +1,14 @@
 #include "buzzer.h"
 #include "main.h"
 #include "FreeRTOS.h"
-#include "songs/FlowerCastle.h"
-#include "songs/Paradise_Paradise.h"
-#include "songs/Resurrections.h"
-#include "songs/WalkingHome.h"
-#include "songs/before_the_story.h"
+#include "songs/CastleFunk.h"
 #include "task.h"
 #include "string.h"
 #include "menu.h"
+#include "song_lists.h"
 
 
 
-#include "shop3.h"
-#include "whomightyoube.h"
-#include "dr_ed.h"
-#include "running_sky.h"
-#include "petal_dance.h"
-#include "sunsetofsevensuns.h"
-#include "mewmew.h"
-#include "raise_up_your_bat.h"
-#include "the_third_sanctuary.h"
-#include "field_of_hopes_and_dreams.h"
-#include "black_knife.h"
-#include "the_world_revolving.h"
-#include "BIG_SHOT.h"
-#include "TV_WORLD.h"
-#include "Festival.h"
-#include "before_the_story.h"
-#include "flower_man.h"
-#include "hammer_of_justice.h"
-#include "Paradise_Paradise.h"
-#include "RuderBuster.h"
-#include "BattleAgainstATrueHero.h"
-#include "ASGORE.h"
-#include "VioletTactics.h"
-#include "WalkingHome.h"
-#include "FlowerCastle.h"
-#include "Resurrections.h"
-#include "QuietAndFalling.h"
 
 const song* song_list[]=
 {
@@ -65,12 +35,26 @@ const song* song_list[]=
     &FlowerCastle,
     &VioletTactics,
     &WalkingHome,
+    &EmptyTown,
+    &Vs_Lancer,
+    &AttackOfTheKillerQueen,
+    &LostGirl,
+    &UntilNextTime,
+    &DarkSanctuary,
+    &EverHigher,
+    &CastleFunk,
+    &Friends,
+    &From_Now_On,
+
 
     &BattleAgainstATrueHero,
     &ASGORE,
 
     &Resurrections,
     &QuietAndFalling,
+
+
+    
 };
 
 

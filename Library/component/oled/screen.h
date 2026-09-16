@@ -33,10 +33,26 @@ inline const char* song_name_list[]=
     "FlowerCastle",
     "VioletTactics",
     "WalkingHome",
+    "EmptyTown",
+    "Vs. Lancer",
+    "AttackOfKillerQueen",
+    "LostGirl",
+    "UntilNextTime",
+    "DarkSanctuary",
+    "EverHigher",
+    "CastleFunk",
+    "Friends",
+    "From Now On",
+
+
     "Undyne",
     "ASGORE",
+
+
     "Resurrections",
     "QuietAndFalling",
+
+    
 };
 
 class screen
