@@ -11,6 +11,7 @@
 #define OLED_TASK 1
 #define HEARTBEAT_TASK 1
 #define BLUETOOTH_TASK 1
+#define FLASH_TASK 1
 
 
 
@@ -22,6 +23,7 @@ extern void game_task(void *argument);
 extern void buzzer_task(void *argument);
 extern void oled_i2c_task(void *argument);
 extern void oled_task(void *argument);
+extern void flash_task(void *argument);
 extern void heartbeat_task(void *argument);
 extern void game_init_task(void *argument);
 
@@ -47,6 +49,10 @@ void StartDefaultTask(void *argument)
     #if HEARTBEAT_TASK
         xTaskCreate(heartbeat_task, "heartbeat_task", 
                 64, NULL,configMAX_PRIORITIES - 3, NULL);
+    #endif
+    #if FLASH_TASK
+        xTaskCreate(flash_task, "flash_task", 
+                128, NULL,configMAX_PRIORITIES - 2, NULL);
     #endif
     vTaskDelete(NULL);
 }

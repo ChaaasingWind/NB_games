@@ -57,6 +57,9 @@ add_executable(${CMAKE_PROJECT_NAME}
 
     Library/component/control/vrc.cpp
 
+    Library/component/flash/w25q64.cpp
+    Library/component/flash/flash_task.cpp
+
 
     Library/component/oled/oled.cpp
     Library/component/oled/oled_task.cpp
@@ -97,6 +100,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/oled
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/game
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/control
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/component/flash
 )
 
 # Add project symbols (macros)

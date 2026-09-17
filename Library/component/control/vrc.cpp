@@ -2,8 +2,6 @@
 
 __attribute__((section(".sram2"))) uart_connect_pack virtual_controller::rxbuffer;
 
-button::button_data debug;
-uint32_t debug_time = 0;
 
 void button::update()
 {
@@ -105,7 +103,6 @@ void virtual_controller::update_feedback()
     controller.x.update();
     controller.c.update();
 
-    debug = controller.w._data;
 }
 
 
