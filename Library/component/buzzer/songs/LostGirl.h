@@ -607,7 +607,8 @@ const song LostGirl = {
     sizeof(LostGirl_voice3)/sizeof(sound),
     sizeof(LostGirl_voice4)/sizeof(sound),
     sizeof(LostGirl_voice5)/sizeof(sound),
-    1};
+    1,
+    "Lost Girl"};
 
 
 #endif

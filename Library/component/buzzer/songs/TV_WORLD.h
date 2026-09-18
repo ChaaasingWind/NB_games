@@ -2727,7 +2727,8 @@ const song TV_WORLD = {
     sizeof(TV_WORLD_voice3)/sizeof(sound),
     sizeof(TV_WORLD_voice4)/sizeof(sound),
     sizeof(TV_WORLD_voice5)/sizeof(sound),
-    1};
+    1,
+    "TV WORLD"};
 
 
 

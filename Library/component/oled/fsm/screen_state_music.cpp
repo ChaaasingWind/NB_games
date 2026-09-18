@@ -15,18 +15,18 @@ void screen::MusicScreen::execute(screen_ctx* ctx)
     {
         pen::instance()
         .set_position(10, 15)
-        .draw_string(song_name_list[ctx->index-2]);
+        .draw_string(song_list[ctx->index-2].song_name);
     }
     if(ctx->index >= 1)
     {
         pen::instance()
         .set_position(10, 25)
-        .draw_string(song_name_list[ctx->index-1]);
+        .draw_string(song_list[ctx->index-1].song_name);
     }
 
     pen::instance()
     .set_position(10, 35)
-    .draw_string(song_name_list[ctx->index])
+    .draw_string(song_list[ctx->index].song_name)
     .set_position(0, 35)
     .draw_char('*');
 
@@ -34,12 +34,12 @@ void screen::MusicScreen::execute(screen_ctx* ctx)
     {
         pen::instance()
         .set_position(10, 45)
-        .draw_string(song_name_list[ctx->index+1]);
+        .draw_string(song_list[ctx->index+1].song_name);
     }
     if(ctx->index <=MUSIC_MENU_MAX_NUM-3)
     {
         pen::instance()
         .set_position(10, 55)
-        .draw_string(song_name_list[ctx->index+2]);
+        .draw_string(song_list[ctx->index+2].song_name);
     }
 }

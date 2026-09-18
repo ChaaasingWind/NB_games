@@ -5219,6 +5219,7 @@ const song TheThirdSanctuary{
     sizeof(TheThirdSanctuary_voice3)/sizeof(sound),
     sizeof(TheThirdSanctuary_voice4)/sizeof(sound),
     sizeof(TheThirdSanctuary_voice5)/sizeof(sound),
-    1};
+    1,
+    "The Third Sanctuary"};
 
 #endif

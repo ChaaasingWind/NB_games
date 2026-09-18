@@ -693,7 +693,8 @@ const song Friends = {
     sizeof(Friends_voice3)/sizeof(sound),
     sizeof(Friends_voice4)/sizeof(sound),
     sizeof(Friends_voice5)/sizeof(sound),
-    1};
+    1,
+    "Friends"};
 
 
 #endif

@@ -3350,7 +3350,8 @@ const song AttackOfTheKillerQueen = {
     sizeof(AttackOfTheKillerQueen_voice3)/sizeof(sound),
     sizeof(AttackOfTheKillerQueen_voice4)/sizeof(sound),
     sizeof(AttackOfTheKillerQueen_voice5)/sizeof(sound),
-    1};
+    1,
+    "AttackOfKillerQueen"};
 
 
 #endif

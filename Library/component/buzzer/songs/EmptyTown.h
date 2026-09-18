@@ -1055,7 +1055,8 @@ const song EmptyTown = {
     sizeof(EmptyTown_voice3)/sizeof(sound),
     sizeof(EmptyTown_voice4)/sizeof(sound),
     sizeof(EmptyTown_voice5)/sizeof(sound),
-    1};
+    1,
+    "Empty Town"};
 
 
 #endif

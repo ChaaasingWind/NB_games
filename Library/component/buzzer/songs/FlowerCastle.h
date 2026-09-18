@@ -4901,6 +4901,7 @@ const song FlowerCastle{
     sizeof(FlowerCastle_voice3)/sizeof(sound),
     sizeof(FlowerCastle_voice4)/sizeof(sound),
     sizeof(FlowerCastle_voice5)/sizeof(sound),
-    1};
+    1,
+    "Flower Castle"};
 #endif
 

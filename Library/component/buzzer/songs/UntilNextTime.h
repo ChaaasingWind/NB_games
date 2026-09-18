@@ -895,7 +895,8 @@ const song UntilNextTime = {
     sizeof(UntilNextTime_voice3)/sizeof(sound),
     sizeof(UntilNextTime_voice4)/sizeof(sound),
     sizeof(UntilNextTime_voice5)/sizeof(sound),
-    1};
+    1,
+    "Until Next Time"};
 
 
 #endif

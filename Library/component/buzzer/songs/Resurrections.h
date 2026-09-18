@@ -1915,7 +1915,8 @@ const song Resurrections{
     sizeof(Resurrections_voice3)/sizeof(sound),
     sizeof(Resurrections_voice4)/sizeof(sound),
     sizeof(Resurrections_voice5)/sizeof(sound),
-    1};
+    1,
+    "Resurrections"};
 
 
 

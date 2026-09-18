@@ -2747,7 +2747,8 @@ const song HammerOfJustice{
     sizeof(HammerOfJustice_voice3)/sizeof(sound),
     sizeof(HammerOfJustice_voice4)/sizeof(sound),
     sizeof(HammerOfJustice_voice5)/sizeof(sound),
-    1};
+    1,
+    "HammerOfJustice"};
 
 
 #endif

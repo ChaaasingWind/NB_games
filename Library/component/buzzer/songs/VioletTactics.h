@@ -2351,7 +2351,8 @@ const song VioletTactics{
     sizeof(VioletTactics_voice3)/sizeof(sound),
     sizeof(VioletTactics_voice4)/sizeof(sound),
     sizeof(VioletTactics_voice5)/sizeof(sound),
-    1};
+    1,
+    "Violet Tactics"};
 
 
 

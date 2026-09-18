@@ -5,7 +5,7 @@
 
 void menu::menu_init()
 {
-    menuFsm.change_state(&_debug_Menu);
+    menuFsm.change_state(&_mainMenu);
     menuFsm.enter(&_ctx);
 }
 

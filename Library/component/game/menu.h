@@ -6,9 +6,9 @@
 #include "fsm.h"
 #include "vrc.h"
 #include "buzzer.h"
+#include "flash_song_lists.h"
 
 
-constexpr int MUSIC_MENU_MAX_NUM = 37;
 constexpr int MAIN_MENU_MAX_NUM  = 4;
 constexpr int SETTINGS_MENU_MAX_NUM = 2;
 constexpr int MUSIC_PLAYING_MODE_NUM = 4;

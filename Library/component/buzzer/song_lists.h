@@ -42,7 +42,49 @@
 
 
 
+static const song* song_list[]=
+{
+    &BeforeTheStory,
+    &BIG_SHOT,
+    &BlackKnife,
+    &DrEd,
+    &Festival,
+    &FieldOfHopesAndDreams,
+    &FlowerMan,
+    &HammerOfJustice,
+    &CutieMewMewMagic,
+    &PetalDance,
+    &RaiseUpYourBat,
+    &RunningSky,
+    &Shop3, 
+    &SunsetOfSevenSuns, 
+    &TheThirdSanctuary, 
+    &THE_WORLD_REVOLVING, 
+    &TV_WORLD, 
+    &WhoMightYouBe, 
+    &Paradise_Paradise,
+    &RuderBuster,
+    &FlowerCastle,
+    &VioletTactics,
+    &WalkingHome,
+    &EmptyTown,
+    &Vs_Lancer,
+    &AttackOfTheKillerQueen,
+    &LostGirl,
+    &UntilNextTime,
+    &DarkSanctuary,
+    &EverHigher,
+    &CastleFunk,
+    &Friends,
+    &From_Now_On,
 
+
+    &BattleAgainstATrueHero,
+    &ASGORE,
+
+    &Resurrections,
+    &QuietAndFalling,
+};
 
 
 

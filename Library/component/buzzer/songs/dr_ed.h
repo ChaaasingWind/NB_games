@@ -2418,7 +2418,8 @@ const song DrEd{
     sizeof(DrEd_voice3)/sizeof(sound),
     sizeof(DrEd_voice4)/sizeof(sound),
     sizeof(DrEd_voice5)/sizeof(sound),
-    1};
+    1,
+    "Deltarune ED"};
 
 
 

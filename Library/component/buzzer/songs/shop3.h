@@ -1110,7 +1110,8 @@ const song Shop3{
     sizeof(Shop3_voice3)/sizeof(sound),
     sizeof(Shop3_voice4)/sizeof(sound),
     sizeof(Shop3_voice5)/sizeof(sound),
-    1};
+    1,
+    "Shop3"};
 
 
 #endif

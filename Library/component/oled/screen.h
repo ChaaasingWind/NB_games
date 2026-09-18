@@ -7,54 +7,8 @@
 #include "pattern/picture.h"
 #include <stdio.h>
 #include "buzzer.h"
+#include "flash_song_lists.h"
 
-inline const char* song_name_list[]=
-{
-    "Before the Story",
-    "BIG SHOT",
-    "Black Knife",
-    "DELTARUNE ED",
-    "Festival",
-    "FieldOfHopes&Dreams",
-    "Flower Man",
-    "Hammer of Justice",
-    "Cutie MewMew Magic",
-    "Petal Dance",
-    "Raise up Your Bat",
-    "Running Sky",
-    "Shop3",
-    "Sunset of SevenSuns",
-    "The Third Sanctuary",
-    "THE WORLD REVOLVING",
-    "TV WORLD",
-    "who might you be",
-    "Paradise, Paradise",
-    "Ruder Buster",
-    "FlowerCastle",
-    "VioletTactics",
-    "WalkingHome",
-    "EmptyTown",
-    "Vs. Lancer",
-    "AttackOfKillerQueen",
-    "LostGirl",
-    "UntilNextTime",
-    "DarkSanctuary",
-    "EverHigher",
-    "CastleFunk",
-    "Friends",
-    "From Now On",
-    
-
-
-    "Undyne",
-    "ASGORE",
-
-
-    "Resurrections",
-    "QuietAndFalling",
-
-    
-};
 
 class screen
 {

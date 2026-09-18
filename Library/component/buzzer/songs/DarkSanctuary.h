@@ -2408,7 +2408,8 @@ const song DarkSanctuary = {
     sizeof(DarkSanctuary_voice3)/sizeof(sound),
     sizeof(DarkSanctuary_voice4)/sizeof(sound),
     sizeof(DarkSanctuary_voice5)/sizeof(sound),
-    1};
+    1,
+    "Dark Sanctuary"};
 
 
 #endif

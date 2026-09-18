@@ -4061,7 +4061,8 @@ const song BlackKnife{
     sizeof(BlackKnife_voice3)/sizeof(sound),
     sizeof(BlackKnife_voice4)/sizeof(sound),
     sizeof(BlackKnife_voice5)/sizeof(sound),
-    1};
+    1,
+    "Black Knife"};
 
 
 

@@ -839,7 +839,8 @@ const song WalkingHome{
     sizeof(WalkingHome_voice3)/sizeof(sound),
     sizeof(WalkingHome_voice4)/sizeof(sound),
     sizeof(WalkingHome_voice5)/sizeof(sound),
-    1};
+    1,
+    "Walking Home"};
 
 
 

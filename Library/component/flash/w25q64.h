@@ -7,6 +7,19 @@
 
 constexpr int W25Q64_TIMEOUT = 1000;
 
+
+struct song_flash_data
+{
+    // 事件数
+    uint16_t voice_num[5];
+    // 偏移量
+    uint32_t voice_offset[5];
+    //歌曲名
+    char name[20];
+};
+
+
+
 class w25q64
 {
   public:
@@ -24,6 +37,13 @@ class w25q64
     void     w25q64_write_enable();
     //等待
     void     w25q64_wait_ready();
+    //内存映射模式
+    bool w25q64_enable_memory_mapped();
+    bool w25q64_disable_memory_mapped();
+
+
+    //自动完成分页操作的页编程
+    uint32_t w25q64_write_data(uint32_t addr, const uint8_t* data, uint32_t len);
 
 
     w25q64(OSPI_HandleTypeDef* hospi);

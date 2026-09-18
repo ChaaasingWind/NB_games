@@ -1181,7 +1181,8 @@ const song QuietAndFalling{
     sizeof(QuietAndFalling_voice3)/sizeof(sound),
     sizeof(QuietAndFalling_voice4)/sizeof(sound),
     sizeof(QuietAndFalling_voice5)/sizeof(sound),
-    1};
+    1,
+    "Quiet And Falling"};
 
 
 #endif

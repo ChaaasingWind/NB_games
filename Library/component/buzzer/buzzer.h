@@ -131,15 +131,16 @@ class sound
     
 
     const uint8_t tone;
-    const uint16_t last_beat;
     const uint8_t velocity;
+    const uint16_t last_beat;
+    
 
-    constexpr sound():tone(tone::NONE_TONE), last_beat(0), velocity(0){}
-    constexpr sound(uint16_t last_beat):tone(tone::EMPTY), last_beat(last_beat), velocity(0){};
+    constexpr sound():tone(tone::NONE_TONE), velocity(0), last_beat(0){}
+    constexpr sound(uint16_t last_beat):tone(tone::EMPTY), velocity(0), last_beat(last_beat){};
     constexpr sound(int tone, uint16_t last_beat):
-            tone(tone),last_beat(last_beat), velocity(127){};
+            tone(tone), velocity(127),last_beat(last_beat){};
     constexpr sound(int tone, uint16_t last_beat, uint8_t volume):
-            tone(tone),last_beat(last_beat), velocity(volume){};
+            tone(tone), velocity(volume),last_beat(last_beat){};
     
 
     void convert_frequence_to_pwm_param(uint16_t *prescaler, uint16_t *period) const;
@@ -167,10 +168,22 @@ struct song
     TIM_HandleTypeDef* htimarr[5];
     uint8_t wait_time;
     int overall_time;
+    const char* song_name;
 
     static float update_and_return_volume(float now_volume ,const int& original_volume);
     int get_overall_time();
-    song(const sound*p1,const sound*p2,const sound*p3,const sound*p4,const sound*p5,int size1,int size2,int size3,int size4,int size5,uint16_t wait_time)
+    song(const sound*p1,
+         const sound*p2,
+         const sound*p3,
+         const sound*p4,
+         const sound*p5,
+         int size1,
+         int size2,
+         int size3,
+         int size4,
+         int size5,
+         uint16_t wait_time,
+         const char* name)
     {
         song_voice[0]=p1;
         song_voice[1]=p2;
@@ -183,6 +196,7 @@ struct song
         voice_size[3]=size4;
         voice_size[4]=size5;
         this->wait_time= wait_time;
+        this->song_name = name;
         htimarr[0]= &htim13;
         htimarr[1]= &htim14;
         htimarr[2]= &htim15;
@@ -191,6 +205,23 @@ struct song
         overall_time = get_overall_time();
     }
     
+
+    song() 
+    {
+        for (int i = 0; i < 5; i++) 
+        {
+            song_voice[i] = nullptr;
+            voice_size[i] = 0;
+        }
+        htimarr[0] = &htim13;
+        htimarr[1] = &htim14;
+        htimarr[2] = &htim15;
+        htimarr[3] = &htim16;
+        htimarr[4] = &htim17;
+        this->song_name = nullptr;
+        wait_time = 1;
+        overall_time = 0;
+    }
 };
 
 

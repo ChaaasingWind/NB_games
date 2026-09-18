@@ -5,70 +5,33 @@
 #include "task.h"
 #include "string.h"
 #include "menu.h"
+
+#if FLASH_WRITE_MODE
+
 #include "song_lists.h"
 
+#else
+
+#include "flash_song_lists.h"
+
+#endif
 
 
 
-const song* song_list[]=
-{
-    &BeforeTheStory,
-    &BIG_SHOT,
-    &BlackKnife,
-    &DrEd,
-    &Festival,
-    &FieldOfHopesAndDreams,
-    &FlowerMan,
-    &HammerOfJustice,
-    &CutieMewMewMagic,
-    &PetalDance,
-    &RaiseUpYourBat,
-    &RunningSky,
-    &Shop3, 
-    &SunsetOfSevenSuns, 
-    &TheThirdSanctuary, 
-    &THE_WORLD_REVOLVING, 
-    &TV_WORLD, 
-    &WhoMightYouBe, 
-    &Paradise_Paradise,
-    &RuderBuster,
-    &FlowerCastle,
-    &VioletTactics,
-    &WalkingHome,
-    &EmptyTown,
-    &Vs_Lancer,
-    &AttackOfTheKillerQueen,
-    &LostGirl,
-    &UntilNextTime,
-    &DarkSanctuary,
-    &EverHigher,
-    &CastleFunk,
-    &Friends,
-    &From_Now_On,
-
-
-    &BattleAgainstATrueHero,
-    &ASGORE,
-
-    &Resurrections,
-    &QuietAndFalling,
-
-
-    
-};
 
 
 
 extern "C" {
 void buzzer_task(void *argument)
 {
+    vTaskDelay(100);
     while(1)
     {
         auto ctx = menu::instance().get_ctx();
         static int8_t last_music_index = -1;
         if(ctx.current_music_index != last_music_index)
         {
-            music_play::instance().set_song(song_list[ctx.current_music_index]);
+            music_play::instance().set_song(&song_list[ctx.current_music_index]);
             last_music_index = ctx.current_music_index;
         }
         if(ctx.current_playing_state == menu::MusicPlayingState::PLAYING)

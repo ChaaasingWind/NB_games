@@ -2123,7 +2123,8 @@ const song SunsetOfSevenSuns{
     sizeof(SunsetOfSevenSuns_voice3)/sizeof(sound),
     sizeof(SunsetOfSevenSuns_voice4)/sizeof(sound),
     sizeof(SunsetOfSevenSuns_voice5)/sizeof(sound),
-    1};
+    1,
+    "Sunset of SevenSuns"};
 
 
 #endif

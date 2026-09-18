@@ -5300,6 +5300,7 @@ const song CutieMewMewMagic{
     sizeof(CutieMewMewMagic_voice3)/sizeof(sound),
     sizeof(CutieMewMewMagic_voice4)/sizeof(sound),
     sizeof(CutieMewMewMagic_voice5)/sizeof(sound),
-    1};
+    1,
+    "Cutie MewMew Magic"};
 
 #endif

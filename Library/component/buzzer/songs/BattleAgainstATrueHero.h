@@ -3838,7 +3838,8 @@ const song BattleAgainstATrueHero{
     sizeof(BattleAgainstATrueHero_voice3)/sizeof(sound),
     sizeof(BattleAgainstATrueHero_voice4)/sizeof(sound),
     sizeof(BattleAgainstATrueHero_voice5)/sizeof(sound),
-    1};
+    1,
+    "Undyne"};
 
 
 

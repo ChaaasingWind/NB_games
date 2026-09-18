@@ -2922,6 +2922,7 @@ const song RunningSky{
     sizeof(RunningSky_voice3)/sizeof(sound),
     sizeof(RunningSky_voice4)/sizeof(sound),
     sizeof(RunningSky_voice5)/sizeof(sound),
-    1};
+    1,
+    "RunningSky"};
 
 #endif

@@ -3995,7 +3995,8 @@ const song BIG_SHOT = {
     sizeof(BIG_SHOT_voice3)/sizeof(sound),
     sizeof(BIG_SHOT_voice4)/sizeof(sound),
     sizeof(BIG_SHOT_voice5)/sizeof(sound),
-    1};
+    1,
+    "BIG_SHOT"};
 
 
 

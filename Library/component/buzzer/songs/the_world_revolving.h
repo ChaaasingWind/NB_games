@@ -2690,7 +2690,8 @@ const song THE_WORLD_REVOLVING{
     sizeof(THE_WORLD_REVOLVING_voice3)/sizeof(sound),
     sizeof(THE_WORLD_REVOLVING_voice4)/sizeof(sound),
     sizeof(THE_WORLD_REVOLVING_voice5)/sizeof(sound),
-    1};
+    1,
+    "THE WORLD REVOLVING"};
 
 
 #endif

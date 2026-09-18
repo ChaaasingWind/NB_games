@@ -1862,7 +1862,8 @@ const song Festival = {
     sizeof(Festival_voice3)/sizeof(sound),
     sizeof(Festival_voice4)/sizeof(sound),
     sizeof(Festival_voice5)/sizeof(sound),
-    1};
+    1,
+    "Festival"};
 
 
 #endif

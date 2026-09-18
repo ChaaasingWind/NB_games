@@ -1368,7 +1368,8 @@ const song WhoMightYouBe{
     sizeof(WhoMightYouBe_voice3)/sizeof(sound),
     sizeof(WhoMightYouBe_voice4)/sizeof(sound),
     sizeof(WhoMightYouBe_voice5)/sizeof(sound),
-    1};
+    1,
+    "who might you be"};
 
 
 #endif

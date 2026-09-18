@@ -3181,7 +3181,8 @@ const song CastleFunk = {
     sizeof(CastleFunk_voice3)/sizeof(sound),
     sizeof(CastleFunk_voice4)/sizeof(sound),
     sizeof(CastleFunk_voice5)/sizeof(sound),
-    1};
+    1,
+    "Castle Funk"};
 
 
 #endif

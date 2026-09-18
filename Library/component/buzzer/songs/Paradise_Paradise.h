@@ -1907,7 +1907,8 @@ const song Paradise_Paradise{
     sizeof(Paradise_Paradise_voice3)/sizeof(sound),
     sizeof(Paradise_Paradise_voice4)/sizeof(sound),
     sizeof(Paradise_Paradise_voice5)/sizeof(sound),
-    1};
+    1,
+    "Paradise, Paradise"};
 
 
 

@@ -1562,7 +1562,8 @@ const song EverHigher = {
     sizeof(EverHigher_voice3)/sizeof(sound),
     sizeof(EverHigher_voice4)/sizeof(sound),
     sizeof(EverHigher_voice5)/sizeof(sound),
-    1};
+    1,
+    "Even Higher"};
 
 
 #endif

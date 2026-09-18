@@ -768,7 +768,8 @@ const song BeforeTheStory{
     sizeof(BeforeTheStory_voice3)/sizeof(sound),
     sizeof(BeforeTheStory_voice4)/sizeof(sound),
     sizeof(BeforeTheStory_voice5)/sizeof(sound),
-    1};
+    1,
+    "Before The Story"};
 
 
 #endif

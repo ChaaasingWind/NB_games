@@ -1972,7 +1972,8 @@ const song PetalDance{
     sizeof(PetalDance_voice3)/sizeof(sound),
     sizeof(PetalDance_voice4)/sizeof(sound),
     sizeof(PetalDance_voice5)/sizeof(sound),
-    1};
+    1,
+    "Petal Dance"};
 
 
 #endif

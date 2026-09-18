@@ -2599,7 +2599,8 @@ const song From_Now_On = {
     sizeof(From_Now_On_voice3)/sizeof(sound),
     sizeof(From_Now_On_voice4)/sizeof(sound),
     sizeof(From_Now_On_voice5)/sizeof(sound),
-    1};
+    1,
+    "From Now On"};
 
 
 #endif

@@ -2986,6 +2986,7 @@ const song RuderBuster{
     sizeof(RuderBuster_voice3)/sizeof(sound),
     sizeof(RuderBuster_voice4)/sizeof(sound),
     sizeof(RuderBuster_voice5)/sizeof(sound),
-    1};
+    1,
+    "RuderBuster"};
 
 #endif

@@ -4064,5 +4064,6 @@ const song ASGORE{
     sizeof(ASGORE_voice3)/sizeof(sound),
     sizeof(ASGORE_voice4)/sizeof(sound),
     sizeof(ASGORE_voice5)/sizeof(sound),
-    1};
+    1,
+"ASGORE"};
 #endif

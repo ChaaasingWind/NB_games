@@ -12,7 +12,7 @@ void screen::PlayingMusicScreen::execute(screen_ctx* ctx)
     // 歌名
     pen::instance()
     .set_position(0, 10)
-    .draw_string(song_name_list[ctx->music_index], 0, 2);
+    .draw_string(song_list[ctx->music_index].song_name, 0, 2);
 
     //进度条
     int overall_time = music_play::instance().get_current_song_overall_time();

@@ -982,7 +982,8 @@ const song Vs_Lancer = {
     sizeof(Vs_Lancer_voice3)/sizeof(sound),
     sizeof(Vs_Lancer_voice4)/sizeof(sound),
     sizeof(Vs_Lancer_voice5)/sizeof(sound),
-    1};
+    1,
+    "Vs. Lancer"};
 
 
 #endif
