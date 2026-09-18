@@ -4380,7 +4380,7 @@ const song FieldOfHopesAndDreams{
     sizeof(FieldOfHopesAndDreams_voice4)/sizeof(sound),
     sizeof(FieldOfHopesAndDreams_voice5)/sizeof(sound),
     1,
-    "FieldOfHopesAndDreams"};
+    "FieldOfHopes&Dreams"};
 
 
 #endif

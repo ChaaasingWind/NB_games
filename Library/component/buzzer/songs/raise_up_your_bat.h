@@ -2439,6 +2439,6 @@ const song RaiseUpYourBat{
     sizeof(RaiseUpYourBat_voice4)/sizeof(sound),
     sizeof(RaiseUpYourBat_voice5)/sizeof(sound),
     1,
-    "Raise UP Your Bats"};
+    "Raise UP Your Bat"};
 
 #endif
