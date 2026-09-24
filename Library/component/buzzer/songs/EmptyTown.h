@@ -1044,17 +1044,35 @@ const sound EmptyTown_voice5 [] =
 {
 };
 
+const sound EmptyTown_voice6 [] =
+{
+};
+
+const sound EmptyTown_voice7 [] =
+{
+};
+
+const sound EmptyTown_voice8 [] =
+{
+};
+
 const song EmptyTown = {
     EmptyTown_voice1,
     EmptyTown_voice2,
     EmptyTown_voice3,
     EmptyTown_voice4,
     EmptyTown_voice5,
+    EmptyTown_voice6,
+    EmptyTown_voice7,
+    EmptyTown_voice8,
     sizeof(EmptyTown_voice1)/sizeof(sound),
     sizeof(EmptyTown_voice2)/sizeof(sound),
     sizeof(EmptyTown_voice3)/sizeof(sound),
     sizeof(EmptyTown_voice4)/sizeof(sound),
     sizeof(EmptyTown_voice5)/sizeof(sound),
+    sizeof(EmptyTown_voice6)/sizeof(sound),
+    sizeof(EmptyTown_voice7)/sizeof(sound),
+    sizeof(EmptyTown_voice8)/sizeof(sound),
     1,
     "Empty Town"};
 

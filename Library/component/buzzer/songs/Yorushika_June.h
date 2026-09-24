@@ -3327,7 +3327,6 @@ const sound Yorushika_June_voice5 [] =
     {Bb1, 122, 127},
 };
 
-/*
 const sound Yorushika_June_voice6 [] =
 {
     {1103},
@@ -3381,7 +3380,6 @@ const sound Yorushika_June_voice6 [] =
     {64},
     {Bb2, 122, 127},
 };
-*/
 
 const song Yorushika_June = {
     Yorushika_June_voice1,

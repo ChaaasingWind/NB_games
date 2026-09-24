@@ -4374,11 +4374,17 @@ const song FieldOfHopesAndDreams{
     FieldOfHopesAndDreams_voice3,
     FieldOfHopesAndDreams_voice4,
     FieldOfHopesAndDreams_voice5,
+    FieldOfHopesAndDreams_voice6,
+    FieldOfHopesAndDreams_voice7,
+    FieldOfHopesAndDreams_voice8,
     sizeof(FieldOfHopesAndDreams_voice1)/sizeof(sound),
     sizeof(FieldOfHopesAndDreams_voice2)/sizeof(sound),
     sizeof(FieldOfHopesAndDreams_voice3)/sizeof(sound),
     sizeof(FieldOfHopesAndDreams_voice4)/sizeof(sound),
     sizeof(FieldOfHopesAndDreams_voice5)/sizeof(sound),
+    sizeof(FieldOfHopesAndDreams_voice6)/sizeof(sound),
+    sizeof(FieldOfHopesAndDreams_voice7)/sizeof(sound),
+    sizeof(FieldOfHopesAndDreams_voice8)/sizeof(sound),
     1,
     "FieldOfHopes&Dreams"};
 

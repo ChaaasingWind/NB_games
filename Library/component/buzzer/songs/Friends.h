@@ -660,7 +660,6 @@ const sound Friends_voice5 [] =
     {E4, 1578, 80},
 };
 
-/*
 const sound Friends_voice6 [] =
 {
     {1893},
@@ -680,7 +679,18 @@ const sound Friends_voice6 [] =
     {317},
     {Gb4, 314, 80},
 };
-*/
+
+const sound Friends_voice6 [] =
+{
+};
+
+const sound Friends_voice7 [] =
+{
+};
+
+const sound Friends_voice8 [] =
+{
+};
 
 const song Friends = {
     Friends_voice1,
@@ -688,11 +698,17 @@ const song Friends = {
     Friends_voice3,
     Friends_voice4,
     Friends_voice5,
+    Friends_voice6,
+    Friends_voice7,
+    Friends_voice8,
     sizeof(Friends_voice1)/sizeof(sound),
     sizeof(Friends_voice2)/sizeof(sound),
     sizeof(Friends_voice3)/sizeof(sound),
     sizeof(Friends_voice4)/sizeof(sound),
     sizeof(Friends_voice5)/sizeof(sound),
+    sizeof(Friends_voice6)/sizeof(sound),
+    sizeof(Friends_voice7)/sizeof(sound),
+    sizeof(Friends_voice8)/sizeof(sound),
     1,
     "Friends"};
 

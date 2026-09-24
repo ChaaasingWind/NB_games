@@ -1551,17 +1551,35 @@ const sound EverHigher_voice5 [] =
     {Eb4, 258, 112},
 };
 
+const sound EverHigher_voice6 [] =
+{
+};
+
+const sound EverHigher_voice7 [] =
+{
+};
+
+const sound EverHigher_voice8 [] =
+{
+};
+
 const song EverHigher = {
     EverHigher_voice1,
     EverHigher_voice2,
     EverHigher_voice3,
     EverHigher_voice4,
     EverHigher_voice5,
+    EverHigher_voice6,
+    EverHigher_voice7,
+    EverHigher_voice8,
     sizeof(EverHigher_voice1)/sizeof(sound),
     sizeof(EverHigher_voice2)/sizeof(sound),
     sizeof(EverHigher_voice3)/sizeof(sound),
     sizeof(EverHigher_voice4)/sizeof(sound),
     sizeof(EverHigher_voice5)/sizeof(sound),
+    sizeof(EverHigher_voice6)/sizeof(sound),
+    sizeof(EverHigher_voice7)/sizeof(sound),
+    sizeof(EverHigher_voice8)/sizeof(sound),
     1,
     "Even Higher"};
 

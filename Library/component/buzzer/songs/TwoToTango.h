@@ -5794,7 +5794,6 @@ const sound TwoToTango_voice5 [] =
     {E5, 1742, 96},
 };
 
-/*
 const sound TwoToTango_voice6 [] =
 {
     {1303},
@@ -5883,9 +5882,7 @@ const sound TwoToTango_voice6 [] =
     {5757},
     {E3, 1742, 96},
 };
-*/
 
-/*
 const sound TwoToTango_voice7 [] =
 {
     {1303},
@@ -5944,9 +5941,7 @@ const sound TwoToTango_voice7 [] =
     {5824},
     {A5, 1675, 96},
 };
-*/
 
-/*
 const sound TwoToTango_voice8 [] =
 {
     {1303},
@@ -5999,7 +5994,6 @@ const sound TwoToTango_voice8 [] =
     {6762},
     {A3, 1675, 96},
 };
-*/
 
 const song TwoToTango = {
     TwoToTango_voice1,

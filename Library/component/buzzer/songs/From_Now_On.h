@@ -2524,7 +2524,6 @@ const sound From_Now_On_voice5 [] =
     {Db3, 863, 64},
 };
 
-/*
 const sound From_Now_On_voice6 [] =
 {
     {107},
@@ -2560,9 +2559,7 @@ const sound From_Now_On_voice6 [] =
     {6592},
     {Gb3, 863, 64},
 };
-*/
 
-/*
 const sound From_Now_On_voice7 [] =
 {
     {107},
@@ -2586,7 +2583,6 @@ const sound From_Now_On_voice7 [] =
     {5802},
     {A3, 431, 96},
 };
-*/
 
 const song From_Now_On = {
     From_Now_On_voice1,
@@ -2594,11 +2590,17 @@ const song From_Now_On = {
     From_Now_On_voice3,
     From_Now_On_voice4,
     From_Now_On_voice5,
+    From_Now_On_voice6,
+    From_Now_On_voice7,
+    From_Now_On_voice8,
     sizeof(From_Now_On_voice1)/sizeof(sound),
     sizeof(From_Now_On_voice2)/sizeof(sound),
     sizeof(From_Now_On_voice3)/sizeof(sound),
     sizeof(From_Now_On_voice4)/sizeof(sound),
     sizeof(From_Now_On_voice5)/sizeof(sound),
+    sizeof(From_Now_On_voice6)/sizeof(sound),
+    sizeof(From_Now_On_voice7)/sizeof(sound),
+    sizeof(From_Now_On_voice8)/sizeof(sound),
     1,
     "From Now On"};
 

@@ -810,7 +810,6 @@ const sound UntilNextTime_voice5 [] =
     {Eb3, 3290, 80},
 };
 
-/*
 const sound UntilNextTime_voice6 [] =
 {
     {418},
@@ -862,9 +861,7 @@ const sound UntilNextTime_voice6 [] =
     {152},
     {G4, 3224, 80},
 };
-*/
 
-/*
 const sound UntilNextTime_voice7 [] =
 {
     {418},
@@ -882,7 +879,6 @@ const sound UntilNextTime_voice7 [] =
     {152},
     {G3, 3224, 80},
 };
-*/
 
 const song UntilNextTime = {
     UntilNextTime_voice1,

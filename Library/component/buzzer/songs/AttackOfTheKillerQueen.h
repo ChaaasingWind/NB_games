@@ -3271,7 +3271,6 @@ const sound AttackOfTheKillerQueen_voice5 [] =
     {B4, 207, 96},
 };
 
-/*
 const sound AttackOfTheKillerQueen_voice6 [] =
 {
     {103},
@@ -3337,7 +3336,14 @@ const sound AttackOfTheKillerQueen_voice6 [] =
     {214},
     {C3, 395, 113},
 };
-*/
+
+const sound AttackOfTheKillerQueen_voice7 [] =
+{
+};
+
+const sound AttackOfTheKillerQueen_voice8 [] =
+{
+};
 
 const song AttackOfTheKillerQueen = {
     AttackOfTheKillerQueen_voice1,
@@ -3345,11 +3351,17 @@ const song AttackOfTheKillerQueen = {
     AttackOfTheKillerQueen_voice3,
     AttackOfTheKillerQueen_voice4,
     AttackOfTheKillerQueen_voice5,
+    AttackOfTheKillerQueen_voice6,
+    AttackOfTheKillerQueen_voice7,
+    AttackOfTheKillerQueen_voice8,
     sizeof(AttackOfTheKillerQueen_voice1)/sizeof(sound),
     sizeof(AttackOfTheKillerQueen_voice2)/sizeof(sound),
     sizeof(AttackOfTheKillerQueen_voice3)/sizeof(sound),
     sizeof(AttackOfTheKillerQueen_voice4)/sizeof(sound),
     sizeof(AttackOfTheKillerQueen_voice5)/sizeof(sound),
+    sizeof(AttackOfTheKillerQueen_voice6)/sizeof(sound),
+    sizeof(AttackOfTheKillerQueen_voice7)/sizeof(sound),
+    sizeof(AttackOfTheKillerQueen_voice8)/sizeof(sound),
     1,
     "AttackOfKillerQueen"};
 

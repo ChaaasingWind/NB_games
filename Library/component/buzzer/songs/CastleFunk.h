@@ -3128,7 +3128,6 @@ const sound CastleFunk_voice5 [] =
     {E2, 239, 80},
 };
 
-/*
 const sound CastleFunk_voice6 [] =
 {
     {119},
@@ -3168,7 +3167,14 @@ const sound CastleFunk_voice6 [] =
     {721},
     {Eb2, 113, 80},
 };
-*/
+
+const sound CastleFunk_voice7 [] =
+{
+};
+
+const sound CastleFunk_voice8 [] =
+{
+};
 
 const song CastleFunk = {
     CastleFunk_voice1,
@@ -3176,11 +3182,17 @@ const song CastleFunk = {
     CastleFunk_voice3,
     CastleFunk_voice4,
     CastleFunk_voice5,
+    CastleFunk_voice6,
+    CastleFunk_voice7,
+    CastleFunk_voice8,
     sizeof(CastleFunk_voice1)/sizeof(sound),
     sizeof(CastleFunk_voice2)/sizeof(sound),
     sizeof(CastleFunk_voice3)/sizeof(sound),
     sizeof(CastleFunk_voice4)/sizeof(sound),
     sizeof(CastleFunk_voice5)/sizeof(sound),
+    sizeof(CastleFunk_voice6)/sizeof(sound),
+    sizeof(CastleFunk_voice7)/sizeof(sound),
+    sizeof(CastleFunk_voice8)/sizeof(sound),
     1,
     "Castle Funk"};
 

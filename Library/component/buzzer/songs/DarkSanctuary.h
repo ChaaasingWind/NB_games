@@ -2367,7 +2367,6 @@ const sound DarkSanctuary_voice5 [] =
     {F2, 155, 80},
 };
 
-/*
 const sound DarkSanctuary_voice6 [] =
 {
     {155},
@@ -2395,7 +2394,14 @@ const sound DarkSanctuary_voice6 [] =
     {6876},
     {F3, 155, 80},
 };
-*/
+
+const sound DarkSanctuary_voice7 [] =
+{
+};
+
+const sound DarkSanctuary_voice8 [] =
+{
+};
 
 const song DarkSanctuary = {
     DarkSanctuary_voice1,
@@ -2403,11 +2409,17 @@ const song DarkSanctuary = {
     DarkSanctuary_voice3,
     DarkSanctuary_voice4,
     DarkSanctuary_voice5,
+    DarkSanctuary_voice6,
+    DarkSanctuary_voice7,
+    DarkSanctuary_voice8,
     sizeof(DarkSanctuary_voice1)/sizeof(sound),
     sizeof(DarkSanctuary_voice2)/sizeof(sound),
     sizeof(DarkSanctuary_voice3)/sizeof(sound),
     sizeof(DarkSanctuary_voice4)/sizeof(sound),
     sizeof(DarkSanctuary_voice5)/sizeof(sound),
+    sizeof(DarkSanctuary_voice6)/sizeof(sound),
+    sizeof(DarkSanctuary_voice7)/sizeof(sound),
+    sizeof(DarkSanctuary_voice8)/sizeof(sound),
     1,
     "Dark Sanctuary"};
 

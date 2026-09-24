@@ -2711,27 +2711,27 @@ const sound HammerOfJustice_voice5 [] =
     {Ab2, 177, 96},
 };
 
-// const sound HammerOfJustice_voice6 [] =
-// {
-//     {355},
-//     {},
-//     {10125},
-//     {},
-//     {10003},
-//     {},
-//     {10823},
-//     {},
-//     {10312},
-//     {},
-//     {10093},
-//     {},
-//     {11385},
-//     {},
-//     {10909},
-//     {},
-//     {4696},
-//     {Ab2, 1110, 80},
-// };
+const sound HammerOfJustice_voice6 [] =
+{
+    {355},
+    {},
+    {10125},
+    {},
+    {10003},
+    {},
+    {10823},
+    {},
+    {10312},
+    {},
+    {10093},
+    {},
+    {11385},
+    {},
+    {10909},
+    {},
+    {4696},
+    {Ab2, 1110, 80},
+};
 
 
 
@@ -2742,11 +2742,17 @@ const song HammerOfJustice{
     HammerOfJustice_voice3,
     HammerOfJustice_voice4,
     HammerOfJustice_voice5,
+    HammerOfJustice_voice6,
+    HammerOfJustice_voice7,
+    HammerOfJustice_voice8,
     sizeof(HammerOfJustice_voice1)/sizeof(sound),
     sizeof(HammerOfJustice_voice2)/sizeof(sound),
     sizeof(HammerOfJustice_voice3)/sizeof(sound),
     sizeof(HammerOfJustice_voice4)/sizeof(sound),
     sizeof(HammerOfJustice_voice5)/sizeof(sound),
+    sizeof(HammerOfJustice_voice6)/sizeof(sound),
+    sizeof(HammerOfJustice_voice7)/sizeof(sound),
+    sizeof(HammerOfJustice_voice8)/sizeof(sound),
     1,
     "Hammer Of Justice"};
 

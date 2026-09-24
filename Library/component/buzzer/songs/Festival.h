@@ -1850,6 +1850,17 @@ const sound Festival_voice5 [] =
 {
 };
 
+const sound Festival_voice6 [] =
+{
+};
+
+const sound Festival_voice7 [] =
+{
+};
+
+const sound Festival_voice8 [] =
+{
+};
 
 const song Festival = {
     Festival_voice1,
@@ -1857,11 +1868,17 @@ const song Festival = {
     Festival_voice3,
     Festival_voice4,
     Festival_voice5,
+    Festival_voice6,
+    Festival_voice7,
+    Festival_voice8,
     sizeof(Festival_voice1)/sizeof(sound),
     sizeof(Festival_voice2)/sizeof(sound),
     sizeof(Festival_voice3)/sizeof(sound),
     sizeof(Festival_voice4)/sizeof(sound),
     sizeof(Festival_voice5)/sizeof(sound),
+    sizeof(Festival_voice6)/sizeof(sound),
+    sizeof(Festival_voice7)/sizeof(sound),
+    sizeof(Festival_voice8)/sizeof(sound),
     1,
     "Festival"};
 

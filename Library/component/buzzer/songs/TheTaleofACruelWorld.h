@@ -1117,7 +1117,6 @@ const sound TheTaleofACruelWorld_voice5 [] =
     {C4, 3026, 79},
 };
 
-/*
 const sound TheTaleofACruelWorld_voice6 [] =
 {
     {},
@@ -1264,9 +1263,7 @@ const sound TheTaleofACruelWorld_voice6 [] =
     {2635},
     {C3, 3025, 68},
 };
-*/
 
-/*
 const sound TheTaleofACruelWorld_voice7 [] =
 {
     {},
@@ -1385,9 +1382,7 @@ const sound TheTaleofACruelWorld_voice7 [] =
     {2645},
     {G4, 3025, 74},
 };
-*/
 
-/*
 const sound TheTaleofACruelWorld_voice8 [] =
 {
     {},
@@ -1485,7 +1480,6 @@ const sound TheTaleofACruelWorld_voice8 [] =
     {16},
     {Bb4, 3931, 78},
 };
-*/
 
 /*
 const sound TheTaleofACruelWorld_voice9 [] =

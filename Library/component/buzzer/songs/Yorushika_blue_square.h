@@ -5584,7 +5584,6 @@ const sound Yorushika_blue_square_voice5 [] =
     {Db4, 229, 96},
 };
 
-/*
 const sound Yorushika_blue_square_voice6 [] =
 {
     {135},
@@ -5654,7 +5653,6 @@ const sound Yorushika_blue_square_voice6 [] =
     {2048},
     {Ab5, 645, 96},
 };
-*/
 
 const song YorushikaBlueSquare = {
     Yorushika_blue_square_voice1,

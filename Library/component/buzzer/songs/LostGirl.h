@@ -596,17 +596,35 @@ const sound LostGirl_voice5 [] =
 {
 };
 
+const sound LostGirl_voice6 [] =
+{
+};
+
+const sound LostGirl_voice7 [] =
+{
+};
+
+const sound LostGirl_voice8 [] =
+{
+};
+
 const song LostGirl = {
     LostGirl_voice1,
     LostGirl_voice2,
     LostGirl_voice3,
     LostGirl_voice4,
     LostGirl_voice5,
+    LostGirl_voice6,
+    LostGirl_voice7,
+    LostGirl_voice8,
     sizeof(LostGirl_voice1)/sizeof(sound),
     sizeof(LostGirl_voice2)/sizeof(sound),
     sizeof(LostGirl_voice3)/sizeof(sound),
     sizeof(LostGirl_voice4)/sizeof(sound),
     sizeof(LostGirl_voice5)/sizeof(sound),
+    sizeof(LostGirl_voice6)/sizeof(sound),
+    sizeof(LostGirl_voice7)/sizeof(sound),
+    sizeof(LostGirl_voice8)/sizeof(sound),
     1,
     "Lost Girl"};
 

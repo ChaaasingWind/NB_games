@@ -4889,6 +4889,17 @@ const sound FlowerCastle_voice5 [] =
 {
 };
 
+const sound FlowerCastle_voice6 [] =
+{
+};
+
+const sound FlowerCastle_voice7 [] =
+{
+};
+
+const sound FlowerCastle_voice8 [] =
+{
+};
 
 const song FlowerCastle{
     FlowerCastle_voice1,
@@ -4896,11 +4907,17 @@ const song FlowerCastle{
     FlowerCastle_voice3,
     FlowerCastle_voice4,
     FlowerCastle_voice5,
+    FlowerCastle_voice6,
+    FlowerCastle_voice7,
+    FlowerCastle_voice8,
     sizeof(FlowerCastle_voice1)/sizeof(sound),
     sizeof(FlowerCastle_voice2)/sizeof(sound),
     sizeof(FlowerCastle_voice3)/sizeof(sound),
     sizeof(FlowerCastle_voice4)/sizeof(sound),
     sizeof(FlowerCastle_voice5)/sizeof(sound),
+    sizeof(FlowerCastle_voice6)/sizeof(sound),
+    sizeof(FlowerCastle_voice7)/sizeof(sound),
+    sizeof(FlowerCastle_voice8)/sizeof(sound),
     1,
     "Flower Castle"};
 #endif

@@ -1184,7 +1184,6 @@ const sound ScourgeoftheUniverse_voice5 [] =
     {Db4, 1882, 85},
 };
 
-/*
 const sound ScourgeoftheUniverse_voice6 [] =
 {
     {},
@@ -1383,9 +1382,7 @@ const sound ScourgeoftheUniverse_voice6 [] =
     {1046},
     {Db5, 1875, 83},
 };
-*/
 
-/*
 const sound ScourgeoftheUniverse_voice7 [] =
 {
     {},
@@ -1556,9 +1553,7 @@ const sound ScourgeoftheUniverse_voice7 [] =
     {1703},
     {Bb4, 1240, 91},
 };
-*/
 
-/*
 const sound ScourgeoftheUniverse_voice8 [] =
 {
     {},
@@ -1712,7 +1707,6 @@ const sound ScourgeoftheUniverse_voice8 [] =
     {2746},
     {Ab4, 2664, 93},
 };
-*/
 
 /*
 const sound ScourgeoftheUniverse_voice9 [] =

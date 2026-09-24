@@ -719,42 +719,49 @@ const sound BeforeTheStory_voice5 [] =
     {Eb3, 443, 96},
 };
 
-// const sound BeforeTheStory_voice6 [] =
-// {
-//     {443},
-//     {},
-//     {10664},
-//     {},
-//     {11344},
-//     {},
-//     {7549},
-//     {B2, 443, 96},
-//     {3211},
-//     {},
-//     {96},
-//     {Db3, 443, 96},
-//     {10711},
-//     {},
-//     {96},
-//     {B2, 443, 96},
-//     {3307},
-//     {Db3, 443, 96},
-//     {7031},
-//     {},
-//     {3775},
-//     {B2, 443, 96},
-//     {3307},
-//     {Db3, 443, 96},
-//     {3164},
-//     {},
-//     {7643},
-//     {B2, 443, 96},
-//     {3211},
-//     {},
-//     {96},
-//     {Db3, 443, 96},
-// };
+const sound BeforeTheStory_voice6 [] =
+{
+    {443},
+    {},
+    {10664},
+    {},
+    {11344},
+    {},
+    {7549},
+    {B2, 443, 96},
+    {3211},
+    {},
+    {96},
+    {Db3, 443, 96},
+    {10711},
+    {},
+    {96},
+    {B2, 443, 96},
+    {3307},
+    {Db3, 443, 96},
+    {7031},
+    {},
+    {3775},
+    {B2, 443, 96},
+    {3307},
+    {Db3, 443, 96},
+    {3164},
+    {},
+    {7643},
+    {B2, 443, 96},
+    {3211},
+    {},
+    {96},
+    {Db3, 443, 96},
+};
 
+const sound BeforeTheStory_voice7 [] =
+{
+};
+
+const sound BeforeTheStory_voice8 [] =
+{
+};
 
 
 const song BeforeTheStory{
@@ -763,11 +770,17 @@ const song BeforeTheStory{
     BeforeTheStory_voice3,
     BeforeTheStory_voice4,
     BeforeTheStory_voice5,
+    BeforeTheStory_voice6,
+    BeforeTheStory_voice7,
+    BeforeTheStory_voice8,
     sizeof(BeforeTheStory_voice1)/sizeof(sound),
     sizeof(BeforeTheStory_voice2)/sizeof(sound),
     sizeof(BeforeTheStory_voice3)/sizeof(sound),
     sizeof(BeforeTheStory_voice4)/sizeof(sound),
     sizeof(BeforeTheStory_voice5)/sizeof(sound),
+    sizeof(BeforeTheStory_voice6)/sizeof(sound),
+    sizeof(BeforeTheStory_voice7)/sizeof(sound),
+    sizeof(BeforeTheStory_voice8)/sizeof(sound),
     1,
     "Before The Story"};
 
