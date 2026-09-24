@@ -5702,6 +5702,9 @@ const sound FlowerMan_voice7 [] =
     {Ab3, 93, 96},
 };
 
+const sound FlowerMan_voice8 [] =
+{
+};
 
 const song FlowerMan{
     FlowerMan_voice1,

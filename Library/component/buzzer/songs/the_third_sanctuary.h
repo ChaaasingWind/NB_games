@@ -5208,6 +5208,10 @@ const sound TheThirdSanctuary_voice7 [] =
     {Gb3, 670, 80},
 };
 
+const sound TheThirdSanctuary_voice8 [] =
+{
+};
+
 const song TheThirdSanctuary{
     TheThirdSanctuary_voice1,
     TheThirdSanctuary_voice2,

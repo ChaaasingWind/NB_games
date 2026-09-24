@@ -1895,6 +1895,13 @@ const sound Paradise_Paradise_voice6 [] =
     {Ab1, 106, 16},
 };
 
+const sound Paradise_Paradise_voice7 [] =
+{
+};
+
+const sound Paradise_Paradise_voice8 [] =
+{
+};
 
 const song Paradise_Paradise{
     Paradise_Paradise_voice1,

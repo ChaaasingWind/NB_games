@@ -2338,7 +2338,13 @@ const sound VioletTactics_voice6 [] =
     {D3, 96, 95},
 };
 
+const sound VioletTactics_voice7 [] =
+{
+};
 
+const sound VioletTactics_voice8 [] =
+{
+};
 
 const song VioletTactics{
     VioletTactics_voice1,

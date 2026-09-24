@@ -5654,17 +5654,31 @@ const sound Yorushika_blue_square_voice6 [] =
     {Ab5, 645, 96},
 };
 
+const sound Yorushika_blue_square_voice7 [] =
+{
+};
+
+const sound Yorushika_blue_square_voice8 [] =
+{
+};
+
 const song YorushikaBlueSquare = {
     Yorushika_blue_square_voice1,
     Yorushika_blue_square_voice2,
     Yorushika_blue_square_voice3,
     Yorushika_blue_square_voice4,
     Yorushika_blue_square_voice5,
+    Yorushika_blue_square_voice6,
+    Yorushika_blue_square_voice7,
+    Yorushika_blue_square_voice8,
     sizeof(Yorushika_blue_square_voice1)/sizeof(sound),
     sizeof(Yorushika_blue_square_voice2)/sizeof(sound),
     sizeof(Yorushika_blue_square_voice3)/sizeof(sound),
     sizeof(Yorushika_blue_square_voice4)/sizeof(sound),
     sizeof(Yorushika_blue_square_voice5)/sizeof(sound),
+    sizeof(Yorushika_blue_square_voice6)/sizeof(sound),
+    sizeof(Yorushika_blue_square_voice7)/sizeof(sound),
+    sizeof(Yorushika_blue_square_voice8)/sizeof(sound),
     1,
     "Blue Square"};
 

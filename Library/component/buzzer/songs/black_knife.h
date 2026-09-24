@@ -4049,6 +4049,9 @@ const sound BlackKnife_voice7 [] =
     {A3, 192, 112},
 };
 
+const sound BlackKnife_voice8 [] =
+{
+};
 
 const song BlackKnife{
     BlackKnife_voice1,

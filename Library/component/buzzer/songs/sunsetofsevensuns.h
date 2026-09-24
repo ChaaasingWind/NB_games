@@ -2111,6 +2111,17 @@ const sound SunsetOfSevenSuns_voice5 [] =
     {C2, 374, 55},
 };
 
+const sound SunsetOfSevenSuns_voice6 [] =
+{
+};
+
+const sound SunsetOfSevenSuns_voice7 [] =
+{
+};
+
+const sound SunsetOfSevenSuns_voice8 [] =
+{
+};
 
 const song SunsetOfSevenSuns{
     SunsetOfSevenSuns_voice1,
@@ -2118,11 +2129,17 @@ const song SunsetOfSevenSuns{
     SunsetOfSevenSuns_voice3,
     SunsetOfSevenSuns_voice4,
     SunsetOfSevenSuns_voice5,
+    SunsetOfSevenSuns_voice6,
+    SunsetOfSevenSuns_voice7,
+    SunsetOfSevenSuns_voice8,
     sizeof(SunsetOfSevenSuns_voice1)/sizeof(sound),
     sizeof(SunsetOfSevenSuns_voice2)/sizeof(sound),
     sizeof(SunsetOfSevenSuns_voice3)/sizeof(sound),
     sizeof(SunsetOfSevenSuns_voice4)/sizeof(sound),
     sizeof(SunsetOfSevenSuns_voice5)/sizeof(sound),
+    sizeof(SunsetOfSevenSuns_voice6)/sizeof(sound),
+    sizeof(SunsetOfSevenSuns_voice7)/sizeof(sound),
+    sizeof(SunsetOfSevenSuns_voice8)/sizeof(sound),
     1,
     "Sunset of SevenSuns"};
 

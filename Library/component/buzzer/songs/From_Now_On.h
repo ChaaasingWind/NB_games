@@ -2584,6 +2584,9 @@ const sound From_Now_On_voice7 [] =
     {A3, 431, 96},
 };
 
+const sound From_Now_On_voice8 [] =
+{
+};
 const song From_Now_On = {
     From_Now_On_voice1,
     From_Now_On_voice2,

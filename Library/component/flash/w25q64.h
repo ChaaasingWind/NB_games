@@ -2,6 +2,7 @@
 #define W25Q64_H
 
 #include "main.h"
+#include "buzzer.h"
 
 
 
@@ -11,9 +12,9 @@ constexpr int W25Q64_TIMEOUT = 1000;
 struct song_flash_data
 {
     // 事件数
-    uint16_t voice_num[5];
+    uint16_t voice_num[BUZZER_CHANNEL_NUM];
     // 偏移量
-    uint32_t voice_offset[5];
+    uint32_t voice_offset[BUZZER_CHANNEL_NUM];
     //歌曲名
     char name[20];
 };

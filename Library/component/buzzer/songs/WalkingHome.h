@@ -826,6 +826,18 @@ const sound WalkingHome_voice5 [] =
 {
 };
 
+const sound WalkingHome_voice6 [] =
+{
+};
+
+const sound WalkingHome_voice7 [] =
+{
+};
+
+const sound WalkingHome_voice8 [] =
+{
+};
+
 
 
 const song WalkingHome{
@@ -834,11 +846,17 @@ const song WalkingHome{
     WalkingHome_voice3,
     WalkingHome_voice4,
     WalkingHome_voice5,
+    WalkingHome_voice6,
+    WalkingHome_voice7,
+    WalkingHome_voice8,
     sizeof(WalkingHome_voice1)/sizeof(sound),
     sizeof(WalkingHome_voice2)/sizeof(sound),
     sizeof(WalkingHome_voice3)/sizeof(sound),
     sizeof(WalkingHome_voice4)/sizeof(sound),
     sizeof(WalkingHome_voice5)/sizeof(sound),
+    sizeof(WalkingHome_voice6)/sizeof(sound),
+    sizeof(WalkingHome_voice7)/sizeof(sound),
+    sizeof(WalkingHome_voice8)/sizeof(sound),
     1,
     "Walking Home"};
 

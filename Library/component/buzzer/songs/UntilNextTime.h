@@ -880,17 +880,27 @@ const sound UntilNextTime_voice7 [] =
     {G3, 3224, 80},
 };
 
+const sound UntilNextTime_voice8 [] =
+{
+};
+
 const song UntilNextTime = {
     UntilNextTime_voice1,
     UntilNextTime_voice2,
     UntilNextTime_voice3,
     UntilNextTime_voice4,
     UntilNextTime_voice5,
+    UntilNextTime_voice6,
+    UntilNextTime_voice7,
+    UntilNextTime_voice8,
     sizeof(UntilNextTime_voice1)/sizeof(sound),
     sizeof(UntilNextTime_voice2)/sizeof(sound),
     sizeof(UntilNextTime_voice3)/sizeof(sound),
     sizeof(UntilNextTime_voice4)/sizeof(sound),
     sizeof(UntilNextTime_voice5)/sizeof(sound),
+    sizeof(UntilNextTime_voice6)/sizeof(sound),
+    sizeof(UntilNextTime_voice7)/sizeof(sound),
+    sizeof(UntilNextTime_voice8)/sizeof(sound),
     1,
     "Until Next Time"};
 

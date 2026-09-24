@@ -971,17 +971,35 @@ const sound Vs_Lancer_voice5 [] =
 {
 };
 
+const sound Vs_Lancer_voice6 [] =
+{
+};
+
+const sound Vs_Lancer_voice7 [] =
+{
+};
+
+const sound Vs_Lancer_voice8 [] =
+{
+};
+
 const song Vs_Lancer = {
     Vs_Lancer_voice1,
     Vs_Lancer_voice2,
     Vs_Lancer_voice3,
     Vs_Lancer_voice4,
     Vs_Lancer_voice5,
+    Vs_Lancer_voice6,
+    Vs_Lancer_voice7,
+    Vs_Lancer_voice8,
     sizeof(Vs_Lancer_voice1)/sizeof(sound),
     sizeof(Vs_Lancer_voice2)/sizeof(sound),
     sizeof(Vs_Lancer_voice3)/sizeof(sound),
     sizeof(Vs_Lancer_voice4)/sizeof(sound),
     sizeof(Vs_Lancer_voice5)/sizeof(sound),
+    sizeof(Vs_Lancer_voice6)/sizeof(sound),
+    sizeof(Vs_Lancer_voice7)/sizeof(sound),
+    sizeof(Vs_Lancer_voice8)/sizeof(sound),
     1,
     "Vs. Lancer"};
 

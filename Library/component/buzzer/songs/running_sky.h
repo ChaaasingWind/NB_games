@@ -2910,6 +2910,13 @@ const sound RunningSky_voice6 [] =
     {B1, 2710, 17},
 };
 
+const sound RunningSky_voice7 [] =
+{
+};
+
+const sound RunningSky_voice8 [] =
+{
+};
 
 const song RunningSky{
     RunningSky_voice1,

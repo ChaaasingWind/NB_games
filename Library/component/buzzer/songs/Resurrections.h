@@ -1904,6 +1904,14 @@ const sound Resurrections_voice6 [] =
     {E6, 496, 65},
 };
 
+const sound Resurrections_voice7 [] =
+{
+};
+
+const sound Resurrections_voice8 [] =
+{
+};
+
 const song Resurrections{
     Resurrections_voice1,
     Resurrections_voice2,

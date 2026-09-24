@@ -2733,8 +2733,13 @@ const sound HammerOfJustice_voice6 [] =
     {Ab2, 1110, 80},
 };
 
+const sound HammerOfJustice_voice7 [] =
+{
+};
 
-
+const sound HammerOfJustice_voice8 [] =
+{
+};
 
 const song HammerOfJustice{
     HammerOfJustice_voice1,

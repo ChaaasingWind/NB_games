@@ -68,9 +68,9 @@ void music_play::play_music(float velocity)
        current_song->voice_size[2]>=(count[2]+1)||
        current_song->voice_size[3]>=(count[3]+1)||
        current_song->voice_size[4]>=(count[4]+1)||
-       current_song->voice_size[4]>=(count[5]+1)||
-       current_song->voice_size[4]>=(count[6]+1)||
-       current_song->voice_size[4]>=(count[7]+1))
+       current_song->voice_size[5]>=(count[5]+1)||
+       current_song->voice_size[6]>=(count[6]+1)||
+       current_song->voice_size[7]>=(count[7]+1))
     {
         for(int p=0;p<BUZZER_CHANNEL_NUM;p++)
         {
@@ -118,7 +118,10 @@ void music_play::play_music(float velocity)
                    ((current_song->song_voice[1]+count[1])->tone==tone::NONE_TONE||count[1]+1>current_song->voice_size[1])&&
                    ((current_song->song_voice[2]+count[2])->tone==tone::NONE_TONE||count[2]+1>current_song->voice_size[2])&&
                    ((current_song->song_voice[3]+count[3])->tone==tone::NONE_TONE||count[3]+1>current_song->voice_size[3])&&
-                   ((current_song->song_voice[4]+count[4])->tone==tone::NONE_TONE||count[4]+1>current_song->voice_size[4]))
+                   ((current_song->song_voice[4]+count[4])->tone==tone::NONE_TONE||count[4]+1>current_song->voice_size[4])&&
+                   ((current_song->song_voice[5]+count[5])->tone==tone::NONE_TONE||count[5]+1>current_song->voice_size[5])&&
+                   ((current_song->song_voice[6]+count[6])->tone==tone::NONE_TONE||count[6]+1>current_song->voice_size[6])&&
+                   ((current_song->song_voice[7]+count[7])->tone==tone::NONE_TONE||count[7]+1>current_song->voice_size[7]))
                 {
                     for(int i = 0 ; i < BUZZER_CHANNEL_NUM ; i++)
                     {

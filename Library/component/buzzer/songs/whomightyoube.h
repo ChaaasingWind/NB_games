@@ -1355,6 +1355,17 @@ const sound WhoMightYouBe_voice5 [] =
 {
 };
 
+const sound WhoMightYouBe_voice6 [] =
+{
+};
+
+const sound WhoMightYouBe_voice7 [] =
+{
+};
+
+const sound WhoMightYouBe_voice8 [] =
+{
+};
 
 
 const song WhoMightYouBe{
@@ -1363,11 +1374,17 @@ const song WhoMightYouBe{
     WhoMightYouBe_voice3,
     WhoMightYouBe_voice4,
     WhoMightYouBe_voice5,
+    WhoMightYouBe_voice6,
+    WhoMightYouBe_voice7,
+    WhoMightYouBe_voice8,
     sizeof(WhoMightYouBe_voice1)/sizeof(sound),
     sizeof(WhoMightYouBe_voice2)/sizeof(sound),
     sizeof(WhoMightYouBe_voice3)/sizeof(sound),
     sizeof(WhoMightYouBe_voice4)/sizeof(sound),
     sizeof(WhoMightYouBe_voice5)/sizeof(sound),
+    sizeof(WhoMightYouBe_voice6)/sizeof(sound),
+    sizeof(WhoMightYouBe_voice7)/sizeof(sound),
+    sizeof(WhoMightYouBe_voice8)/sizeof(sound),
     1,
     "who might you be"};
 

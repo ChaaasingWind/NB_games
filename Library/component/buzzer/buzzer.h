@@ -217,7 +217,7 @@ struct song
         htimarr[2]= &htim15;
         htimarr[3]= &htim16;
         htimarr[4]= &htim17;
-        htimarr[5]= &htim12;
+        htimarr[5]= &htim2;
         htimarr[6]= &htim12;
         htimarr[7]= &htim23;
         overall_time = get_overall_time();

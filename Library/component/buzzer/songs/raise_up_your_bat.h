@@ -2427,6 +2427,14 @@ const sound RaiseUpYourBat_voice6 [] =
     {C3, 165, 96},
 };
 
+const sound RaiseUpYourBat_voice7 [] =
+{
+};
+
+const sound RaiseUpYourBat_voice8 [] =
+{
+};
+
 const song RaiseUpYourBat{
     RaiseUpYourBat_voice1,
     RaiseUpYourBat_voice2,

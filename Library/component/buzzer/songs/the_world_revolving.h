@@ -2677,7 +2677,17 @@ const sound THE_WORLD_REVOLVING_voice5 [] =
 {
 };
 
+const sound THE_WORLD_REVOLVING_voice6 [] =
+{
+};
 
+const sound THE_WORLD_REVOLVING_voice7 [] =
+{
+};
+
+const sound THE_WORLD_REVOLVING_voice8 [] =
+{
+};
 
 const song THE_WORLD_REVOLVING{
     THE_WORLD_REVOLVING_voice1,
@@ -2685,11 +2695,17 @@ const song THE_WORLD_REVOLVING{
     THE_WORLD_REVOLVING_voice3,
     THE_WORLD_REVOLVING_voice4,
     THE_WORLD_REVOLVING_voice5,
+    THE_WORLD_REVOLVING_voice6,
+    THE_WORLD_REVOLVING_voice7,
+    THE_WORLD_REVOLVING_voice8,
     sizeof(THE_WORLD_REVOLVING_voice1)/sizeof(sound),
     sizeof(THE_WORLD_REVOLVING_voice2)/sizeof(sound),
     sizeof(THE_WORLD_REVOLVING_voice3)/sizeof(sound),
     sizeof(THE_WORLD_REVOLVING_voice4)/sizeof(sound),
     sizeof(THE_WORLD_REVOLVING_voice5)/sizeof(sound),
+    sizeof(THE_WORLD_REVOLVING_voice6)/sizeof(sound),
+    sizeof(THE_WORLD_REVOLVING_voice7)/sizeof(sound),
+    sizeof(THE_WORLD_REVOLVING_voice8)/sizeof(sound),
     1,
     "THE WORLD REVOLVING"};
 

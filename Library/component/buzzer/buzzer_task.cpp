@@ -24,7 +24,7 @@
 extern "C" {
 void buzzer_task(void *argument)
 {
-    vTaskDelay(100);
+    vTaskDelay(200);
     while(1)
     {
         auto ctx = menu::instance().get_ctx();

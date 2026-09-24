@@ -1959,7 +1959,17 @@ const sound PetalDance_voice5 [] =
     {Db3, 103, 91},
 };
 
+const sound PetalDance_voice6 [] =
+{
+};
 
+const sound PetalDance_voice7 [] =
+{
+};
+
+const sound PetalDance_voice8 [] =
+{
+};
 
 const song PetalDance{
     PetalDance_voice1,
@@ -1967,11 +1977,17 @@ const song PetalDance{
     PetalDance_voice3,
     PetalDance_voice4,
     PetalDance_voice5,
+    PetalDance_voice6,
+    PetalDance_voice7,
+    PetalDance_voice8,
     sizeof(PetalDance_voice1)/sizeof(sound),
     sizeof(PetalDance_voice2)/sizeof(sound),
     sizeof(PetalDance_voice3)/sizeof(sound),
     sizeof(PetalDance_voice4)/sizeof(sound),
     sizeof(PetalDance_voice5)/sizeof(sound),
+    sizeof(PetalDance_voice6)/sizeof(sound),
+    sizeof(PetalDance_voice7)/sizeof(sound),
+    sizeof(PetalDance_voice8)/sizeof(sound),
     1,
     "Petal Dance"};
 

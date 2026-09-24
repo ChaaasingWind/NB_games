@@ -680,10 +680,6 @@ const sound Friends_voice6 [] =
     {Gb4, 314, 80},
 };
 
-const sound Friends_voice6 [] =
-{
-};
-
 const sound Friends_voice7 [] =
 {
 };

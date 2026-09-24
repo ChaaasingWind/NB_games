@@ -5,7 +5,7 @@
 #include "buzzer.h"
 
 
-const sound TheTaleofACruelWorld_voice1 [] =
+const sound TheTaleOfACruelWorld_voice1 [] =
 {
     {},
     {7293},
@@ -267,7 +267,7 @@ const sound TheTaleofACruelWorld_voice1 [] =
     {Eb4, 3027, 79},
 };
 
-const sound TheTaleofACruelWorld_voice2 [] =
+const sound TheTaleOfACruelWorld_voice2 [] =
 {
     {},
     {7294},
@@ -511,7 +511,7 @@ const sound TheTaleofACruelWorld_voice2 [] =
     {Ab3, 951, 79},
 };
 
-const sound TheTaleofACruelWorld_voice3 [] =
+const sound TheTaleOfACruelWorld_voice3 [] =
 {
     {},
     {7294},
@@ -732,7 +732,7 @@ const sound TheTaleofACruelWorld_voice3 [] =
     {Ab4, 952, 83},
 };
 
-const sound TheTaleofACruelWorld_voice4 [] =
+const sound TheTaleOfACruelWorld_voice4 [] =
 {
     {},
     {7296},
@@ -931,7 +931,7 @@ const sound TheTaleofACruelWorld_voice4 [] =
     {G3, 5996, 78},
 };
 
-const sound TheTaleofACruelWorld_voice5 [] =
+const sound TheTaleOfACruelWorld_voice5 [] =
 {
     {},
     {7303},
@@ -1117,7 +1117,7 @@ const sound TheTaleofACruelWorld_voice5 [] =
     {C4, 3026, 79},
 };
 
-const sound TheTaleofACruelWorld_voice6 [] =
+const sound TheTaleOfACruelWorld_voice6 [] =
 {
     {},
     {9108},
@@ -1264,7 +1264,7 @@ const sound TheTaleofACruelWorld_voice6 [] =
     {C3, 3025, 68},
 };
 
-const sound TheTaleofACruelWorld_voice7 [] =
+const sound TheTaleOfACruelWorld_voice7 [] =
 {
     {},
     {9145},
@@ -1383,7 +1383,7 @@ const sound TheTaleofACruelWorld_voice7 [] =
     {G4, 3025, 74},
 };
 
-const sound TheTaleofACruelWorld_voice8 [] =
+const sound TheTaleOfACruelWorld_voice8 [] =
 {
     {},
     {10940},
@@ -1482,7 +1482,7 @@ const sound TheTaleofACruelWorld_voice8 [] =
 };
 
 /*
-const sound TheTaleofACruelWorld_voice9 [] =
+const sound TheTaleOfACruelWorld_voice9 [] =
 {
     {},
     {14562},
@@ -1562,7 +1562,7 @@ const sound TheTaleofACruelWorld_voice9 [] =
 */
 
 /*
-const sound TheTaleofACruelWorld_voice10 [] =
+const sound TheTaleOfACruelWorld_voice10 [] =
 {
     {},
     {14564},
@@ -1621,7 +1621,7 @@ const sound TheTaleofACruelWorld_voice10 [] =
 */
 
 /*
-const sound TheTaleofACruelWorld_voice11 [] =
+const sound TheTaleOfACruelWorld_voice11 [] =
 {
     {},
     {14581},
@@ -1659,7 +1659,7 @@ const sound TheTaleofACruelWorld_voice11 [] =
 */
 
 /*
-const sound TheTaleofACruelWorld_voice12 [] =
+const sound TheTaleOfACruelWorld_voice12 [] =
 {
     {},
     {21844},
@@ -1687,7 +1687,7 @@ const sound TheTaleofACruelWorld_voice12 [] =
 */
 
 /*
-const sound TheTaleofACruelWorld_voice13 [] =
+const sound TheTaleOfACruelWorld_voice13 [] =
 {
     {},
     {25510},
@@ -1704,7 +1704,7 @@ const sound TheTaleofACruelWorld_voice13 [] =
 */
 
 /*
-const sound TheTaleofACruelWorld_voice14 [] =
+const sound TheTaleOfACruelWorld_voice14 [] =
 {
     {},
     {65535},
@@ -1715,7 +1715,7 @@ const sound TheTaleofACruelWorld_voice14 [] =
 */
 
 /*
-const sound TheTaleofACruelWorld_voice15 [] =
+const sound TheTaleOfACruelWorld_voice15 [] =
 {
     {},
     {65535},
@@ -1725,19 +1725,25 @@ const sound TheTaleofACruelWorld_voice15 [] =
 };
 */
 
-const song TheTaleofACruelWorld = {
-    TheTaleofACruelWorld_voice1,
-    TheTaleofACruelWorld_voice2,
-    TheTaleofACruelWorld_voice3,
-    TheTaleofACruelWorld_voice4,
-    TheTaleofACruelWorld_voice5,
-    sizeof(TheTaleofACruelWorld_voice1)/sizeof(sound),
-    sizeof(TheTaleofACruelWorld_voice2)/sizeof(sound),
-    sizeof(TheTaleofACruelWorld_voice3)/sizeof(sound),
-    sizeof(TheTaleofACruelWorld_voice4)/sizeof(sound),
-    sizeof(TheTaleofACruelWorld_voice5)/sizeof(sound),
+const song TheTaleOfACruelWorld = {
+    TheTaleOfACruelWorld_voice1,
+    TheTaleOfACruelWorld_voice2,
+    TheTaleOfACruelWorld_voice3,
+    TheTaleOfACruelWorld_voice4,
+    TheTaleOfACruelWorld_voice5,
+    TheTaleOfACruelWorld_voice6,
+    TheTaleOfACruelWorld_voice7,
+    TheTaleOfACruelWorld_voice8,
+    sizeof(TheTaleOfACruelWorld_voice1)/sizeof(sound),
+    sizeof(TheTaleOfACruelWorld_voice2)/sizeof(sound),
+    sizeof(TheTaleOfACruelWorld_voice3)/sizeof(sound),
+    sizeof(TheTaleOfACruelWorld_voice4)/sizeof(sound),
+    sizeof(TheTaleOfACruelWorld_voice5)/sizeof(sound),
+    sizeof(TheTaleOfACruelWorld_voice6)/sizeof(sound),
+    sizeof(TheTaleOfACruelWorld_voice7)/sizeof(sound),
+    sizeof(TheTaleOfACruelWorld_voice8)/sizeof(sound),
     1,
-    "Tale of Cruel World"};
+    "Tale Of Cruel World"};
 
 
 #endif

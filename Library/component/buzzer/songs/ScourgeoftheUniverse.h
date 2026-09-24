@@ -2116,11 +2116,17 @@ const song ScourgeoftheUniverse = {
     ScourgeoftheUniverse_voice3,
     ScourgeoftheUniverse_voice4,
     ScourgeoftheUniverse_voice5,
+    ScourgeoftheUniverse_voice6,
+    ScourgeoftheUniverse_voice7,
+    ScourgeoftheUniverse_voice8,
     sizeof(ScourgeoftheUniverse_voice1)/sizeof(sound),
     sizeof(ScourgeoftheUniverse_voice2)/sizeof(sound),
     sizeof(ScourgeoftheUniverse_voice3)/sizeof(sound),
     sizeof(ScourgeoftheUniverse_voice4)/sizeof(sound),
     sizeof(ScourgeoftheUniverse_voice5)/sizeof(sound),
+    sizeof(ScourgeoftheUniverse_voice6)/sizeof(sound),
+    sizeof(ScourgeoftheUniverse_voice7)/sizeof(sound),
+    sizeof(ScourgeoftheUniverse_voice8)/sizeof(sound),
     1,
     "Scourge of Universe"};
 

@@ -1095,7 +1095,17 @@ const sound Shop3_voice5 [] =
     {Gb4, 424, 51},
 };
 
+const sound Shop3_voice6 [] =
+{
+};
 
+const sound Shop3_voice7 [] =
+{
+};
+
+const sound Shop3_voice8 [] =
+{
+};
 
 
 
@@ -1105,11 +1115,17 @@ const song Shop3{
     Shop3_voice3,
     Shop3_voice4,
     Shop3_voice5,
+    Shop3_voice6,
+    Shop3_voice7,
+    Shop3_voice8,
     sizeof(Shop3_voice1)/sizeof(sound),
     sizeof(Shop3_voice2)/sizeof(sound),
     sizeof(Shop3_voice3)/sizeof(sound),
     sizeof(Shop3_voice4)/sizeof(sound),
     sizeof(Shop3_voice5)/sizeof(sound),
+    sizeof(Shop3_voice6)/sizeof(sound),
+    sizeof(Shop3_voice7)/sizeof(sound),
+    sizeof(Shop3_voice8)/sizeof(sound),
     1,
     "Shop3"};
 

@@ -2403,6 +2403,9 @@ const sound DrEd_voice7 [] =
     {C5, 465, 64},
 };
 
+const sound DrEd_voice8 [] =
+{
+};
 
 
 

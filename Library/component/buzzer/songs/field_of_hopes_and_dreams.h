@@ -4364,6 +4364,17 @@ const sound FieldOfHopesAndDreams_voice5 [] =
     {F3, 59, 64},
 };
 
+const sound FieldOfHopesAndDreams_voice6 [] =
+{
+};
+
+const sound FieldOfHopesAndDreams_voice7 [] =
+{
+};
+
+const sound FieldOfHopesAndDreams_voice8 [] =
+{
+};
 
 
 

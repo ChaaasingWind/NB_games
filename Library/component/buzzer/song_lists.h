@@ -5,6 +5,7 @@
 #include "shop3.h"
 #include "songs/ScourgeoftheUniverse.h"
 #include "songs/TheTaleofACruelWorld.h"
+#include "songs/_Scourge_of_The_Universe.h"
 #include "whomightyoube.h"
 #include "dr_ed.h"
 #include "running_sky.h"
@@ -44,6 +45,7 @@
 #include "Yorushika_June.h"
 #include "Yorushika_blue_square.h"
 #include "TwoToTango.h"
+#include "_Scourge_of_The_Universe.h"
 
 
 static const song* song_list[]=
@@ -93,8 +95,9 @@ static const song* song_list[]=
     &YorushikaBlueSquare,
     &TwoToTango,
 
-    &TheTaleofACruelWorld,
+    &TheTaleOfACruelWorld,
     &ScourgeoftheUniverse,
+    &_Scourge_of_The_Universe
 };
 
 

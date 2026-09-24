@@ -6001,11 +6001,17 @@ const song TwoToTango = {
     TwoToTango_voice3,
     TwoToTango_voice4,
     TwoToTango_voice5,
+    TwoToTango_voice6,
+    TwoToTango_voice7,
+    TwoToTango_voice8,
     sizeof(TwoToTango_voice1)/sizeof(sound),
     sizeof(TwoToTango_voice2)/sizeof(sound),
     sizeof(TwoToTango_voice3)/sizeof(sound),
     sizeof(TwoToTango_voice4)/sizeof(sound),
     sizeof(TwoToTango_voice5)/sizeof(sound),
+    sizeof(TwoToTango_voice6)/sizeof(sound),
+    sizeof(TwoToTango_voice7)/sizeof(sound),
+    sizeof(TwoToTango_voice8)/sizeof(sound),
     1,
     "Two to Tango"};
 

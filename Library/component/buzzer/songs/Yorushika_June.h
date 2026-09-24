@@ -3381,17 +3381,31 @@ const sound Yorushika_June_voice6 [] =
     {Bb2, 122, 127},
 };
 
+const sound Yorushika_June_voice7 [] =
+{
+};
+
+const sound Yorushika_June_voice8 [] =
+{
+};
+
 const song Yorushika_June = {
     Yorushika_June_voice1,
     Yorushika_June_voice2,
     Yorushika_June_voice3,
     Yorushika_June_voice4,
     Yorushika_June_voice5,
+    Yorushika_June_voice6,
+    Yorushika_June_voice7,
+    Yorushika_June_voice8,
     sizeof(Yorushika_June_voice1)/sizeof(sound),
     sizeof(Yorushika_June_voice2)/sizeof(sound),
     sizeof(Yorushika_June_voice3)/sizeof(sound),
     sizeof(Yorushika_June_voice4)/sizeof(sound),
     sizeof(Yorushika_June_voice5)/sizeof(sound),
+    sizeof(Yorushika_June_voice6)/sizeof(sound),
+    sizeof(Yorushika_June_voice7)/sizeof(sound),
+    sizeof(Yorushika_June_voice8)/sizeof(sound),
     1,
     "Yorushika_June"};
 

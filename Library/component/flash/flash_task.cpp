@@ -7,6 +7,71 @@
 
 
 #define FLASH_WRITE_MODE 0
+#define CONTENTS_SECTOR_NUM 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 extern OSPI_HandleTypeDef hospi1;
 
@@ -34,17 +99,17 @@ extern "C"
         {
 
             // 1.擦除目录的扇区
-            flash.w25q64_erase_sector(0x000000);
-
-            // 2.保留区擦除
-            flash.w25q64_erase_sector(0x001000);
+            for(int i = 0; i < CONTENTS_SECTOR_NUM; i++)
+            {
+                flash.w25q64_erase_sector(i * 0x001000);
+            }
 
             // 3.计算所有的声部加起来一共有多少字节，求出所需要擦除的最小扇区数
             int whole_song_size = 0;
             int min_sector_num = 0;
-            for(int i = 0; i < sizeof(song_list)/sizeof(song*); i++)
+            for(uint32_t i = 0; i < sizeof(song_list)/sizeof(song*); i++)
             {
-                for(int j = 0; j < 5; j++)
+                for(int j = 0; j < BUZZER_CHANNEL_NUM; j++)
                 {
                     whole_song_size += (*(song_list + i))->voice_size[j] * sizeof(sound);
                 }
@@ -54,18 +119,18 @@ extern "C"
             // 4.擦除对应扇区
             for(int i =0; i < min_sector_num; i++)
             {
-                flash.w25q64_erase_sector(0x002000 + i*0x001000);
+                flash.w25q64_erase_sector(CONTENTS_SECTOR_NUM * 0x001000 + i*0x001000);
             }
 
             // 5.向对应扇区写入，要自动换页
-            uint32_t addr = 0x002000;
-            for(int i = 0; i < sizeof(song_list)/sizeof(song*); i++)
+            uint32_t addr = CONTENTS_SECTOR_NUM * 0x001000;
+            for(uint32_t i = 0; i < sizeof(song_list)/sizeof(song*); i++)
             {
                 strncpy(song_list_data[i].name,
                 (*song_list[i]).song_name,sizeof(song_list_data[i].name) - 1);
                 song_list_data[i].name[sizeof(song_list_data[i].name) - 1] = '\0';
                 
-                for(int j = 0; j < 5; j++)
+                for(int j = 0; j < BUZZER_CHANNEL_NUM; j++)
                 {
                     song_list_data[i].voice_offset[j] = addr;
                     song_list_data[i].voice_num[j] = (*(song_list + i))->voice_size[j];
@@ -116,7 +181,7 @@ extern "C"
             //初始化每一首歌曲
             for(int i = 0; i < MUSIC_MENU_MAX_NUM; i++)
             {
-                for(int j = 0;j < 5; j++)
+                for(int j = 0;j < BUZZER_CHANNEL_NUM; j++)
                 {
                     song_list[i].song_voice[j] = (sound*)(FLASH_MUSIC_BASE + (ptr + i)->voice_offset[j]);
                     song_list[i].voice_size[j] = (ptr + i)->voice_num[j];

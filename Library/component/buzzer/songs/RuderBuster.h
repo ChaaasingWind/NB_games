@@ -2975,6 +2975,10 @@ const sound RuderBuster_voice7 [] =
     {F4, 114, 127},
 };
 
+const sound RuderBuster_voice8 [] =
+{
+};
+
 const song RuderBuster{
     RuderBuster_voice1,
     RuderBuster_voice2,

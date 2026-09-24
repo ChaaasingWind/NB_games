@@ -5288,6 +5288,13 @@ const sound CutieMewMewMagic_voice6 [] =
     {A1, 166, 112},
 };
 
+const sound CutieMewMewMagic_voice7 [] =
+{
+};
+
+const sound CutieMewMewMagic_voice8 [] =
+{
+};
 
 const song CutieMewMewMagic{
     CutieMewMewMagic_voice1,
