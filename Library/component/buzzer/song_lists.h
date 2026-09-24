@@ -46,58 +46,80 @@
 #include "Yorushika_blue_square.h"
 #include "TwoToTango.h"
 #include "_Scourge_of_The_Universe.h"
-
+#include "Megalovania.h"
+#include "FirstSteps.h"
+#include "FaintGlow.h"
+#include "MyCastleTown.h"
 
 static const song* song_list[]=
 {
-    &BeforeTheStory,
-    &BIG_SHOT,
-    &BlackKnife,
-    &DrEd,
-    &Festival,
-    &FieldOfHopesAndDreams,
-    &FlowerMan,
-    &HammerOfJustice,
-    &CutieMewMewMagic,
-    &PetalDance,
-    &RaiseUpYourBat,
-    &RunningSky,
-    &Shop3, 
-    &SunsetOfSevenSuns, 
-    &TheThirdSanctuary, 
-    &THE_WORLD_REVOLVING, 
-    &TV_WORLD, 
-    &WhoMightYouBe, 
-    &Paradise_Paradise,
-    &RuderBuster,
-    &FlowerCastle,
-    &VioletTactics,
-    &WalkingHome,
+    //deltarune chapter1
     &EmptyTown,
     &Vs_Lancer,
-    &AttackOfTheKillerQueen,
+    &FieldOfHopesAndDreams,
+    &THE_WORLD_REVOLVING, 
+
+    //deltarune chapter2
+    &FaintGlow,
+    &MyCastleTown,
     &LostGirl,
-    &UntilNextTime,
-    &DarkSanctuary,
-    &EverHigher,
+    &AttackOfTheKillerQueen,
+    &BIG_SHOT,
+
+    //deltarune chapter3
     &CastleFunk,
+    &RuderBuster,
+    &RaiseUpYourBat,
+    &Paradise_Paradise,
+    &TV_WORLD,
+    &BlackKnife,
+    
+    //deltarune chapter4
     &Friends,
+    &DarkSanctuary,
     &From_Now_On,
+    &EverHigher,
+    &HammerOfJustice,
+    &TheThirdSanctuary, 
 
+    //deltarune chapter5
+    &Festival,
+    &WhoMightYouBe,
+    &PetalDance,
+    &Shop3,
+    &SunsetOfSevenSuns,
+    &VioletTactics,
+    &FlowerCastle,
+    &RunningSky,
+    &CutieMewMewMagic,
+    &FlowerMan,
+    &WalkingHome,
 
+    //deltarune_menu&ed
+    &BeforeTheStory,
+    &DrEd,
+    &UntilNextTime,
+
+    //undertale
     &BattleAgainstATrueHero,
     &ASGORE,
+    &Megalovania,
 
+    //celeste
     &Resurrections,
     &QuietAndFalling,
+    &FirstSteps,
 
+    //Yorushika
     &Yorushika_June,
     &YorushikaBlueSquare,
     &TwoToTango,
 
+    //Terraria
     &TheTaleOfACruelWorld,
     &ScourgeoftheUniverse,
-    &_Scourge_of_The_Universe
+    &_Scourge_of_The_Universe,
+
 };
 
 
