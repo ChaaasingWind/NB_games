@@ -27,10 +27,9 @@ extern "C"
 
     void flash_task(void *argument)
     {
-        int state = 1;
         w25q64& flash = w25q64::instance(&hospi1);
         flash.w25q64_init();
-        state &= flash.w25q64_disable_memory_mapped();
+        flash.w25q64_disable_memory_mapped();
         if(flash.w25q64_read_id() == 0xEF4017)
         {
 

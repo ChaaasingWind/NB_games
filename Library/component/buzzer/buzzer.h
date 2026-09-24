@@ -9,6 +9,7 @@
 
 //设定新音符的初始最大占空比
 #define INITIAL_DUTY_CYCLE 0.5f
+#define BUZZER_CHANNEL_NUM 8
 
 
 extern TIM_HandleTypeDef htim13;
@@ -16,6 +17,9 @@ extern TIM_HandleTypeDef htim14;
 extern TIM_HandleTypeDef htim15;
 extern TIM_HandleTypeDef htim16;
 extern TIM_HandleTypeDef htim17;
+extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim12;
+extern TIM_HandleTypeDef htim23;
 
 enum tone
 {
@@ -145,7 +149,6 @@ class sound
 
     void convert_frequence_to_pwm_param(uint16_t *prescaler, uint16_t *period) const;
     uint16_t get_original_volume() const {return prescaler_and_period_arr[tone][1];}
-    //float get_first_duty() const {return powf((velocity/127.0f *INITIAL_DUTY_CYCLE), 2);}
     float get_first_duty() const 
     {
 
@@ -163,9 +166,9 @@ class sound
 struct song
 {
     
-    const sound* song_voice[5];
-    int voice_size[5];
-    TIM_HandleTypeDef* htimarr[5];
+    const sound* song_voice[BUZZER_CHANNEL_NUM];
+    int voice_size[BUZZER_CHANNEL_NUM];
+    TIM_HandleTypeDef* htimarr[BUZZER_CHANNEL_NUM];
     uint8_t wait_time;
     int overall_time;
     const char* song_name;
@@ -177,11 +180,17 @@ struct song
          const sound*p3,
          const sound*p4,
          const sound*p5,
+         const sound*p6,
+         const sound*p7,
+         const sound*p8,
          int size1,
          int size2,
          int size3,
          int size4,
          int size5,
+         int size6,
+         int size7,
+         int size8,
          uint16_t wait_time,
          const char* name)
     {
@@ -190,11 +199,17 @@ struct song
         song_voice[2]=p3;
         song_voice[3]=p4;
         song_voice[4]=p5;
+        song_voice[5]=p6;
+        song_voice[6]=p7;
+        song_voice[7]=p8;
         voice_size[0]=size1;
         voice_size[1]=size2;
         voice_size[2]=size3;
         voice_size[3]=size4;
         voice_size[4]=size5;
+        voice_size[5]=size6;
+        voice_size[6]=size7;
+        voice_size[7]=size8;
         this->wait_time= wait_time;
         this->song_name = name;
         htimarr[0]= &htim13;
@@ -202,22 +217,28 @@ struct song
         htimarr[2]= &htim15;
         htimarr[3]= &htim16;
         htimarr[4]= &htim17;
+        htimarr[5]= &htim12;
+        htimarr[6]= &htim12;
+        htimarr[7]= &htim23;
         overall_time = get_overall_time();
     }
     
 
     song() 
     {
-        for (int i = 0; i < 5; i++) 
+        for (int i = 0; i < BUZZER_CHANNEL_NUM; i++) 
         {
             song_voice[i] = nullptr;
             voice_size[i] = 0;
         }
-        htimarr[0] = &htim13;
-        htimarr[1] = &htim14;
-        htimarr[2] = &htim15;
-        htimarr[3] = &htim16;
-        htimarr[4] = &htim17;
+        htimarr[0]= &htim13;
+        htimarr[1]= &htim14;
+        htimarr[2]= &htim15;
+        htimarr[3]= &htim16;
+        htimarr[4]= &htim17;
+        htimarr[5]= &htim12;
+        htimarr[6]= &htim12;
+        htimarr[7]= &htim23;
         this->song_name = nullptr;
         wait_time = 1;
         overall_time = 0;
@@ -238,15 +259,15 @@ struct buzzer_tim_output
 
 struct music_play
 {
-    int count[5]={0};
-    float times[5]={0};
-    float volume[5]={0};
-    uint8_t if_start[5]={0};
+    int count[BUZZER_CHANNEL_NUM]={0};
+    float times[BUZZER_CHANNEL_NUM]={0};
+    float volume[BUZZER_CHANNEL_NUM]={0};
+    uint8_t if_start[BUZZER_CHANNEL_NUM]={0};
     bool song_finished = false;
     float current_time;
     const song* current_song;
 
-    buzzer_tim_output output[5];
+    buzzer_tim_output output[BUZZER_CHANNEL_NUM];
 
     void play_music(float velocity);
     void reset_music();

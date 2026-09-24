@@ -38,8 +38,8 @@ float song::update_and_return_volume(float now_volume , const int& original_volu
 
 int song::get_overall_time()
 {
-    int time[5] = {0};
-    for(int i = 0; i < 5 ; i++)
+    int time[BUZZER_CHANNEL_NUM] = {0};
+    for(int i = 0; i < BUZZER_CHANNEL_NUM ; i++)
     {
         for(int j = 0; j < voice_size[i]; j++)
         {
@@ -53,6 +53,9 @@ int song::get_overall_time()
     tiiiime = time[2] > tiiiime ? time[2]:tiiiime;
     tiiiime = time[3] > tiiiime ? time[3]:tiiiime;
     tiiiime = time[4] > tiiiime ? time[4]:tiiiime;
+    tiiiime = time[5] > tiiiime ? time[5]:tiiiime;
+    tiiiime = time[6] > tiiiime ? time[6]:tiiiime;
+    tiiiime = time[7] > tiiiime ? time[7]:tiiiime;
     return tiiiime;
 }
 
@@ -64,9 +67,12 @@ void music_play::play_music(float velocity)
        current_song->voice_size[1]>=(count[1]+1)||
        current_song->voice_size[2]>=(count[2]+1)||
        current_song->voice_size[3]>=(count[3]+1)||
-       current_song->voice_size[4]>=(count[4]+1))
+       current_song->voice_size[4]>=(count[4]+1)||
+       current_song->voice_size[4]>=(count[5]+1)||
+       current_song->voice_size[4]>=(count[6]+1)||
+       current_song->voice_size[4]>=(count[7]+1))
     {
-        for(int p=0;p<5;p++)
+        for(int p=0;p<BUZZER_CHANNEL_NUM;p++)
         {
             if(current_song->song_voice[p]==nullptr)
             {
@@ -114,7 +120,7 @@ void music_play::play_music(float velocity)
                    ((current_song->song_voice[3]+count[3])->tone==tone::NONE_TONE||count[3]+1>current_song->voice_size[3])&&
                    ((current_song->song_voice[4]+count[4])->tone==tone::NONE_TONE||count[4]+1>current_song->voice_size[4]))
                 {
-                    for(int i = 0 ; i < 5 ; i++)
+                    for(int i = 0 ; i < BUZZER_CHANNEL_NUM ; i++)
                     {
                         if(count[i]+1<=current_song->voice_size[i])
                         {
@@ -153,7 +159,7 @@ void music_play::play_music(float velocity)
 void music_play::reset_music()
 {
     current_time = 0;
-    for(int i=0;i<5;i++)
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
     {
         count[i]=0;
         times[i]=0;
@@ -169,7 +175,7 @@ void music_play::set_song(const song* new_song)
     reset_music();
     song_finished = false;
     current_song = new_song;
-    for(int i=0;i<5;i++)
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
     {
         if(current_song->song_voice[i]!=nullptr)
         {
@@ -179,7 +185,6 @@ void music_play::set_song(const song* new_song)
                 volume[i]=current_song->song_voice[i]->get_original_volume()*INITIAL_DUTY_CYCLE;
                 if_start[i]=1;
             }
-            
         }
     }
 }
@@ -189,7 +194,7 @@ void music_play::set_same_song()
 {
     reset_music();
     song_finished = false;
-    for(int i=0;i<5;i++)
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
     {
         if(current_song->song_voice[i]!=nullptr)
         {
@@ -209,7 +214,7 @@ void music_play::set_same_song()
 void music_play::set_play_time(int time)
 {
     //这个函数会让这首歌从固定的时间开始播放，time单位为ms
-    for(int i=0;i<5;i++)
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
     {
         count[i]=0;
         times[i]=0;
@@ -247,7 +252,7 @@ void music_play::set_play_time(int time)
 
 void music_play::keep_silent()
 {
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
     {
         output[i].compare = 0;
     }
@@ -258,7 +263,7 @@ void music_play::keep_silent()
 
 void music_play::set_output()
 {
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
     {
         if(output[i].should_stop)
         {
@@ -288,7 +293,7 @@ void music_play::set_output()
 
 void music_play::set_final_volume(float volume)
 {
-    for(int i = 0; i< 5; i++)
+    for(int i = 0; i< BUZZER_CHANNEL_NUM; i++)
     {
         output[i].compare *= (volume/100.0f);
     }
