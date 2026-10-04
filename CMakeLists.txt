@@ -52,8 +52,13 @@ add_executable(${CMAKE_PROJECT_NAME}
     Library/component/game/fsm/menu_state_settings.cpp
 
 
-    Library/component/buzzer/buzzer_task.cpp
-    Library/component/buzzer/buzzer.cpp
+    Library/component/song/song_task.cpp
+    Library/component/song/song.cpp
+    Library/component/song/buzzer_output.cpp
+    Library/component/song/I2S_output.cpp
+    Library/component/song/Fsm/song_buzzer_state.cpp
+    Library/component/song/Fsm/song_I2S_state.cpp
+
 
     Library/component/control/vrc.cpp
 
@@ -95,8 +100,8 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
     ${CMAKE_CURRENT_SOURCE_DIR}/Library
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Core/FSM
-    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/buzzer
-    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/buzzer/songs
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/song
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/song/songs
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/oled
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/game
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/control

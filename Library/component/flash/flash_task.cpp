@@ -6,7 +6,7 @@
 
 
 
-#define FLASH_WRITE_MODE 1
+#define FLASH_WRITE_MODE 0
 #define CONTENTS_SECTOR_NUM 5
 
 extern OSPI_HandleTypeDef hospi1;

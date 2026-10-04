@@ -1,0 +1,150 @@
+#ifndef SONG_LISTS_H
+#define SONG_LISTS_H
+
+
+#include "shop3.h"
+#include "songs/ScourgeoftheUniverse.h"
+#include "songs/TheTaleofACruelWorld.h"
+#include "songs/_Scourge_of_The_Universe.h"
+#include "whomightyoube.h"
+#include "dr_ed.h"
+#include "running_sky.h"
+#include "petal_dance.h"
+#include "sunsetofsevensuns.h"
+#include "mewmew.h"
+#include "raise_up_your_bat.h"
+#include "the_third_sanctuary.h"
+#include "field_of_hopes_and_dreams.h"
+#include "black_knife.h"
+#include "the_world_revolving.h"
+#include "BIG_SHOT.h"
+#include "TV_WORLD.h"
+#include "Festival.h"
+#include "before_the_story.h"
+#include "flower_man.h"
+#include "hammer_of_justice.h"
+#include "Paradise_Paradise.h"
+#include "RuderBuster.h"
+#include "BattleAgainstATrueHero.h"
+#include "ASGORE.h"
+#include "VioletTactics.h"
+#include "WalkingHome.h"
+#include "FlowerCastle.h"
+#include "Resurrections.h"
+#include "QuietAndFalling.h"
+#include "EmptyTown.h"
+#include "Vs_Lancer.h"
+#include "AttackOfTheKillerQueen.h"
+#include "LostGirl.h"
+#include "UntilNextTime.h"
+#include "DarkSanctuary.h"
+#include "EverHigher.h"
+#include "CastleFunk.h"
+#include "Friends.h"
+#include "From_Now_On.h"
+#include "Yorushika_June.h"
+#include "Yorushika_blue_square.h"
+#include "TwoToTango.h"
+#include "_Scourge_of_The_Universe.h"
+#include "Megalovania.h"
+#include "FirstSteps.h"
+#include "FaintGlow.h"
+#include "MyCastleTown.h"
+#include "BrainiacManiac.h"
+#include "Cerebrawl.h"
+#include "CrazyDave.h"
+#include "Grasswalk.h"
+#include "GrazetheRoof.h"
+#include "Loonboon.h"
+#include "Moongrains.h"
+#include "RigorMormist.h"
+#include "WateryGraves.h"
+#include "ZenGarden.h"
+
+static const song* song_list[]=
+{
+    //deltarune chapter1
+    &EmptyTown,
+    &Vs_Lancer,
+    &FieldOfHopesAndDreams,
+    &THE_WORLD_REVOLVING, 
+
+    //deltarune chapter2
+    &FaintGlow,
+    &MyCastleTown,
+    &LostGirl,
+    &AttackOfTheKillerQueen,
+    &BIG_SHOT,
+
+    //deltarune chapter3
+    &CastleFunk,
+    &RuderBuster,
+    &RaiseUpYourBat,
+    &Paradise_Paradise,
+    &TV_WORLD,
+    &BlackKnife,
+    
+    //deltarune chapter4
+    &Friends,
+    &DarkSanctuary,
+    &From_Now_On,
+    &EverHigher,
+    &HammerOfJustice,
+    &TheThirdSanctuary, 
+
+    //deltarune chapter5
+    &Festival,
+    &WhoMightYouBe,
+    &PetalDance,
+    &Shop3,
+    &SunsetOfSevenSuns,
+    &VioletTactics,
+    &FlowerCastle,
+    &RunningSky,
+    &CutieMewMewMagic,
+    &FlowerMan,
+    &WalkingHome,
+
+    //deltarune_menu&ed
+    &BeforeTheStory,
+    &DrEd,
+    &UntilNextTime,
+
+    //undertale
+    &BattleAgainstATrueHero,
+    &ASGORE,
+    &Megalovania,
+
+    //celeste
+    &Resurrections,
+    &QuietAndFalling,
+    &FirstSteps,
+
+    //Yorushika
+    &Yorushika_June,
+    &YorushikaBlueSquare,
+    &TwoToTango,
+
+    //Terraria
+    &TheTaleOfACruelWorld,
+    &ScourgeoftheUniverse,
+    &_Scourge_of_The_Universe,
+
+    //pvz
+    &BrainiacManiac,
+    &Cerebrawl,
+    &CrazyDave,
+    &Grasswalk,
+    &GrazetheRoof,
+    &Loonboon,
+    &Moongrains,
+    &RigorMormist,
+    &WateryGraves,
+    &ZenGarden,
+
+};
+
+
+
+
+#endif

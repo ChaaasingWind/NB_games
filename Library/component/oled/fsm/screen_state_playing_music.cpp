@@ -1,4 +1,3 @@
-#include "component/buzzer/buzzer.h"
 #include "screen.h"
 
 void screen::PlayingMusicScreen::enter(screen_ctx* ctx)

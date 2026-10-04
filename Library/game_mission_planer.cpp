@@ -20,7 +20,7 @@
 extern "C"
 {
 extern void game_task(void *argument);
-extern void buzzer_task(void *argument);
+extern void song_task(void *argument);
 extern void oled_i2c_task(void *argument);
 extern void oled_task(void *argument);
 extern void flash_task(void *argument);
@@ -37,7 +37,7 @@ void StartDefaultTask(void *argument)
                 128, NULL,configMAX_PRIORITIES - 2, NULL);
         #endif
     #if BUZZER_TASK
-        xTaskCreate(buzzer_task, "buzzer_task", 
+        xTaskCreate(song_task, "song_task", 
                 256, NULL,configMAX_PRIORITIES - 2, NULL);
         #endif
     #if OLED_TASK

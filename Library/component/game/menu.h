@@ -5,7 +5,7 @@
 #include "stdlib.h"
 #include "fsm.h"
 #include "vrc.h"
-#include "buzzer.h"
+#include "song.h"
 #include "flash_song_lists.h"
 
 

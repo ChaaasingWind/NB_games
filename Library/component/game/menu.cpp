@@ -14,7 +14,7 @@ void menu::menu_run()
 {
     //检查播放器是否播放完成，如果播放完成，则根据当前的播放模式来决定下一首歌的播放
     static bool last_song_finished = false;
-    if(music_play::instance().song_finished && !last_song_finished)
+    if(music_play::instance()._ctx.song_finished && !last_song_finished)
     {
         if(_ctx._playing_mode == MusicPlayingMode::CIRCLE)
         {
@@ -34,7 +34,7 @@ void menu::menu_run()
             menu::_ctx.current_playing_state = MusicPlayingState::STOP;
         }
     }
-    last_song_finished = music_play::instance().song_finished;
+    last_song_finished = music_play::instance()._ctx.song_finished;
     
     
     menuFsm.execute(&_ctx);

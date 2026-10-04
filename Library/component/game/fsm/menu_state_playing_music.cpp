@@ -8,7 +8,7 @@ void menu::PlayingMusicMenu::enter(menuctx* ctx)
     
 
     //如果是选择了已经播放结束的歌曲，则重置该歌曲
-    if(ctx->current_music_index >= 0 && music_play::instance().song_finished)
+    if(ctx->current_music_index >= 0 && music_play::instance()._ctx.song_finished)
     {
         music_play::instance().set_same_song();
     }
@@ -24,7 +24,7 @@ void menu::PlayingMusicMenu::execute(menuctx* ctx)
         if(ctx->current_playing_state == MusicPlayingState::STOP)
         {
             // 如果当前播放结束的歌曲，则根据当前的播放模式来决定下一首歌的播放
-            if(music_play::instance().song_finished)
+            if(music_play::instance()._ctx.song_finished)
             {
                 if(ctx->_playing_mode == MusicPlayingMode::CIRCLE || ctx->_playing_mode == MusicPlayingMode::ONCE)
                 {

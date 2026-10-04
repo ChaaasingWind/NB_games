@@ -10,7 +10,6 @@
 
 
 
-
 extern "C"
 {
     void game_init_task(void *argument)

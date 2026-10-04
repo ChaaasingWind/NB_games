@@ -22,6 +22,7 @@
 #include "cmsis_os2.h"
 #include "dma.h"
 #include "i2c.h"
+#include "i2s.h"
 #include "octospi.h"
 #include "tim.h"
 #include "usart.h"
@@ -129,6 +130,7 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM12_Init();
   MX_TIM23_Init();
+  MX_I2S2_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -183,7 +185,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 34;
   RCC_OscInitStruct.PLL.PLLP = 1;
-  RCC_OscInitStruct.PLL.PLLQ = 2;
+  RCC_OscInitStruct.PLL.PLLQ = 3;
   RCC_OscInitStruct.PLL.PLLR = 2;
   RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
