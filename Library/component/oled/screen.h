@@ -18,11 +18,13 @@ class screen
         menu::MenuState state;
         menu::MusicPlayingState playing_state;
         menu::MusicPlayingMode playing_mode;
+        menu::PlayingDevice playing_device;
         int8_t index;
         int8_t music_index;
         int volume; //音量，0-100之间
         int rate;   //倍速乘十
         int tick = 0;
+
     };
 
     struct MainScreen : public state_t<screen> {

@@ -48,6 +48,10 @@ void menu::SettingsMenu::execute(menuctx* ctx)
         {
             ctx->rate += 1;
         }
+        else if(ctx->current_index == 2)
+        {
+            ctx->_device = (menu::PlayingDevice)(((int)ctx->_device + 1) % 2);
+        }
     }
     else if(a_state.event == button::buttonevent_type::SINGLE_CLICK)
     {
@@ -58,6 +62,10 @@ void menu::SettingsMenu::execute(menuctx* ctx)
         else if(ctx->current_index == 1)
         {
             ctx->rate -= 1;
+        }
+        else if(ctx->current_index == 2)
+        {
+            ctx->_device = (menu::PlayingDevice)(((int)ctx->_device + 1) % 2);
         }
     }
     else if(d_state.event == button::buttonevent_type::LONG_PRESS_START||d_long_press)

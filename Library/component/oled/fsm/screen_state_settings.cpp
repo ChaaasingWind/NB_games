@@ -24,5 +24,18 @@ void screen::SettingsScreen::execute(screen* owner)
     .set_position(10, 30)
     .draw_string("Rate:")
     .set_position(70, 30)
-    .draw_string(rate_str);
+    .draw_string(rate_str)
+    .set_position(10, 40)
+    .draw_string("DEVICE: ");
+    if(owner->_ctx.playing_device == menu::PlayingDevice::BUZZER)
+    {
+        pen::instance().set_position(70, 40)
+        .draw_string("BUZZER");
+    }
+    else if(owner->_ctx.playing_device == menu::PlayingDevice::I2S)
+    {
+        pen::instance().set_position(70, 40)
+        .draw_string("PCM-5102");
+    }
+
 }

@@ -9,7 +9,7 @@
 
 
 constexpr int MAIN_MENU_MAX_NUM  = 4;
-constexpr int SETTINGS_MENU_MAX_NUM = 2;
+constexpr int SETTINGS_MENU_MAX_NUM = 3;
 constexpr int MUSIC_PLAYING_MODE_NUM = 4;
 
 
@@ -44,9 +44,15 @@ class menu
         SEQUENTIAL,
         RANDOM,
     };
+    enum class PlayingDevice
+    {
+        BUZZER,
+        I2S,
+    };
 
     struct menuctx
     {
+        PlayingDevice _device = PlayingDevice::BUZZER;
         MenuState current_state;
         int8_t current_index;
         MusicPlayingState current_playing_state;

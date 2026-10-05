@@ -121,9 +121,20 @@ void music_play::song_init()
 
 void music_play::song_run()
 {
-
+    static menu::PlayingDevice last_playing_device = menu::PlayingDevice::BUZZER;
     //更新命令
     auto ctx = menu::instance().get_ctx();
+    if(ctx._device != last_playing_device)
+    {
+        if(ctx._device == menu::PlayingDevice::BUZZER)
+        {
+            SongFsm.change_state(&_buzzer_state);
+        }
+        else if(ctx._device == menu::PlayingDevice::I2S)
+        {
+            SongFsm.change_state(&_i2s_state);
+        }
+    }
     _ctx.cmd.current_music_index = ctx.current_music_index;
     if(ctx.current_playing_state == menu::MusicPlayingState::PLAYING)
     {

@@ -27,6 +27,7 @@ void screen::screen_run()
     _ctx.state                    = ctx.current_state;
     _ctx.rate                     = ctx.rate;
     _ctx.volume                   = ctx.volume;
+    _ctx.playing_device           = ctx._device;
     _ctx.tick++;
 
     //状态机运行
