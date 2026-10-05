@@ -2,12 +2,12 @@
 
 
 
-void screen::DebugScreen::enter(screen_ctx* ctx)
+void screen::DebugScreen::enter(screen* owner)
 {
     
 }
 
-void screen::DebugScreen::execute(screen_ctx* ctx)
+void screen::DebugScreen::execute(screen* owner)
 {
 
 }

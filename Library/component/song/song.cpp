@@ -1,11 +1,8 @@
 #include "song.h"
-#include <cmath>
-#include <cstdint>
 #include "FreeRTOS.h"
-#include "stm32h7xx_hal_i2s.h"
-#include "stm32h7xx_hal_tim.h"
 #include "task.h"
 #include "menu.h"
+#include "stdlib.h"
 
 
 
@@ -39,12 +36,57 @@ int song::get_overall_time()
 void music_play::reset_music()
 {
     _ctx.current_time = 0;
+    _ctx._i2s_ctx.final_output = 0;
     for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
     {
         _ctx.count[i]=0;
         _ctx.times[i]=0;
         _ctx._buzzer_ctx.volume[i]=0;
         _ctx._buzzer_ctx.if_start[i]=0;
+        _ctx._i2s_ctx.phase[i] = 0;
+        _ctx._i2s_ctx.output[i] = 0;
+    }
+}
+
+
+void music_play::set_song(const song* new_song)
+{
+    reset_music();
+    _ctx.song_finished = false;
+    _ctx._i2s_ctx.virtual_is_finished = false;
+    _ctx.current_song = new_song;
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
+    {
+        if(_ctx.current_song->song_voice[i]!=nullptr)
+        {
+            if(_ctx._buzzer_ctx.if_start[i]==0)
+            {
+                _ctx._buzzer_ctx.output[i].should_start = true;
+                _ctx._buzzer_ctx.volume[i]=_ctx.current_song->song_voice[i]->get_original_volume()*INITIAL_DUTY_CYCLE;
+                _ctx._buzzer_ctx.if_start[i]=1;
+            }
+        }
+    }
+}
+
+
+void music_play::set_same_song()
+{
+    reset_music();
+    _ctx.song_finished = false;
+    _ctx._i2s_ctx.virtual_is_finished = false;
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
+    {
+        if(_ctx.current_song->song_voice[i]!=nullptr)
+        {
+            if(_ctx._buzzer_ctx.if_start[i]==0)
+            {
+                _ctx._buzzer_ctx.output[i].should_start = true;
+                _ctx._buzzer_ctx.volume[i]=_ctx.current_song->song_voice[i]->get_original_volume()*INITIAL_DUTY_CYCLE;
+                _ctx._buzzer_ctx.if_start[i]=1;
+            }
+            
+        }
     }
 }
 
@@ -74,7 +116,7 @@ void music_play::song_init()
 {
     I2S_Start();
     SongFsm.change_state(&_i2s_state);
-    SongFsm.enter(&_ctx);
+    SongFsm.enter(this);
 }
 
 void music_play::song_run()
@@ -99,6 +141,6 @@ void music_play::song_run()
     _ctx.cmd.volume = ctx.volume;
 
     //状态机执行
-    SongFsm.execute(&_ctx);
+    SongFsm.execute(this);
     
 }

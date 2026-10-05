@@ -44,48 +44,11 @@ float song::update_and_return_volume(float now_volume , const int& original_volu
 }
 
 
-void music_play::set_song(const song* new_song)
-{
-    reset_music();
-    _ctx.song_finished = false;
-    _ctx.current_song = new_song;
-    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
-    {
-        if(_ctx.current_song->song_voice[i]!=nullptr)
-        {
-            if(_ctx._buzzer_ctx.if_start[i]==0)
-            {
-                _ctx._buzzer_ctx.output[i].should_start = true;
-                _ctx._buzzer_ctx.volume[i]=_ctx.current_song->song_voice[i]->get_original_volume()*INITIAL_DUTY_CYCLE;
-                _ctx._buzzer_ctx.if_start[i]=1;
-            }
-        }
-    }
-}
-
-
-void music_play::set_same_song()
-{
-    reset_music();
-    _ctx.song_finished = false;
-    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
-    {
-        if(_ctx.current_song->song_voice[i]!=nullptr)
-        {
-            if(_ctx._buzzer_ctx.if_start[i]==0)
-            {
-                _ctx._buzzer_ctx.output[i].should_start = true;
-                _ctx._buzzer_ctx.volume[i]=_ctx.current_song->song_voice[i]->get_original_volume()*INITIAL_DUTY_CYCLE;
-                _ctx._buzzer_ctx.if_start[i]=1;
-            }
-            
-        }
-    }
-}
 
 
 
-void music_play::set_play_time(int time)
+
+void music_play::set_play_time(float time)
 {
     //这个函数会让这首歌从固定的时间开始播放，time单位为ms
     for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
@@ -93,10 +56,10 @@ void music_play::set_play_time(int time)
         _ctx.count[i]=0;
         _ctx.times[i]=0;
         _ctx._buzzer_ctx.volume[i]=0;
-        _ctx._buzzer_ctx.if_start[i]=0;
+        _ctx._buzzer_ctx.if_start[i]=1;
         if(_ctx.current_song->song_voice[i]!=nullptr)
         {
-            int tick = time;
+            float tick = time;
             while(tick >= (_ctx.current_song->song_voice[i]+_ctx.count[i])->last_beat*_ctx.current_song->wait_time)
             {
                 //先判断指针是否越界
@@ -179,17 +142,22 @@ void music_play::set_final_volume(float volume)
 
 
 
-void music_play::play_music(float velocity)
+void music_play::play_music()
 {
-    
-    if(_ctx.current_song->voice_size[0]>=(_ctx.count[0]+1)||
-       _ctx.current_song->voice_size[1]>=(_ctx.count[1]+1)||
-       _ctx.current_song->voice_size[2]>=(_ctx.count[2]+1)||
-       _ctx.current_song->voice_size[3]>=(_ctx.count[3]+1)||
-       _ctx.current_song->voice_size[4]>=(_ctx.count[4]+1)||
-       _ctx.current_song->voice_size[5]>=(_ctx.count[5]+1)||
-       _ctx.current_song->voice_size[6]>=(_ctx.count[6]+1)||
-       _ctx.current_song->voice_size[7]>=(_ctx.count[7]+1))
+    //首先判断是否播放完成
+    bool if_over = true;
+    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
+    {
+        if(_ctx.current_song->song_voice[i] == nullptr)
+        {
+            continue;
+        }
+        if(_ctx.current_song->voice_size[i]>=(_ctx.count[i]+1))
+        {
+            if_over = false;
+        }
+    }
+    if(!if_over)
     {
         for(int p=0;p<BUZZER_CHANNEL_NUM;p++)
         {
@@ -197,7 +165,7 @@ void music_play::play_music(float velocity)
             {
                 continue;
             }
-            if(_ctx.count[p]+1>_ctx.current_song->voice_size[p])
+            if(_ctx.count[p] + 1 > _ctx.current_song->voice_size[p])
             {
                 if(_ctx._buzzer_ctx.if_start[p])
                 {
@@ -215,7 +183,8 @@ void music_play::play_music(float velocity)
             _ctx._buzzer_ctx.output[p].prescaler = prescaler;
             _ctx._buzzer_ctx.output[p].autoreload = period;
 
-            if((_ctx.current_song->song_voice[p]+_ctx.count[p])->tone == tone::EMPTY || (_ctx.current_song->song_voice[p]+_ctx.count[p])->tone == tone::NONE_TONE)
+            if((_ctx.current_song->song_voice[p]+_ctx.count[p])->tone == tone::EMPTY ||
+                (_ctx.current_song->song_voice[p]+_ctx.count[p])->tone == tone::NONE_TONE)
             {
                 _ctx._buzzer_ctx.output[p].compare = 0;
             }
@@ -227,20 +196,23 @@ void music_play::play_music(float velocity)
             {
                 _ctx._buzzer_ctx.output[p].update_tim = true;
             }
-            _ctx.times[p] += velocity;
+            _ctx.times[p] += _ctx.cmd.rate*0.1f;
             
 
             //处理同步拍
             if((_ctx.current_song->song_voice[p]+_ctx.count[p])->tone==tone::NONE_TONE)
             {
-                if(((_ctx.current_song->song_voice[0]+_ctx.count[0])->tone==tone::NONE_TONE||_ctx.count[0]+1>_ctx.current_song->voice_size[0])&&
-                   ((_ctx.current_song->song_voice[1]+_ctx.count[1])->tone==tone::NONE_TONE||_ctx.count[1]+1>_ctx.current_song->voice_size[1])&&
-                   ((_ctx.current_song->song_voice[2]+_ctx.count[2])->tone==tone::NONE_TONE||_ctx.count[2]+1>_ctx.current_song->voice_size[2])&&
-                   ((_ctx.current_song->song_voice[3]+_ctx.count[3])->tone==tone::NONE_TONE||_ctx.count[3]+1>_ctx.current_song->voice_size[3])&&
-                   ((_ctx.current_song->song_voice[4]+_ctx.count[4])->tone==tone::NONE_TONE||_ctx.count[4]+1>_ctx.current_song->voice_size[4])&&
-                   ((_ctx.current_song->song_voice[5]+_ctx.count[5])->tone==tone::NONE_TONE||_ctx.count[5]+1>_ctx.current_song->voice_size[5])&&
-                   ((_ctx.current_song->song_voice[6]+_ctx.count[6])->tone==tone::NONE_TONE||_ctx.count[6]+1>_ctx.current_song->voice_size[6])&&
-                   ((_ctx.current_song->song_voice[7]+_ctx.count[7])->tone==tone::NONE_TONE||_ctx.count[7]+1>_ctx.current_song->voice_size[7]))
+                bool all_none = true;
+                for (int i = 0; i < BUZZER_CHANNEL_NUM; i++) 
+                {
+                    if (_ctx.current_song->song_voice[i] == nullptr) continue;
+                    if (_ctx.count[i] >= _ctx.current_song->voice_size[i]) continue;
+                    if ((_ctx.current_song->song_voice[i] + _ctx.count[i])->tone != tone::NONE_TONE) {
+                        all_none = false;
+                        break;
+                    }
+                }
+                if(all_none)
                 {
                     for(int i = 0 ; i < BUZZER_CHANNEL_NUM ; i++)
                     {
@@ -268,15 +240,11 @@ void music_play::play_music(float velocity)
             }
             
         }
-        _ctx.current_time += velocity;
+        _ctx.current_time += _ctx.cmd.rate*0.1f;
     }
     else
     {
             reset_music();
             _ctx.song_finished = true;
     }
-
-    static TickType_t xLastWakeTime = xTaskGetTickCount();
-    static const TickType_t xHeartBeat = pdMS_TO_TICKS(1);
-    vTaskDelayUntil(&xLastWakeTime, xHeartBeat);
 }

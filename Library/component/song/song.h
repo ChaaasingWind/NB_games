@@ -8,6 +8,7 @@
 #include "cmath"
 #include <cmath>
 #include "fsm.h"
+#include "cmsis_os.h"
 
 //设定新音符的初始最大占空比
 #define INITIAL_DUTY_CYCLE 0.5f
@@ -140,7 +141,115 @@ class sound
         {274, 253},   // B7
     {65535,65535}, 
     {65535,65535}};
-    
+
+    // ============================================================
+    //  音阶频率表 (Hz) —— 与 enum tone 一一对应
+    //  基准：A4 = 440 Hz，十二平均律
+    //  C1 = 32.703 Hz ... B7 = 3951.07 Hz
+    // ============================================================
+    static constexpr float tone_freq_arr[86] = {
+        // ---- 八度 1 ----
+        32.703f,   // C1
+        34.648f,   // Db1
+        36.708f,   // D1
+        38.891f,   // Eb1
+        41.203f,   // E1
+        43.654f,   // F1
+        46.249f,   // Gb1
+        49.000f,   // G1
+        51.913f,   // Ab1
+        55.000f,   // A1
+        58.270f,   // Bb1
+        61.735f,   // B1
+
+        // ---- 八度 2 ----
+        65.406f,   // C2
+        69.296f,   // Db2
+        73.416f,   // D2
+        77.782f,   // Eb2
+        82.407f,   // E2
+        87.307f,   // F2
+        92.499f,   // Gb2
+        97.999f,   // G2
+        103.826f,  // Ab2
+        110.000f,  // A2
+        116.541f,  // Bb2
+        123.471f,  // B2
+
+        // ---- 八度 3 ----
+        130.813f,  // C3
+        138.591f,  // Db3
+        146.832f,  // D3
+        155.563f,  // Eb3
+        164.814f,  // E3
+        174.614f,  // F3
+        184.997f,  // Gb3
+        195.998f,  // G3
+        207.652f,  // Ab3
+        220.000f,  // A3
+        233.082f,  // Bb3
+        246.942f,  // B3
+
+        // ---- 八度 4 ----（中央 C 所在八度）
+        261.626f,  // C4
+        277.183f,  // Db4
+        293.665f,  // D4
+        311.127f,  // Eb4
+        329.628f,  // E4
+        349.228f,  // F4
+        369.994f,  // Gb4
+        391.995f,  // G4
+        415.305f,  // Ab4
+        440.000f,  // A4 ⭐ 国际标准音
+        466.164f,  // Bb4
+        493.883f,  // B4
+
+        // ---- 八度 5 ----
+        523.251f,  // C5
+        554.365f,  // Db5
+        587.330f,  // D5
+        622.254f,  // Eb5
+        659.255f,  // E5
+        698.456f,  // F5
+        739.989f,  // Gb5
+        783.991f,  // G5
+        830.609f,  // Ab5
+        880.000f,  // A5
+        932.328f,  // Bb5
+        987.767f,  // B5
+
+        // ---- 八度 6 ----
+        1046.502f, // C6
+        1108.731f, // Db6
+        1174.659f, // D6
+        1244.508f, // Eb6
+        1318.510f, // E6
+        1396.913f, // F6
+        1479.978f, // Gb6
+        1567.982f, // G6
+        1661.219f, // Ab6
+        1760.000f, // A6
+        1864.655f, // Bb6
+        1975.533f, // B6
+
+        // ---- 八度 7 ----
+        2093.005f, // C7
+        2217.461f, // Db7
+        2349.318f, // D7
+        2489.016f, // Eb7
+        2637.021f, // E7
+        2793.826f, // F7
+        2959.955f, // Gb7
+        3135.964f, // G7
+        3322.438f, // Ab7
+        3520.000f, // A7
+        3729.310f, // Bb7
+        3951.066f, // B7
+
+        // ---- 特殊值 ----
+        0.0f,      // NONE_TONE —— 同步点，不发声
+        0.0f       // EMPTY    —— 空白段，不发声
+    };
 
     const uint8_t tone;
     const uint8_t velocity;
@@ -238,7 +347,7 @@ struct song
         htimarr[2]= &htim15;
         htimarr[3]= &htim16;
         htimarr[4]= &htim17;
-        htimarr[5]= &htim12;
+        htimarr[5]= &htim2;
         htimarr[6]= &htim12;
         htimarr[7]= &htim23;
         this->song_name = nullptr;
@@ -249,15 +358,7 @@ struct song
 
 
 
-struct buzzer_tim_output
-{
-    bool update_tim;
-    bool should_stop;
-    bool should_start;
-    uint16_t prescaler;
-    uint16_t autoreload;
-    uint16_t compare;
-};
+
 
 struct music_play
 {
@@ -278,22 +379,44 @@ struct music_play
         };
         struct buzzer_ctx
         {
+            struct buzzer_tim_output
+            {
+                bool update_tim;
+                bool should_stop;
+                bool should_start;
+                uint16_t prescaler;
+                uint16_t autoreload;
+                uint16_t compare;
+            };
             float volume[BUZZER_CHANNEL_NUM]={0};
             buzzer_tim_output output[BUZZER_CHANNEL_NUM];
             uint8_t if_start[BUZZER_CHANNEL_NUM]={0};   //当前声道是否开启
         };
         struct I2S_ctx
         {
-            float phase = 0;     //1ms内的时间
+            enum class fill_type
+            {
+                NONE,
+                FirstHalf,
+                LastHalf,
+            };
+            bool if_reset = false;
+            osSemaphoreId_t i2s_transmit_ok;
+            fill_type _type = fill_type::NONE;
+            bool virtual_is_finished = false;
+            float phase[BUZZER_CHANNEL_NUM]  = {0};     //1ms内的时间
+            float output[BUZZER_CHANNEL_NUM] = {0};
+            float final_output = 0;
         };
         I2S_ctx _i2s_ctx;
         buzzer_ctx _buzzer_ctx;
         song_cmd cmd;
+
         int count[BUZZER_CHANNEL_NUM]={0};          //音符事件数
         float times[BUZZER_CHANNEL_NUM]={0};        //当前音符播放的毫秒数
         bool song_finished = false;
-        float current_time;
-        const song* current_song;
+        float current_time = 0;
+        const song* current_song = nullptr;
 
     };
     song_ctx _ctx;
@@ -306,34 +429,39 @@ struct music_play
     void reset_music();
     void song_init();
     void song_run();
-    struct BuzzerSong : public state_t<song_ctx> 
+    struct BuzzerSong : public state_t<music_play> 
     {
-        void enter(song_ctx* ctx) override;
-        void execute(song_ctx* ctx) override;
-        void exit(song_ctx* ctx) override;
+        void enter(music_play* owner) override;
+        void execute(music_play* owner) override;
+        void exit(music_play* owner) override;
     };
-    struct I2S_Song : public state_t<song_ctx> {
-        void enter(song_ctx* ctx) override;
-        void execute(song_ctx* ctx) override;
-        void exit(song_ctx* ctx) override;
+    struct I2S_Song : public state_t<music_play> {
+        void enter(music_play* owner) override;
+        void execute(music_play* owner) override;
+        void exit(music_play* owner) override;
     };
 
-    fsm_t<song_ctx> SongFsm;
+    fsm_t<music_play> SongFsm;
     BuzzerSong _buzzer_state;
     I2S_Song _i2s_state;
 
     //蜂鸣器输出下的音乐播放相关函数
-    void play_music(float velocity);
+    void play_music();
     void set_song(const song* new_song);
     void set_same_song();
-    void set_play_time(int time);
+    void set_play_time(float time);
     void keep_silent();
     void set_final_volume(float volume);
     void set_output();
 
     //I2S输出下的音乐播放相关函数
     void I2S_Start();
+    void set_i2s_fill_state(song_ctx::I2S_ctx::fill_type type);
     void play_music_i2s();
+    void set_play_time_i2s(float time);
+    void keep_silent_i2s();
+    float compute_current_output(float phase, float time, int voice_type);       // 计算单个音调在当前时间下应该输出多少
+    
 };
 
 

@@ -9,7 +9,7 @@ void screen::screen_init()
     .set_mode(0)
     .set_line_height(8);
     screenFsm.change_state(&_mainScreen);
-    screenFsm.enter(&_ctx);
+    screenFsm.enter(this);
 }
 
 
@@ -55,7 +55,7 @@ void screen::screen_run()
         screenFsm.change_state(&_debugScreen);
     }
 
-    screenFsm.execute(&_ctx);
+    screenFsm.execute(this);
 
 
     //写到buffer中

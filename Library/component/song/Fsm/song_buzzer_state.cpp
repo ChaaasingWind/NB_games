@@ -1,4 +1,6 @@
 #include "song.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 #if FLASH_WRITE_MODE
 
@@ -10,44 +12,46 @@
 
 #endif
 
-void music_play::BuzzerSong::enter(song_ctx* ctx)
+void music_play::BuzzerSong::enter(music_play* owner)
 {
-
+    owner->set_play_time(owner->get_current_song_current_time());
 }
 
-void music_play::BuzzerSong::execute(song_ctx* ctx)
+void music_play::BuzzerSong::execute(music_play* owner)
 {
     static int8_t last_music_index = -1;
-    if(ctx->cmd.current_music_index != last_music_index)
+    if(owner->_ctx.cmd.current_music_index != last_music_index)
     {
-        music_play::instance().set_song(&song_list[ctx->cmd.current_music_index]);
-        last_music_index = ctx->cmd.current_music_index;
+        owner->set_song(&song_list[owner->_ctx.cmd.current_music_index]);
+        last_music_index = owner->_ctx.cmd.current_music_index;
     }
-    if(ctx->cmd.current_playing_state == song_ctx::song_cmd::playing_state::PLAYING)
+    if(owner->_ctx.cmd.current_playing_state == song_ctx::song_cmd::playing_state::PLAYING)
     {
-        if(!music_play::instance()._ctx.song_finished)
+        if(!owner->_ctx.song_finished)
         {
-            music_play::instance().play_music(ctx->cmd.rate*0.1f);
+            owner->play_music();
         }
         else 
         {
-            music_play::instance().keep_silent();
+            owner->keep_silent();
         }
     }
-    else if(ctx->cmd.current_playing_state == song_ctx::song_cmd::playing_state::STOP ||
-             ctx->cmd.current_playing_state == song_ctx::song_cmd::playing_state::IDLE)
+    else if(owner->_ctx.cmd.current_playing_state == song_ctx::song_cmd::playing_state::STOP ||
+             owner->_ctx.cmd.current_playing_state == song_ctx::song_cmd::playing_state::IDLE)
     {
-        music_play::instance().keep_silent();
+        owner->keep_silent();
     }
 
-    music_play::instance().set_final_volume(ctx->cmd.volume);
-    music_play::instance().set_output();
+    owner->set_final_volume(owner->_ctx.cmd.volume);
+    owner->set_output();
 
-
+    static TickType_t xLastWakeTime = xTaskGetTickCount();
+    static const TickType_t xHeartBeat = pdMS_TO_TICKS(1);
+    vTaskDelayUntil(&xLastWakeTime, xHeartBeat);
 }
 
-void music_play::BuzzerSong::exit(song_ctx* ctx)
+void music_play::BuzzerSong::exit(music_play* owner)
 {
-    music_play::instance().keep_silent();
-    music_play::instance().set_output();
+    owner->keep_silent();
+    owner->set_output();
 }

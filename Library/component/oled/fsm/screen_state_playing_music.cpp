@@ -1,17 +1,17 @@
 #include "screen.h"
 
-void screen::PlayingMusicScreen::enter(screen_ctx* ctx)
+void screen::PlayingMusicScreen::enter(screen* owner)
 {
     
 }
 
-void screen::PlayingMusicScreen::execute(screen_ctx* ctx)
+void screen::PlayingMusicScreen::execute(screen* owner)
 {
 
     // 歌名
     pen::instance()
     .set_position(0, 10)
-    .draw_string(song_list[ctx->music_index].song_name, 0, 2);
+    .draw_string(song_list[owner->_ctx.music_index].song_name, 0, 2);
 
     //进度条
     int overall_time = music_play::instance().get_current_song_overall_time();
@@ -35,13 +35,13 @@ void screen::PlayingMusicScreen::execute(screen_ctx* ctx)
     .draw_string(time_context, 0, 2);
 
     // 是否播放
-    if(ctx->playing_state == menu::MusicPlayingState::PLAYING)
+    if(owner->_ctx.playing_state == menu::MusicPlayingState::PLAYING)
     {
         pen::instance()
         .set_position(34, 46)
         .draw_string("Playing...");
     }
-    else if(ctx->playing_state == menu::MusicPlayingState::STOP)
+    else if(owner->_ctx.playing_state == menu::MusicPlayingState::STOP)
     {
         pen::instance()
         .set_position(43, 46)
@@ -50,19 +50,19 @@ void screen::PlayingMusicScreen::execute(screen_ctx* ctx)
     //播放模式
     pen::instance()
     .set_position(10, 56);
-    if(ctx->playing_mode == menu::MusicPlayingMode::CIRCLE)
+    if(owner->_ctx.playing_mode == menu::MusicPlayingMode::CIRCLE)
     {
         pen::instance().draw_string("MODE : CIRCLE", 0, 2);
     }
-    else if(ctx->playing_mode == menu::MusicPlayingMode::ONCE)
+    else if(owner->_ctx.playing_mode == menu::MusicPlayingMode::ONCE)
     {
         pen::instance().draw_string("MODE : ONCE", 0, 2);
     }
-    else if(ctx->playing_mode == menu::MusicPlayingMode::SEQUENTIAL)
+    else if(owner->_ctx.playing_mode == menu::MusicPlayingMode::SEQUENTIAL)
     {
         pen::instance().draw_string("MODE : SEQUENTIAL", 0, 2);
     }
-    else if(ctx->playing_mode == menu::MusicPlayingMode::RANDOM)
+    else if(owner->_ctx.playing_mode == menu::MusicPlayingMode::RANDOM)
     {
         pen::instance().draw_string("MODE : RANDOM", 0, 2);
     }

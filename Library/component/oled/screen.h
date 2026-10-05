@@ -25,42 +25,42 @@ class screen
         int tick = 0;
     };
 
-    struct MainScreen : public state_t<screen_ctx> {
-        void enter(screen_ctx* ctx) override;
-        void execute(screen_ctx* ctx) override;
-        void exit(screen_ctx* ctx) override{};
+    struct MainScreen : public state_t<screen> {
+        void enter(screen* owner) override;
+        void execute(screen* owner) override;
+        void exit(screen* owner) override{};
     };
-    struct MusicScreen : public state_t<screen_ctx> {
-        void enter(screen_ctx* ctx) override;
-        void execute(screen_ctx* ctx) override;
-        void exit(screen_ctx* ctx) override{};
+    struct MusicScreen : public state_t<screen> {
+        void enter(screen* owner) override;
+        void execute(screen* owner) override;
+        void exit(screen* owner) override{};
     };
-    struct StandbyScreen : public state_t<screen_ctx> {
-        void enter(screen_ctx* ctx) override;
-        void execute(screen_ctx* ctx) override;
-        void exit(screen_ctx* ctx) override{};
+    struct StandbyScreen : public state_t<screen> {
+        void enter(screen* owner) override;
+        void execute(screen* owner) override;
+        void exit(screen* owner) override{};
     };
-    struct PlayingMusicScreen : public state_t<screen_ctx> {
-        void enter(screen_ctx* ctx) override;
-        void execute(screen_ctx* ctx) override;
-        void exit(screen_ctx* ctx) override{};
+    struct PlayingMusicScreen : public state_t<screen> {
+        void enter(screen* owner) override;
+        void execute(screen* owner) override;
+        void exit(screen* owner) override{};
     };
-    struct DebugScreen : public state_t<screen_ctx> {
-        void enter(screen_ctx* ctx) override;
-        void execute(screen_ctx* ctx) override;
-        void exit(screen_ctx* ctx) override{};
+    struct DebugScreen : public state_t<screen> {
+        void enter(screen* owner) override;
+        void execute(screen* owner) override;
+        void exit(screen* owner) override{};
     };
-    struct SettingsScreen : public state_t<screen_ctx> {
-        void enter(screen_ctx* ctx) override;
-        void execute(screen_ctx* ctx) override;
-        void exit(screen_ctx* ctx) override{};
+    struct SettingsScreen : public state_t<screen> {
+        void enter(screen* owner) override;
+        void execute(screen* owner) override;
+        void exit(screen* owner) override{};
     };
 
 
     screen_ctx _ctx;
     
     //状态机实例
-    fsm_t<screen_ctx> screenFsm;
+    fsm_t<screen> screenFsm;
     MainScreen _mainScreen;
     MusicScreen _musicScreen;
     StandbyScreen _standbyScreen;

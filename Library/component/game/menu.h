@@ -1,7 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "cmsis_os.h"
 #include "stdlib.h"
 #include "fsm.h"
 #include "vrc.h"
