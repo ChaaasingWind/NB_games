@@ -37,6 +37,7 @@ enable_language(C ASM)
 add_executable(${CMAKE_PROJECT_NAME}
 
 
+    Library/Core/fast_sin.h
     Library/game_mission_planer.cpp
     Library/game_init_task.cpp
     Library/heartbeat_task.cpp
@@ -99,6 +100,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
     ${CMAKE_CURRENT_SOURCE_DIR}/Library
+    ${CMAKE_CURRENT_SOURCE_DIR}/Library/Core
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Core/FSM
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/song
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/Component/song/songs

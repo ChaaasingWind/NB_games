@@ -38,7 +38,7 @@ void StartDefaultTask(void *argument)
         #endif
     #if BUZZER_TASK
         xTaskCreate(song_task, "song_task", 
-                256, NULL,configMAX_PRIORITIES - 2, NULL);
+                1024, NULL,configMAX_PRIORITIES - 2, NULL);
         #endif
     #if OLED_TASK
         xTaskCreate(oled_i2c_task, "oled_i2c_task", 
@@ -48,11 +48,11 @@ void StartDefaultTask(void *argument)
         #endif
     #if HEARTBEAT_TASK
         xTaskCreate(heartbeat_task, "heartbeat_task", 
-                64, NULL,configMAX_PRIORITIES - 3, NULL);
+                64, NULL,configMAX_PRIORITIES - 2, NULL);
     #endif
     #if FLASH_TASK
         xTaskCreate(flash_task, "flash_task", 
-                128, NULL,configMAX_PRIORITIES - 2, NULL);
+                128, NULL,configMAX_PRIORITIES - 3, NULL);
     #endif
     vTaskDelete(NULL);
 }

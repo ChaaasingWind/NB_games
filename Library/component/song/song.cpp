@@ -65,6 +65,7 @@ void music_play::set_song(const song* new_song)
                 _ctx._buzzer_ctx.volume[i]=_ctx.current_song->song_voice[i]->get_original_volume()*INITIAL_DUTY_CYCLE;
                 _ctx._buzzer_ctx.if_start[i]=1;
             }
+            memcpy(&(_ctx._i2s_ctx.internal_sound_data[i]), _ctx.current_song->song_voice[i], sizeof(sound));
         }
     }
 }
@@ -135,6 +136,9 @@ void music_play::song_run()
             SongFsm.change_state(&_i2s_state);
         }
     }
+    last_playing_device = ctx._device;
+
+
     _ctx.cmd.current_music_index = ctx.current_music_index;
     if(ctx.current_playing_state == menu::MusicPlayingState::PLAYING)
     {

@@ -1,9 +1,11 @@
 #include "song.h"
 #include "FreeRTOS.h"
+#include "stm32h7xx_hal.h"
 #include "task.h"
 #include "cmsis_os.h"
 #include "cmath"
 #include "cstring"
+#include "fast_sin.h"
 
 //定义采样频率
 constexpr float SAMPLE_FREQUENCY  = 48144.0f;
@@ -11,9 +13,9 @@ constexpr float SAMPLE_FREQUENCY  = 48144.0f;
 constexpr float SAMPLE_DT = 1000.0f/SAMPLE_FREQUENCY;
 
 constexpr float PI = 3.1415926535f;
-constexpr float MAX_ONE_SOUND_VOLUME = 4000.0f;
+constexpr float MAX_ONE_SOUND_VOLUME = 2000.0f;
 
-
+int delta_t;
 
 
 
@@ -23,7 +25,7 @@ void music_play::I2S_Start()
     osSemaphoreAttr_t attr = {0};
     attr.name = "i2s_dma_sem";
     _ctx._i2s_ctx.i2s_transmit_ok = osSemaphoreNew(1, 0, &attr);
-    HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)audio_buffer, 1024);
+    HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)audio_buffer, 2048);
     
 }
 
@@ -33,11 +35,10 @@ void music_play::set_i2s_fill_state(song_ctx::I2S_ctx::fill_type type)
     _ctx._i2s_ctx._type = type;
 }
 
-float music_play::compute_current_output(float phase, float time, int voice_type)
+float music_play::compute_current_output(float phase, float time, 
+                                          int voice_type, int velocity, int last_beat)
 {
-    //TODO:之后做出音色区分
-
-    return sinf(2.0f * PI * phase) * MAX_ONE_SOUND_VOLUME;
+    return fastmath::fast_sin(phase) * MAX_ONE_SOUND_VOLUME;
 }
 
 void music_play::keep_silent_i2s()
@@ -78,9 +79,6 @@ void music_play::set_play_time_i2s(float time)
 
 void music_play::play_music_i2s()
 {
-    
-
-
     if (_ctx.current_song == nullptr) 
     {
         return;
@@ -93,7 +91,7 @@ void music_play::play_music_i2s()
     }
     else if(_ctx._i2s_ctx._type == song_ctx::I2S_ctx::fill_type::LastHalf)
     {
-        data_offset = 512;
+        data_offset = 1024;
     }
     else 
     {
@@ -101,15 +99,20 @@ void music_play::play_music_i2s()
     }
     //首先判断是否播放完成
     bool if_over = true;
-    for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
+    for(int i = 0; i < 8; i++)
     {
         if(_ctx.current_song->song_voice[i] == nullptr)
         {
+            _ctx._i2s_ctx.output[i] = 0;
             continue;
         }
         if(_ctx.current_song->voice_size[i]>=(_ctx.count[i]+1))
         {
             if_over = false;
+        }
+        else
+        {
+            _ctx._i2s_ctx.output[i] = 0;   // 已结束声部清零，避免残留直流偏置
         }
     }
     if(!if_over)
@@ -117,6 +120,31 @@ void music_play::play_music_i2s()
         for(int j = 0; j < 512; j++)
         {
 
+            //同步拍判断
+            bool all_none = true;
+            for (int i = 0; i < BUZZER_CHANNEL_NUM; i++) 
+            {
+                if (_ctx.current_song->song_voice[i] == nullptr) continue;
+                if (_ctx.count[i] >= _ctx.current_song->voice_size[i]) continue;
+                if ((_ctx.current_song->song_voice[i] + _ctx.count[i])->tone != tone::NONE_TONE) {
+                    all_none = false;
+                    break;
+                }
+            }
+            if(all_none)
+            {
+                for(int k = 0 ; k < BUZZER_CHANNEL_NUM ; k++)
+                {
+                    if(_ctx.count[k] + 1 <= _ctx.current_song->voice_size[k])
+                    {
+                        _ctx.count[k]++;
+                        _ctx.times[k]=0;
+                        // _ctx._i2s_ctx.phase[k] = 0.0f;
+                        memcpy(&(_ctx._i2s_ctx.internal_sound_data[k]), _ctx.current_song->song_voice[k] + _ctx.count[k], sizeof(sound));
+                    }
+
+                }
+            }
             //遍历
             for(int p = 0; p < BUZZER_CHANNEL_NUM; p++)
             {
@@ -133,63 +161,40 @@ void music_play::play_music_i2s()
                 }
 
                 // 3.计算这个声道此时的音量
-                if ((_ctx.current_song->song_voice[p]+_ctx.count[p])->tone == tone::EMPTY ||
-                    (_ctx.current_song->song_voice[p]+_ctx.count[p])->tone == tone::NONE_TONE)
+                if ((_ctx._i2s_ctx.internal_sound_data[p]).tone == tone::EMPTY ||
+                    (_ctx._i2s_ctx.internal_sound_data[p]).tone == tone::NONE_TONE)
                 {
                     _ctx._i2s_ctx.output[p] = 0.0f;
                 }
                 else
                 {
-                    _ctx._i2s_ctx.output[p] = 
-                        compute_current_output(_ctx._i2s_ctx.phase[p], _ctx.times[p], 0);
+                    _ctx._i2s_ctx.output[p] = compute_current_output(
+                            _ctx._i2s_ctx.phase[p], _ctx.times[p], 0, 
+                            (_ctx._i2s_ctx.internal_sound_data[p]).last_beat, 
+                            (_ctx._i2s_ctx.internal_sound_data[p]).velocity);
                     //最后相位前进
                     _ctx._i2s_ctx.phase[p] += 
-                        (sound::tone_freq_arr[(_ctx.current_song->song_voice[p]+_ctx.count[p])->tone]
+                        (sound::tone_freq_arr[(_ctx._i2s_ctx.internal_sound_data[p]).tone]
                              * SAMPLE_DT * 0.001f * _ctx.cmd.rate *0.1f);
                     if(_ctx._i2s_ctx.phase[p] >= 1.0f)
                     {
                         _ctx._i2s_ctx.phase[p] -= 1.0f;
                     }
                 }
-                _ctx.times[p] += SAMPLE_DT * _ctx.cmd.rate *0.1f;
+                _ctx.times[p] += (SAMPLE_DT * _ctx.cmd.rate *0.1f);
 
                 // 4.处理同步拍
-                if((_ctx.current_song->song_voice[p]+_ctx.count[p])->tone==tone::NONE_TONE)
+                if((_ctx._i2s_ctx.internal_sound_data[p]).tone==tone::NONE_TONE)
                 {
-                    bool all_none = true;
-                    for (int i = 0; i < BUZZER_CHANNEL_NUM; i++) 
-                    {
-                        if (_ctx.current_song->song_voice[i] == nullptr) continue;
-                        if (_ctx.count[i] >= _ctx.current_song->voice_size[i]) continue;
-                        if ((_ctx.current_song->song_voice[i] + _ctx.count[i])->tone != tone::NONE_TONE) {
-                            all_none = false;
-                            break;
-                        }
-                    }
-                    if(all_none)
-                    {
-                        for(int k = 0 ; k < BUZZER_CHANNEL_NUM ; k++)
-                        {
-                            if(_ctx.count[k] + 1 <= _ctx.current_song->voice_size[k])
-                            {
-                                _ctx.count[k]++;
-                                _ctx.times[k]=0;
-                                _ctx._i2s_ctx.phase[k] = 0.0f;
-                            }
-
-                        }
-                    }
-                    else
-                    {
-                        continue;
-                    }
+                    continue;
                 }
-                else if(_ctx.times[p]>=(_ctx.current_song->song_voice[p]+_ctx.count[p])->last_beat*_ctx.current_song->wait_time)
+                else if(_ctx.times[p]>=(_ctx._i2s_ctx.internal_sound_data[p]).last_beat*_ctx.current_song->wait_time)
                 {
                     //正常切换，开始下一个音符的播放
                     _ctx.count[p]++;
                     _ctx.times[p]=0;
-                    _ctx._i2s_ctx.phase[p] = 0.0f;
+                    // _ctx._i2s_ctx.phase[p] = 0.0f;
+                    memcpy(&(_ctx._i2s_ctx.internal_sound_data[p]), _ctx.current_song->song_voice[p] + _ctx.count[p], sizeof(sound));
                     
                 }
                 
@@ -202,7 +207,8 @@ void music_play::play_music_i2s()
                 _ctx._i2s_ctx.final_output += _ctx._i2s_ctx.output[i];
             }
             _ctx._i2s_ctx.final_output *= (_ctx.cmd.volume * 0.01f);
-            audio_buffer[j + data_offset] = _ctx._i2s_ctx.final_output;
+            audio_buffer[2*j + data_offset] = _ctx._i2s_ctx.final_output;
+            audio_buffer[2*j + 1 + data_offset] = _ctx._i2s_ctx.final_output;
         }
     }
     else 

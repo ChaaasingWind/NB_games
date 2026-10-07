@@ -14,7 +14,10 @@
 
 void music_play::BuzzerSong::enter(music_play* owner)
 {
-    owner->set_play_time(owner->get_current_song_current_time());
+        if(owner->_ctx.current_song != nullptr)
+    {
+        owner->set_play_time(owner->get_current_song_current_time());
+    }
 }
 
 void music_play::BuzzerSong::execute(music_play* owner)

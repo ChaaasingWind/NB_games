@@ -63,7 +63,7 @@ void music_play::I2S_Song::execute(music_play* owner)
 
 void music_play::I2S_Song::exit(music_play* owner)
 {
-
+    owner->keep_silent_i2s();
 
 }
 

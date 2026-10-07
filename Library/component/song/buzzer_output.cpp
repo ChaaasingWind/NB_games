@@ -142,6 +142,7 @@ void music_play::set_final_volume(float volume)
 
 
 
+
 void music_play::play_music()
 {
     //首先判断是否播放完成

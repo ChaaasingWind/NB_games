@@ -26,7 +26,7 @@ extern TIM_HandleTypeDef htim23;
 
 extern I2S_HandleTypeDef hi2s2;
 
-inline __attribute__((section(".sram2"))) int16_t audio_buffer[1024];
+inline __attribute__((section(".sram2"))) int16_t audio_buffer[2048];
 
 
 
@@ -400,6 +400,7 @@ struct music_play
                 FirstHalf,
                 LastHalf,
             };
+            sound internal_sound_data[BUZZER_CHANNEL_NUM];
             bool if_reset = false;
             osSemaphoreId_t i2s_transmit_ok;
             fill_type _type = fill_type::NONE;
@@ -460,7 +461,9 @@ struct music_play
     void play_music_i2s();
     void set_play_time_i2s(float time);
     void keep_silent_i2s();
-    float compute_current_output(float phase, float time, int voice_type);       // 计算单个音调在当前时间下应该输出多少
+    // 计算单个音调在当前时间下应该输出多少
+    float compute_current_output(float phase, float time, int voice_type, int velocity, int last_beat);
+    
     
 };
 
