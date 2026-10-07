@@ -15,8 +15,6 @@ constexpr float SAMPLE_DT = 1000.0f/SAMPLE_FREQUENCY;
 constexpr float PI = 3.1415926535f;
 constexpr float MAX_ONE_SOUND_VOLUME = 2000.0f;
 
-int delta_t;
-
 
 
 void music_play::I2S_Start()
@@ -139,7 +137,7 @@ void music_play::play_music_i2s()
                     {
                         _ctx.count[k]++;
                         _ctx.times[k]=0;
-                        // _ctx._i2s_ctx.phase[k] = 0.0f;
+                        _ctx._i2s_ctx.phase[k] = 0.0f;
                         memcpy(&(_ctx._i2s_ctx.internal_sound_data[k]), _ctx.current_song->song_voice[k] + _ctx.count[k], sizeof(sound));
                     }
 
@@ -193,7 +191,7 @@ void music_play::play_music_i2s()
                     //正常切换，开始下一个音符的播放
                     _ctx.count[p]++;
                     _ctx.times[p]=0;
-                    // _ctx._i2s_ctx.phase[p] = 0.0f;
+                    _ctx._i2s_ctx.phase[p] = 0.0f;
                     memcpy(&(_ctx._i2s_ctx.internal_sound_data[p]), _ctx.current_song->song_voice[p] + _ctx.count[p], sizeof(sound));
                     
                 }
