@@ -66,6 +66,7 @@ void music_play::set_song(const song* new_song)
                 _ctx._buzzer_ctx.if_start[i]=1;
             }
             memcpy(&(_ctx._i2s_ctx.internal_sound_data[i]), _ctx.current_song->song_voice[i], sizeof(sound));
+            init_note_envelope(i);
         }
     }
 }

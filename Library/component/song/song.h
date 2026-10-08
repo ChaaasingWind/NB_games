@@ -408,6 +408,7 @@ struct music_play
             bool virtual_is_finished = false;
             float phase[BUZZER_CHANNEL_NUM]  = {0};     //1ms内的时间
             float output[BUZZER_CHANNEL_NUM] = {0};
+            float env[BUZZER_CHANNEL_NUM] = {0};        //每声道包络当前值
             float final_output = 0;
         };
         I2S_ctx _i2s_ctx;
@@ -464,7 +465,9 @@ struct music_play
     void set_play_time_i2s(float time);
     void keep_silent_i2s();
     // 计算单个音调在当前时间下应该输出多少
-    float compute_current_output(float phase, float time, int last_beat, int velocity, int voice_type);
+    float compute_current_output(float phase, float time, int last_beat, int velocity, int voice_type, int ch);
+    // 音符开始时初始化该声道的包络（衰减系数按音符时长计算）
+    void init_note_envelope(int ch);
     
     
 };

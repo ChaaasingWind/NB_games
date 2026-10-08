@@ -15,6 +15,13 @@ constexpr float SAMPLE_DT = 1000.0f/SAMPLE_FREQUENCY;
 constexpr float PI = 3.1415926535f;
 constexpr float MAX_ONE_SOUND_VOLUME = 4000.0f;
 
+//音符包络参数（ADSR）—— 在"纯指数衰减"与"高保持 ADSR"之间取中
+constexpr float ENV_ATTACK_MS   = 3.0f;      //起音时长(ms)
+constexpr float ENV_DECAY_MS    = 120.0f;    //衰减到保持电平的时长(ms)
+constexpr float ENV_SUSTAIN     = 0.40f;     //保持电平(-8dB)
+constexpr float ENV_RELEASE_MS  = 30.0f;     //收音时长(ms)
+constexpr float ENV_DECAY_COEFF = 0.99920f;  //每采样衰减系数（120ms 内衰减到 -40dB）
+
 
 
 void music_play::I2S_Start()
@@ -34,18 +41,35 @@ void music_play::set_i2s_fill_state(song_ctx::I2S_ctx::fill_type type)
 }
 
 float music_play::compute_current_output(float phase, float time, int last_beat, 
-                                        int velocity, int voice_type)
+                                        int velocity, int voice_type, int ch)
 {
-    // 1.包络线
-    float envelope = 0.0f;
-    if(time < 4.0f)
+    // 1.包络线：ADSR（每声道独立状态）
+    //    起音：线性 0→1
+    //    衰减：一阶指数 1→sustain（1 乘 + 1 加）
+    //    保持：停在 sustain（零成本）
+    //    收音：最后 ENV_RELEASE_MS 内线性淡出到 0，保证音符切换点幅度连续
+    float note_ms = (float)last_beat * (float)_ctx.current_song->wait_time;
+    float envelope;
+    if (time < ENV_ATTACK_MS)
     {
-        envelope = time * 0.25f;
+        envelope = time / ENV_ATTACK_MS;                                    // 起音
     }
-    else 
+    else if (time < ENV_ATTACK_MS + ENV_DECAY_MS)
     {
-        envelope = (last_beat - time) / (last_beat);
+        envelope = ENV_SUSTAIN
+                 + (_ctx._i2s_ctx.env[ch] - ENV_SUSTAIN) * ENV_DECAY_COEFF; // 衰减
     }
+    else
+    {
+        envelope = ENV_SUSTAIN;                                             // 保持
+    }
+    if (note_ms > ENV_RELEASE_MS)                                           // 收音
+    {
+        float rel = (note_ms - time) / ENV_RELEASE_MS;
+        if (rel < envelope) envelope = rel;
+    }
+    if (envelope < 0.0f) envelope = 0.0f;
+    _ctx._i2s_ctx.env[ch] = envelope;
 
 
     //2.内部波形合成(全部映射到0-1)
@@ -61,7 +85,7 @@ float music_play::compute_current_output(float phase, float time, int last_beat,
         case 1 :
         {
             //方波
-            wave = (phase >= 0.5f) ? -0.8 : 0.8;
+            wave = (phase >= 0.5f) ? -1 : 1;
             break;
         }
         case 2 :
@@ -91,7 +115,7 @@ float music_play::compute_current_output(float phase, float time, int last_beat,
         case 6 :
         {
             //叠加5次谐波
-            wave = fastmath::fast_sin(phase) * 0.8 + 0.2f * fastmath::fast_sin(5.0f * phase);
+            wave = fastmath::fast_sin(phase) * 0.8f + 0.2f * fastmath::fast_sin(5.0f * phase);
             break;
         }
         case 7 :
@@ -104,6 +128,12 @@ float music_play::compute_current_output(float phase, float time, int last_beat,
 
     return envelope * wave * velocity / 127.0f * MAX_ONE_SOUND_VOLUME;
 
+}
+
+void music_play::init_note_envelope(int ch)
+{
+    // 复位该声道包络（起音段会重新写入；seek 后直接进入衰减段时从 1.0 起算）
+    _ctx._i2s_ctx.env[ch] = 1.0f;
 }
 
 void music_play::keep_silent_i2s()
@@ -141,6 +171,7 @@ void music_play::set_play_time_i2s(float time)
             //同步当前音符数据，避免 seek 后 internal_sound_data 仍是旧音符（导致音高/时长错误）
             memcpy(&(_ctx._i2s_ctx.internal_sound_data[i]),
                    _ctx.current_song->song_voice[i] + _ctx.count[i], sizeof(sound));
+            init_note_envelope(i);
         }
     }
 }
@@ -209,6 +240,7 @@ void music_play::play_music_i2s()
                         _ctx.times[k]=0;
                         _ctx._i2s_ctx.phase[k] = 0.0f;
                         memcpy(&(_ctx._i2s_ctx.internal_sound_data[k]), _ctx.current_song->song_voice[k] + _ctx.count[k], sizeof(sound));
+                        init_note_envelope(k);
                     }
 
                 }
@@ -240,7 +272,7 @@ void music_play::play_music_i2s()
                             _ctx._i2s_ctx.phase[p], _ctx.times[p], 
                             (_ctx._i2s_ctx.internal_sound_data[p]).last_beat,  
                             (_ctx._i2s_ctx.internal_sound_data[p]).velocity, 
-                            _ctx.cmd._style);
+                            _ctx.cmd._style, p);
                     //最后相位前进
                     _ctx._i2s_ctx.phase[p] += 
                         (sound::tone_freq_arr[(_ctx._i2s_ctx.internal_sound_data[p]).tone]
@@ -264,6 +296,7 @@ void music_play::play_music_i2s()
                     _ctx.times[p]=0;
                     _ctx._i2s_ctx.phase[p] = 0.0f;
                     memcpy(&(_ctx._i2s_ctx.internal_sound_data[p]), _ctx.current_song->song_voice[p] + _ctx.count[p], sizeof(sound));
+                    init_note_envelope(p);
                     
                 }
                 
