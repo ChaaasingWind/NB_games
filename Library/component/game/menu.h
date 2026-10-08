@@ -72,7 +72,7 @@ class menu
         int8_t current_music_index;
         MusicPlayingMode _playing_mode; 
         MusicStyle _style = MusicStyle::ORIGINAL;
-        int volume = 5; //音量，0-100之间
+        int volume = 40; //音量，0-100之间
         int rate   = 10; //倍速乘十
     };
 

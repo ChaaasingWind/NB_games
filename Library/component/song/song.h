@@ -419,6 +419,7 @@ struct music_play
         bool song_finished = false;
         float current_time = 0;
         const song* current_song = nullptr;
+        int8_t last_music_index = -1;               //当前已加载的歌曲索引（I2S/蜂鸣器两个状态共享，避免切换设备时误触发 set_song 而重置进度）
 
     };
     song_ctx _ctx;

@@ -38,7 +38,7 @@ float music_play::compute_current_output(float phase, float time, int last_beat,
 {
     // 1.包络线
     float envelope = 0.0f;
-    if(time <= 4.0f)
+    if(time < 4.0f)
     {
         envelope = time * 0.25f;
     }
@@ -61,13 +61,13 @@ float music_play::compute_current_output(float phase, float time, int last_beat,
         case 1 :
         {
             //方波
-            wave = (phase >= 0.5f) ? -1 : 1;
+            wave = (phase >= 0.5f) ? -0.8 : 0.8;
             break;
         }
         case 2 :
         {
             //三角波
-            wave = (phase >= 0.5f) ? (phase * 4.0f - 1.0f) : (-phase * 4.0f + 3.0f);
+            wave = (phase <= 0.5f) ? (phase * 4.0f - 1.0f) : (-phase * 4.0f + 3.0f);
             break;
         }
         case 3 :
@@ -91,7 +91,7 @@ float music_play::compute_current_output(float phase, float time, int last_beat,
         case 6 :
         {
             //叠加5次谐波
-            wave = fastmath::fast_sin(phase) * 0.7f + 0.3f * fastmath::fast_sin(5.0f * phase);
+            wave = fastmath::fast_sin(phase) * 0.8 + 0.2f * fastmath::fast_sin(5.0f * phase);
             break;
         }
         case 7 :
@@ -102,7 +102,7 @@ float music_play::compute_current_output(float phase, float time, int last_beat,
         }
     }
 
-    return envelope * wave * velocity * 0.078740157480f * MAX_ONE_SOUND_VOLUME;
+    return envelope * wave * velocity / 127.0f * MAX_ONE_SOUND_VOLUME;
 
 }
 
@@ -138,6 +138,9 @@ void music_play::set_play_time_i2s(float time)
                 _ctx.count[i]++;
             }
             _ctx.times[i] = tick;
+            //同步当前音符数据，避免 seek 后 internal_sound_data 仍是旧音符（导致音高/时长错误）
+            memcpy(&(_ctx._i2s_ctx.internal_sound_data[i]),
+                   _ctx.current_song->song_voice[i] + _ctx.count[i], sizeof(sound));
         }
     }
 }

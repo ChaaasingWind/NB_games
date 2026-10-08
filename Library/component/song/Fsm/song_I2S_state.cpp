@@ -22,11 +22,10 @@ void music_play::I2S_Song::enter(music_play* owner)
 
 void music_play::I2S_Song::execute(music_play* owner)
 {
-    static int8_t last_music_index = -1;
-    if(owner->_ctx.cmd.current_music_index != last_music_index)
+    if(owner->_ctx.cmd.current_music_index != owner->_ctx.last_music_index)
     {
         owner->set_song(&song_list[owner->_ctx.cmd.current_music_index]);
-        last_music_index = owner->_ctx.cmd.current_music_index;
+        owner->_ctx.last_music_index = owner->_ctx.cmd.current_music_index;
     }
     if(owner->_ctx.cmd.current_playing_state == song_ctx::song_cmd::playing_state::PLAYING)
     {
