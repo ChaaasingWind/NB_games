@@ -22,7 +22,7 @@ void screen::SettingsScreen::execute(screen* owner)
     .set_position(70, 20)
     .draw_string(volume_str)
     .set_position(10, 30)
-    .draw_string("Rate:")
+    .draw_string("Rate  :")
     .set_position(70, 30)
     .draw_string(rate_str)
     .set_position(10, 40)
@@ -39,7 +39,7 @@ void screen::SettingsScreen::execute(screen* owner)
     }
     pen::instance()
     .set_position(10, 50)
-    .draw_string("Style")
+    .draw_string("Style :")
     .set_position(70, 50);
     if(owner->_ctx._style == menu::MusicStyle::CHORUS)
     {
