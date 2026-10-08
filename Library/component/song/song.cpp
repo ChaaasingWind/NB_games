@@ -154,6 +154,11 @@ void music_play::song_run()
     }
     _ctx.cmd.rate = ctx.rate;
     _ctx.cmd.volume = ctx.volume;
+    _ctx.cmd._style = (int)ctx._style;
+    if(_ctx.cmd._style == 8)
+    {
+        _ctx.cmd._style = 0;
+    }
 
     //状态机执行
     SongFsm.execute(this);

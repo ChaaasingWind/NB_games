@@ -37,5 +37,45 @@ void screen::SettingsScreen::execute(screen* owner)
         pen::instance().set_position(70, 40)
         .draw_string("PCM-5102");
     }
+    pen::instance()
+    .set_position(10, 50)
+    .draw_string("Style")
+    .set_position(70, 50);
+    if(owner->_ctx._style == menu::MusicStyle::CHORUS)
+    {
+        pen::instance().draw_string("CHORUS");
+    }
+    else if(owner->_ctx._style == menu::MusicStyle::CLARINET)
+    {
+        pen::instance().draw_string("CLARINET");
+    }
+    else if(owner->_ctx._style == menu::MusicStyle::ORGAN)
+    {
+        pen::instance().draw_string("ORGAN");
+    }
+    else if(owner->_ctx._style == menu::MusicStyle::ORIGINAL)
+    {
+        pen::instance().draw_string("ORIGINAL");
+    }
+    else if(owner->_ctx._style == menu::MusicStyle::PULSE_25)
+    {
+        pen::instance().draw_string("PULSE_25");
+    }
+    else if(owner->_ctx._style == menu::MusicStyle::SIN)
+    {
+        pen::instance().draw_string("SIN");
+    }
+    else if(owner->_ctx._style == menu::MusicStyle::SQUARE)
+    {
+        pen::instance().draw_string("SQUARE");
+    }
+    else if(owner->_ctx._style == menu::MusicStyle::TRINGLE)
+    {
+        pen::instance().draw_string("TRINGLE");
+    }
+    else if(owner->_ctx._style == menu::MusicStyle::SAWTOOTH)
+    {
+        pen::instance().draw_string("SAWTOOTH");
+    }
 
 }

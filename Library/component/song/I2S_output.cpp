@@ -13,7 +13,7 @@ constexpr float SAMPLE_FREQUENCY  = 48144.0f;
 constexpr float SAMPLE_DT = 1000.0f/SAMPLE_FREQUENCY;
 
 constexpr float PI = 3.1415926535f;
-constexpr float MAX_ONE_SOUND_VOLUME = 2000.0f;
+constexpr float MAX_ONE_SOUND_VOLUME = 4000.0f;
 
 
 
@@ -33,10 +33,77 @@ void music_play::set_i2s_fill_state(song_ctx::I2S_ctx::fill_type type)
     _ctx._i2s_ctx._type = type;
 }
 
-float music_play::compute_current_output(float phase, float time, 
-                                          int voice_type, int velocity, int last_beat)
+float music_play::compute_current_output(float phase, float time, int last_beat, 
+                                        int velocity, int voice_type)
 {
-    return fastmath::fast_sin(phase) * MAX_ONE_SOUND_VOLUME;
+    // 1.包络线
+    float envelope = 0.0f;
+    if(time <= 4.0f)
+    {
+        envelope = time * 0.25f;
+    }
+    else 
+    {
+        envelope = (last_beat - time) / (last_beat);
+    }
+
+
+    //2.内部波形合成(全部映射到0-1)
+    float wave = 0.0f;
+    switch (voice_type)
+    {
+        case 0 :
+        {
+            //正弦波
+            wave = fastmath::fast_sin(phase);
+            break;
+        }
+        case 1 :
+        {
+            //方波
+            wave = (phase >= 0.5f) ? -1 : 1;
+            break;
+        }
+        case 2 :
+        {
+            //三角波
+            wave = (phase >= 0.5f) ? (phase * 4.0f - 1.0f) : (-phase * 4.0f + 3.0f);
+            break;
+        }
+        case 3 :
+        {
+            //锯齿波
+            wave = phase * 2.0f - 1.0f;
+            break;
+        }
+        case 4 :
+        {
+            //脉冲波
+            wave = (phase >= 0.25f) ? -1 : 1;
+            break;
+        }
+        case 5 :
+        {
+            //叠加三次谐波
+            wave = fastmath::fast_sin(phase) * 0.8f + 0.2f * fastmath::fast_sin(3.0f * phase);
+            break;
+        }
+        case 6 :
+        {
+            //叠加5次谐波
+            wave = fastmath::fast_sin(phase) * 0.7f + 0.3f * fastmath::fast_sin(5.0f * phase);
+            break;
+        }
+        case 7 :
+        {
+            //双正弦
+            wave = (fastmath::fast_sin(phase) + fastmath::fast_sin(phase + 0.02f));
+            break;
+        }
+    }
+
+    return envelope * wave * velocity * 0.078740157480f * MAX_ONE_SOUND_VOLUME;
+
 }
 
 void music_play::keep_silent_i2s()
@@ -167,9 +234,10 @@ void music_play::play_music_i2s()
                 else
                 {
                     _ctx._i2s_ctx.output[p] = compute_current_output(
-                            _ctx._i2s_ctx.phase[p], _ctx.times[p], 0, 
-                            (_ctx._i2s_ctx.internal_sound_data[p]).last_beat, 
-                            (_ctx._i2s_ctx.internal_sound_data[p]).velocity);
+                            _ctx._i2s_ctx.phase[p], _ctx.times[p], 
+                            (_ctx._i2s_ctx.internal_sound_data[p]).last_beat,  
+                            (_ctx._i2s_ctx.internal_sound_data[p]).velocity, 
+                            _ctx.cmd._style);
                     //最后相位前进
                     _ctx._i2s_ctx.phase[p] += 
                         (sound::tone_freq_arr[(_ctx._i2s_ctx.internal_sound_data[p]).tone]

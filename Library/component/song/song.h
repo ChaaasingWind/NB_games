@@ -376,6 +376,7 @@ struct music_play
             playing_state current_playing_state;
             int rate;
             int volume;
+            int _style;
         };
         struct buzzer_ctx
         {
@@ -462,7 +463,7 @@ struct music_play
     void set_play_time_i2s(float time);
     void keep_silent_i2s();
     // 计算单个音调在当前时间下应该输出多少
-    float compute_current_output(float phase, float time, int voice_type, int velocity, int last_beat);
+    float compute_current_output(float phase, float time, int last_beat, int velocity, int voice_type);
     
     
 };

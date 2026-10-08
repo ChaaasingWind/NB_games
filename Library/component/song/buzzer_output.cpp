@@ -92,6 +92,7 @@ void music_play::keep_silent()
     for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
     {
         _ctx._buzzer_ctx.output[i].compare = 0;
+        _ctx._buzzer_ctx.output[i].update_tim = 1;
     }
 }
 

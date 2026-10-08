@@ -38,7 +38,7 @@ void StartDefaultTask(void *argument)
         #endif
     #if BUZZER_TASK
         xTaskCreate(song_task, "song_task", 
-                1024, NULL,configMAX_PRIORITIES - 2, NULL);
+                1024, NULL,configMAX_PRIORITIES - 1, NULL);
         #endif
     #if OLED_TASK
         xTaskCreate(oled_i2c_task, "oled_i2c_task", 

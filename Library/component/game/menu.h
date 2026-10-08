@@ -9,7 +9,7 @@
 
 
 constexpr int MAIN_MENU_MAX_NUM  = 4;
-constexpr int SETTINGS_MENU_MAX_NUM = 3;
+constexpr int SETTINGS_MENU_MAX_NUM = 4;
 constexpr int MUSIC_PLAYING_MODE_NUM = 4;
 
 
@@ -49,6 +49,19 @@ class menu
         BUZZER,
         I2S,
     };
+    enum class MusicStyle
+    {
+        SIN,
+        SQUARE,
+        TRINGLE,
+        SAWTOOTH,
+        PULSE_25,
+        CLARINET,
+        ORGAN,
+        CHORUS,
+        ORIGINAL,
+        COUNTER,  //计数位
+    };
 
     struct menuctx
     {
@@ -58,7 +71,8 @@ class menu
         MusicPlayingState current_playing_state;
         int8_t current_music_index;
         MusicPlayingMode _playing_mode; 
-        int volume = 50; //音量，0-100之间
+        MusicStyle _style = MusicStyle::ORIGINAL;
+        int volume = 5; //音量，0-100之间
         int rate   = 10; //倍速乘十
     };
 

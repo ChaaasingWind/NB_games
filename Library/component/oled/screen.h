@@ -19,6 +19,7 @@ class screen
         menu::MusicPlayingState playing_state;
         menu::MusicPlayingMode playing_mode;
         menu::PlayingDevice playing_device;
+        menu::MusicStyle _style;
         int8_t index;
         int8_t music_index;
         int volume; //音量，0-100之间
