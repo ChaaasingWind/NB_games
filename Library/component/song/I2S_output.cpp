@@ -268,7 +268,6 @@ void music_play::play_music_i2s()
                 }
                 
             }
-            _ctx.current_time += SAMPLE_DT * _ctx.cmd.rate *0.1f;
             //把最后的输出加和
             _ctx._i2s_ctx.final_output = 0;
             for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
@@ -279,6 +278,7 @@ void music_play::play_music_i2s()
             audio_buffer[2*j + data_offset] = _ctx._i2s_ctx.final_output;
             audio_buffer[2*j + 1 + data_offset] = _ctx._i2s_ctx.final_output;
         }
+        _ctx.current_time += SAMPLE_DT * _ctx.cmd.rate * 51.2f;
     }
     else 
     {
