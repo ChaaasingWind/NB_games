@@ -268,6 +268,7 @@ void music_play::play_music_i2s()
                 }
                 
             }
+            
             //把最后的输出加和
             _ctx._i2s_ctx.final_output = 0;
             for(int i = 0; i < BUZZER_CHANNEL_NUM; i++)
